@@ -8,16 +8,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page">Home</a>
+                    <a #a class="nav-link" [ngClass]="active=='Home' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Docenti e Ata</a>
+                    <a class="nav-link" [ngClass]="active=='Personale' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Famiglia</a>
+                    <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Famiglia')">Famiglia</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Orario</a>
+                    <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Orario')">Orario</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
@@ -38,54 +38,31 @@
         <!-- Facebook -->
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-facebook-f"></i
+          ><i class="fa fa-facebook-f"></i
         ></a>
-  
         <!-- Twitter -->
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-twitter"></i
+          ><i class="fa fa-twitter"></i
         ></a>
-  
-        <!-- Google -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fab fa-google"></i
-        ></a>
-  
         <!-- Instagram -->
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-instagram"></i
+          ><i class="fa fa-instagram"></i
         ></a>
   
         <!-- Linkedin -->
         <a
           class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
           role="button"
           data-mdb-ripple-color="dark"
-          ><i class="fab fa-linkedin"></i
-        ></a>
-        <!-- Github -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          href="#!"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fab fa-github"></i
+          ><i class="fa fa-linkedin"></i
         ></a>
       </section>
       <!-- Section: Social media -->
@@ -94,8 +71,8 @@
   
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2020 Copyright:
-      <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      © 2023 Copyright:
+      <span class="text-dark">Tutti i diritti sono riservati</span>
     </div>
     <!-- Copyright -->
   </footer>
