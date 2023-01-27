@@ -11,10 +11,20 @@
                     <a #a class="nav-link" [ngClass]="active=='Home' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Home')">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [ngClass]="active=='Personale' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='Personale' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
+                      <ul class="dropdown-menu menu-tendina">
+                        <li><a class="dropdown-item">Elenco docenti</a></li>
+                        <li><a class="dropdown-item">Elenco coordinatori</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item">Elenco classi</a></li>
+                        <li><a class="dropdown-item">Segreteria</a></li>
+                      </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Famiglia')">Famiglia</a>
+                    <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Famiglia')">Registro famiglie</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Docente')">Registro docenti</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Orario')">Orario</a>
