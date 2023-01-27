@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ServiceDatiStudenteService } from './service-dati/studente/service-dati-studente.service';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [ServiceDatiStudenteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -35,11 +35,8 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             <div class="btn-group" style="margin-left: 7px;">
-              <button type="button" class="btn btn-success">Login</button>
-              <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" style="margin-left: -50px;">
+              <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Login</button>
+              <ul class="dropdown-menu" style="margin-left: -60px;">
                 <li><a class="dropdown-item" [routerLink]="['/login-studente']">Studente</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" [routerLink]="['/login-docente']">Docente</a></li>
