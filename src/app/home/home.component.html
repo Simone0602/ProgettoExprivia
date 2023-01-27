@@ -1,94 +1,132 @@
 <div id="padre">
-    <div class="padre">
-        <div style="background-color: white; padding: 30px;">
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button *ngFor="let immagine of listaImmagini; index as i" type="button" data-bs-target="#carouselExampleIndicators" class="active" aria-current="true" (click)="cambioImmagineByCarouselSlide(i)"></button>
-                </div>
-                <div style="width: 100%; height: 550px;">
-                    <div class="carousel-inner" style="height: 100%;">
-                        <div class="carousel-item active">
-                          <img [src]="immagine" class="d-block w-100">
-                        </div>
-                      </div>
-                </div>
-                <button class="carousel-control-prev" type="button" (click)="cambioImmagineByButton('prev')">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" (click)="cambioImmagineByButton('next')">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-    
-              <div class="accordion" id="accordionPanelsStayOpenExample"  style="margin-top: 30px;">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                      La nostra scuola
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                    <div class="accordion-body">
-                        La scuola che presentiamo si chiama "Istituto Comprensivo Statale XX". Si tratta di una scuola di ordine primario e secondario, situata nel centro della città, in una posizione strategica per gli studenti.
-                        La scuola offre un'ampia gamma di attività, tra cui un'eccellente formazione accademica, sportiva e artistica. Gli studenti possono scegliere tra diverse materie e attività extracurriculari, come la musica, la danza, il teatro e le lingue straniere.
-                        L'istituto è dotato di moderne strutture, tra cui aule attrezzate, una palestra, una biblioteca, un laboratorio di informatica e un'area verde. Inoltre, dispone di un'equipe di insegnanti qualificati e dedicati, che offrono supporto agli studenti in ogni fase del loro percorso scolastico.
-                        L'istituto Comprensivo Statale XX si impegna a creare un ambiente di apprendimento sicuro e stimolante, dove gli studenti possono sviluppare le loro capacità e competenze. La scuola incoraggia gli studenti a diventare cittadini attivi e responsabili, attraverso l'educazione alla cittadinanza e l'impegno sociale.
-                        La scuola è aperta a tutti gli studenti della zona, indipendentemente dalle loro origini culturali o sociali. Siamo orgogliosi della diversità della nostra comunità scolastica e lavoriamo per creare un ambiente inclusivo e solidale.
-                        In sintesi, l'Istituto Comprensivo Statale XX è una scuola moderna e dinamica, che offre un'eccellente formazione accademica e un ambiente di apprendimento stimolante e sicuro. Siamo impegnati a sostenere gli studenti in ogni fase del loro percorso scolastico e a formare cittadini attivi e responsabili.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                       Incontro sul Cyberbullismo
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
-                    <div class="accordion-body">
-                        Il progetto scolastico che proponiamo riguarda il cyberbullismo, un fenomeno sempre più diffuso tra i giovani e che può causare gravi conseguenze sulla salute mentale e fisica degli studenti.
-                        Il nostro obiettivo è quello di sensibilizzare gli studenti sui rischi del cyberbullismo e fornire loro gli strumenti per prevenirlo e difendersi da esso.
-                        Il progetto prevede diverse attività, tra cui:
-                        <ul>
-                            <li>
-                                Incontri con esperti: inviteremo psicologi e avvocati specializzati in questo tema per parlare con gli studenti delle conseguenze del cyberbullismo e dei loro diritti.
-                            </li>
-                            <li>
-                                Laboratori di prevenzione: organizzeremo dei laboratori in cui gli studenti impareranno come utilizzare internet in modo responsabile e come difendersi dalle minacce online.
-                            </li>
-                            <li>
-                                Campagne di sensibilizzazione: promuoveremo campagne di sensibilizzazione per informare gli studenti sui rischi del cyberbullismo e sulle azioni da intraprendere per prevenirlo.
-                            </li>
-                            <li>
-                                Supporto psicologico: metteremo a disposizione degli studenti un supporto psicologico per coloro che hanno subito il cyberbullismo e che potrebbero aver bisogno di aiuto per superare questa esperienza.
-                            </li>
-                        </ul>
-                        Il progetto coinvolgerà gli studenti di tutte le classi e sarà condotto in collaborazione con le famiglie e le autorità scolastiche. Siamo convinti che questo progetto possa contribuire a creare un ambiente scolastico più sicuro e positivo per gli studenti.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
-                      Open Day
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
-                    <div class="accordion-body">
-                        Buongiorno a tutti,
-                        benvenuti all'Open Day della nostra scuola superiore. Siamo lieti di darvi il benvenuto e di mostrarvi tutto ciò che la nostra scuola ha da offrire.
-                        La nostra scuola è un'istituzione educativa di alta qualità che si impegna a fornire un'istruzione completa e soddisfacente ai nostri studenti. Offriamo una vasta gamma di corsi che coprono una vasta gamma di discipline, tra cui scienze, lettere, arte, musica e sport.
-                        La nostra scuola è dotata di strutture moderne e ben attrezzate, tra cui laboratori di scienze, aule informatiche, una biblioteca ben fornita e un'area sportiva all'avanguardia. Inoltre, abbiamo un corpo docente altamente qualificato e dedicato che lavora duramente per assicurare che i nostri studenti abbiano successo nella loro educazione.
-                        Inoltre, offriamo numerose attività extracurriculari, tra cui club e squadre sportive, gruppi di teatro e di musica, e molte altre opportunità per esplorare interessi personali e sviluppare abilità sociali.
-                        In definitiva, la nostra scuola offre un'istruzione di alta qualità in un ambiente stimolante ed esclusivo. Vi invitiamo a esplorare tutto ciò che abbiamo da offrire e a visitare le nostre strutture durante questo Open Day. Siamo lieti di rispondere alle vostre domande e di aiutarvi a fare la scelta giusta per il vostro futuro educativo.
-                        Grazie per averci scelto.
-                        Distinti saluti.
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="padre">
+    <div style="background-color: white; padding: 30px;">
+      <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+          <button *ngFor="let immagine of listaImmagini; index as i" type="button"
+            data-bs-target="#carouselExampleIndicators" class="active" aria-current="true"
+            (click)="cambioImmagineByCarouselSlide(i)"></button>
         </div>
+        <div class="carousel-inner" style="height: 100%;">
+          <div class="carousel-item active">
+            <img [src]="immagine" class="d-block w-100">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" (click)="cambioImmagineByButton('prev')">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" (click)="cambioImmagineByButton('next')">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="accordion" id="accordionPanelsStayOpenExample" style="margin-top: 30px;">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne">
+              La nostra scuola
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+              La scuola che presentiamo si chiama "Istituto Comprensivo Statale XX". Si tratta di una scuola di ordine
+              primario e secondario, situata nel centro della città, in una posizione strategica per gli studenti.
+              La scuola offre un'ampia gamma di attività, tra cui un'eccellente formazione accademica, sportiva e
+              artistica. Gli studenti possono scegliere tra diverse materie e attività extracurriculari, come la musica,
+              la danza, il teatro e le lingue straniere.
+              L'istituto è dotato di moderne strutture, tra cui aule attrezzate, una palestra, una biblioteca, un
+              laboratorio di informatica e un'area verde. Inoltre, dispone di un'equipe di insegnanti qualificati e
+              dedicati, che offrono supporto agli studenti in ogni fase del loro percorso scolastico.
+              L'istituto Comprensivo Statale XX si impegna a creare un ambiente di apprendimento sicuro e stimolante,
+              dove gli studenti possono sviluppare le loro capacità e competenze. La scuola incoraggia gli studenti a
+              diventare cittadini attivi e responsabili, attraverso l'educazione alla cittadinanza e l'impegno sociale.
+              La scuola è aperta a tutti gli studenti della zona, indipendentemente dalle loro origini culturali o
+              sociali. Siamo orgogliosi della diversità della nostra comunità scolastica e lavoriamo per creare un
+              ambiente inclusivo e solidale.
+              In sintesi, l'Istituto Comprensivo Statale XX è una scuola moderna e dinamica, che offre un'eccellente
+              formazione accademica e un ambiente di apprendimento stimolante e sicuro. Siamo impegnati a sostenere gli
+              studenti in ogni fase del loro percorso scolastico e a formare cittadini attivi e responsabili.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseTwo">
+              Incontro sul Cyberbullismo
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body">
+              Il progetto scolastico che proponiamo riguarda il cyberbullismo, un fenomeno sempre più diffuso tra i
+              giovani e che può causare gravi conseguenze sulla salute mentale e fisica degli studenti.
+              Il nostro obiettivo è quello di sensibilizzare gli studenti sui rischi del cyberbullismo e fornire loro
+              gli strumenti per prevenirlo e difendersi da esso.
+              Il progetto prevede diverse attività, tra cui:
+              <ul>
+                <li>
+                  Incontri con esperti: inviteremo psicologi e avvocati specializzati in questo tema per parlare con gli
+                  studenti delle conseguenze del cyberbullismo e dei loro diritti.
+                </li>
+                <li>
+                  Laboratori di prevenzione: organizzeremo dei laboratori in cui gli studenti impareranno come
+                  utilizzare internet in modo responsabile e come difendersi dalle minacce online.
+                </li>
+                <li>
+                  Campagne di sensibilizzazione: promuoveremo campagne di sensibilizzazione per informare gli studenti
+                  sui rischi del cyberbullismo e sulle azioni da intraprendere per prevenirlo.
+                </li>
+                <li>
+                  Supporto psicologico: metteremo a disposizione degli studenti un supporto psicologico per coloro che
+                  hanno subito il cyberbullismo e che potrebbero aver bisogno di aiuto per superare questa esperienza.
+                </li>
+              </ul>
+              Il progetto coinvolgerà gli studenti di tutte le classi e sarà condotto in collaborazione con le famiglie
+              e le autorità scolastiche. Siamo convinti che questo progetto possa contribuire a creare un ambiente
+              scolastico più sicuro e positivo per gli studenti.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseThree">
+              Open Day
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingThree">
+            <div class="accordion-body">
+              Buongiorno a tutti,
+              benvenuti all'Open Day della nostra scuola superiore. Siamo lieti di darvi il benvenuto e di mostrarvi
+              tutto ciò che la nostra scuola ha da offrire.
+              La nostra scuola è un'istituzione educativa di alta qualità che si impegna a fornire un'istruzione
+              completa e soddisfacente ai nostri studenti. Offriamo una vasta gamma di corsi che coprono una vasta gamma
+              di discipline, tra cui scienze, lettere, arte, musica e sport.
+              La nostra scuola è dotata di strutture moderne e ben attrezzate, tra cui laboratori di scienze, aule
+              informatiche, una biblioteca ben fornita e un'area sportiva all'avanguardia. Inoltre, abbiamo un corpo
+              docente altamente qualificato e dedicato che lavora duramente per assicurare che i nostri studenti abbiano
+              successo nella loro educazione.
+              Inoltre, offriamo numerose attività extracurriculari, tra cui club e squadre sportive, gruppi di teatro e
+              di musica, e molte altre opportunità per esplorare interessi personali e sviluppare abilità sociali.
+              In definitiva, la nostra scuola offre un'istruzione di alta qualità in un ambiente stimolante ed
+              esclusivo. Vi invitiamo a esplorare tutto ciò che abbiamo da offrire e a visitare le nostre strutture
+              durante questo Open Day. Siamo lieti di rispondere alle vostre domande e di aiutarvi a fare la scelta
+              giusta per il vostro futuro educativo.
+              Grazie per averci scelto.
+              Distinti saluti.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
