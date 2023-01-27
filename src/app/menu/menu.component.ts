@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit{
   aperturaChiusura = false;
+  active = 'Home';
 
-  constructor(){}
+  constructor(private router: Router){}
 
   ngOnInit(): void {
+  }
+
+  navigazioneNavbar(value: string): void{
+    this.active = value;
   }
 }
 
