@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ServiceDatiStudenteService } from '../service-dati/studente/service-dati-studente.service';
 
 @Component({
@@ -8,15 +9,15 @@ import { ServiceDatiStudenteService } from '../service-dati/studente/service-dat
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  showHide: string = 'password';
+  tipoUtente: string;
 
-  showHide = 'password';
-  tipoUtente = '';
-
-  constructor(private router: Router, public serviceStudente: ServiceDatiStudenteService){}
+  constructor(private route: ActivatedRoute, public serviceStudente: ServiceDatiStudenteService){}
 
   ngOnInit(): void {
-    const position = this.router.url.lastIndexOf('-') + 1;
-    this.tipoUtente = this.router.url.substring(position); 
+    this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
+    this.serviceStudente.checkUser = '';
+    this.serviceStudente.messageLogin = '';
   }
 
   showHidePassword(): void{
@@ -30,4 +31,13 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  login(form: NgForm): void{
+    if(this.tipoUtente=='studente'){
+      const studente = { 
+        userCode: form.form.get('userCode')!.value,
+        pas: form.form.get('password')!.value
+      }
+      this.serviceStudente.loginStudente(studente);
+    }
+  }
 }
