@@ -9,31 +9,15 @@ import { ServiceDatiStudenteService } from '../service-dati/studente/service-dat
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-
-  showHide = 'password';
+  showHide: string = 'password';
   tipoUtente: string;
-
-
-
-  constructor(private route: ActivatedRoute , public serviceStudente: ServiceDatiStudenteService){}
+  
+  constructor(private route: ActivatedRoute, public serviceStudente: ServiceDatiStudenteService){}
 
   ngOnInit(): void {
-    this.tipoUtente = this.route.snapshot.paramMap.get('user')!; 
-    console.log(this.tipoUtente);
-    
-  }
-
-  login(form: NgForm):void{
-    if(this.tipoUtente == "studente" ){
-      const studente = {
-        userCode: form.form.get("userCode")!.value,
-        pass: form.form.get("password")!.value
-      }
-
-      this.serviceStudente.login(studente);
-    }else{
-      
-    }
+    this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
+    this.serviceStudente.checkUser = '';
+    this.serviceStudente.messageLogin = '';
   }
 
   showHidePassword(): void{
@@ -47,4 +31,13 @@ export class LoginComponent implements OnInit{
     }
   }
 
+  login(form: NgForm): void{
+    if(this.tipoUtente=='studente'){
+      const studente = { 
+        userCode: form.form.get('userCode')!.value,
+        pas: form.form.get('password')!.value
+      }
+      this.serviceStudente.loginStudente(studente);
+    }
+  }
 }

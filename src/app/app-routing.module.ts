@@ -12,7 +12,10 @@ const routes: Routes = [
     ]
   },
   { path: 'login/:user', component: LoginComponent }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c028644f93635deb0cbef7d78e6dae09e8c373b4
 ];
 
 @NgModule({
