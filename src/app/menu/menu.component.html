@@ -24,7 +24,7 @@
                     <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Famiglia')">Registro famiglie</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Docente')" *ngIf="!serviceStudente.getStudente()">Registro docenti</a>
+                  <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Docente')">Registro docenti</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Orario')">Orario</a>

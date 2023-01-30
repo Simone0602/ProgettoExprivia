@@ -10,7 +10,7 @@ import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/r
 export class ServiceDatiStudenteService {
   messageLogin: string;
   checkUser: string;
-  private studente: Studente;
+  studente: Studente;
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
 
@@ -29,9 +29,5 @@ export class ServiceDatiStudenteService {
         this.messageLogin = error.error;
       }
     });
-  }
-
-  getStudente(): Studente{
-    return this.studente;
   }
 }
