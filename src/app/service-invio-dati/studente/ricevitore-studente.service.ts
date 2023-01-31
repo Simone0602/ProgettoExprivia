@@ -8,15 +8,15 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class RicevitoreStudenteService {
-  baseUrl = environment.url;
+  url = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
   public login(studente: {userCode: string, pas: string}): Observable<Studente>{
-    return this.http.post<Studente>(`${this.baseUrl}/studente/loginStudente`, studente);
+    return this.http.post<Studente>(`${this.url}/studente/loginStudente`, studente);
   }
 
   public resetPassword(studente: {mail: string, userCode: string}): Observable<string>{
-    return this.http.post(`${this.baseUrl}/studente/resetPassword`, studente, { responseType: 'text' });
+    return this.http.post(`${this.url}/studente/resetPassword`, studente, { responseType: 'text' });
   }
 }
