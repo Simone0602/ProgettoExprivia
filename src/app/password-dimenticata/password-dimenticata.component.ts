@@ -24,6 +24,8 @@ export class PasswordDimenticataComponent implements OnInit{
         mail: this.email,
         userCode: this.userCode
       }
+      console.log(this.email);
+      
       this.serviceStudente.resetPassword(studente);
     }
   }

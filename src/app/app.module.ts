@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PasswordDimenticataComponent } from './password-dimenticata/password-dimenticata.component';
 
 
 @NgModule({
@@ -18,14 +19,14 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PasswordDimenticataComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule,
     FormsModule,
+    BrowserAnimationsModule,
     RouterModule,
     HttpClientModule
   ],
