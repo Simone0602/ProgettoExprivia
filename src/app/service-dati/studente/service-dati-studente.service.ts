@@ -8,7 +8,7 @@ import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/r
   providedIn: 'root'
 })
 export class ServiceDatiStudenteService {
-  messageLogin: string;
+  message: string;
   checkUser: string;
   private studente: Studente;
 
@@ -19,20 +19,29 @@ export class ServiceDatiStudenteService {
       next: (studente_loggato: Studente) => {
         this.studente = studente_loggato;
         this.checkUser = 'true';
-        this.messageLogin = 'Reindirizzamento alla home';
+        this.message = 'Reindirizzamento alla home';
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 1500);
       },
       error: (error: HttpErrorResponse) => {
         this.checkUser = 'false'
-        this.messageLogin = error.error;
+        this.message = error.error;
       }
     });
   }
 
   resetPassword(studente: {mail: string, userCode: string}): void{
-    this.ricevitoreStudente.resetPassword(studente)
+    this.ricevitoreStudente.resetPassword(studente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = "true";
+      },
+      error: (error: HttpErrorResponse) => {
+        this.checkUser = "false"
+        this.message = error.error;
+      }
+    })
   }
 
   getStudente(): Studente{

@@ -12,7 +12,7 @@ export class PasswordDimenticataComponent implements OnInit{
   email: string;
   userCode: string;
 
-  constructor(private route: ActivatedRoute, private serviceStudente: ServiceDatiStudenteService){}
+  constructor(private route: ActivatedRoute, public serviceStudente: ServiceDatiStudenteService){}
 
   ngOnInit(): void {
     this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
@@ -24,7 +24,6 @@ export class PasswordDimenticataComponent implements OnInit{
         mail: this.email,
         userCode: this.userCode
       }
-      console.log(this.email);
       
       this.serviceStudente.resetPassword(studente);
     }
