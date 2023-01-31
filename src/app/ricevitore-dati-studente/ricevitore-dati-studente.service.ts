@@ -8,7 +8,7 @@ import { Studente } from '../classi/Studente';
   providedIn:"root"
 })
 export class RicevitoreDatiStudenteService {
-  url= environment.baseUrl
+  url= environment.url
   
   constructor (private http: HttpClient){}
 
