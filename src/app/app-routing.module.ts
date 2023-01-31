@@ -13,7 +13,8 @@ const routes: Routes = [
     ]
   },
   { path: 'login/:user', component: LoginComponent },
-  { path: 'password-dimenticata/:user', component: PasswordDimenticataComponent }
+  { path: 'password-dimenticata/:user', component: PasswordDimenticataComponent },
+  { path: 'password-dimenticata/:user/:token', component: PasswordDimenticataComponent },
 ];
 
 @NgModule({

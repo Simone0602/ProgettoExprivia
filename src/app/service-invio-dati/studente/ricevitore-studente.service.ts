@@ -16,7 +16,7 @@ export class RicevitoreStudenteService {
     return this.http.post<Studente>(`${this.url}/studente/loginStudente`, studente);
   }
 
-  public resetPassword(studente: {mail: string, userCode: string}): Observable<string>{
-    return this.http.post(`${this.url}/studente/resetPassword`, studente, { responseType: 'text' });
+  public resetPassword(studente: {mail: string, userCode: string}, tipoUtente: string): Observable<string>{
+    return this.http.post(`${this.url}/studente/sendEmail/` + tipoUtente, studente, { responseType: 'text' });
   }
 }

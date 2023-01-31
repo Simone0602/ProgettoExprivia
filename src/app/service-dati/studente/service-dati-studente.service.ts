@@ -31,8 +31,8 @@ export class ServiceDatiStudenteService {
     });
   }
 
-  resetPassword(studente: {mail: string, userCode: string}): void{
-    this.ricevitoreStudente.resetPassword(studente).subscribe({
+  resetPassword(studente: {mail: string, userCode: string}, tipoUtente: string): void{
+    this.ricevitoreStudente.resetPassword(studente, tipoUtente).subscribe({
       next: (message: string) => {
         this.message = message;
         this.checkUser = "true";
