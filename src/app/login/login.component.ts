@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
     this.serviceStudente.checkUser = '';
-    this.serviceStudente.messageLogin = '';
+    this.serviceStudente.message = '';
   }
 
   showHidePassword(): void{
