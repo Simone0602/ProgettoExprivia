@@ -15,4 +15,8 @@ export class RicevitoreStudenteService {
   public login(studente: {userCode: string, pas: string}): Observable<Studente>{
     return this.http.post<Studente>(`${this.baseUrl}/studente/loginStudente`, studente);
   }
+
+  public resetPassword(studente: {mail: string, userCode: string}): Observable<string>{
+    return this.http.post(`${this.baseUrl}/studente/resetPassword`, studente, { responseType: 'text' });
+  }
 }

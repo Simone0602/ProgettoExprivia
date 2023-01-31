@@ -10,11 +10,11 @@ import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/r
 export class ServiceDatiStudenteService {
   messageLogin: string;
   checkUser: string;
-  studente: Studente;
+  private studente: Studente;
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
 
-  loginStudente(studente: {userCode: string, pas: string}){
+  loginStudente(studente: {userCode: string, pas: string}): void{
     this.ricevitoreStudente.login(studente).subscribe({
       next: (studente_loggato: Studente) => {
         this.studente = studente_loggato;
@@ -29,5 +29,13 @@ export class ServiceDatiStudenteService {
         this.messageLogin = error.error;
       }
     });
+  }
+
+  resetPassword(studente: {mail: string, userCode: string}): void{
+    this.ricevitoreStudente.resetPassword(studente)
+  }
+
+  getStudente(): Studente{
+    return this.studente;
   }
 }

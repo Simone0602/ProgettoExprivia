@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ServiceDatiStudenteService } from './service-dati/studente/service-dati-studente.service';
 import { RicevitoreStudenteService } from './service-invio-dati/studente/ricevitore-studente.service';
+import { PasswordDimenticataComponent } from './password-dimenticata/password-dimenticata.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { RicevitoreStudenteService } from './service-invio-dati/studente/ricevit
     AppComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    PasswordDimenticataComponent
   ],
   imports: [
     BrowserModule,
