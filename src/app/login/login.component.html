@@ -26,6 +26,7 @@
           <form #form="ngForm" (ngSubmit)="login(form)" novalidate>
             <span class="lead fw-normal me-3 mt-5" style="font-size: 22px;">Login</span>
 
+
             <div *ngIf="tipoUtente=='studente'; then bloccoStudente else bloccoInsegnante"></div>
             <!-- Blocco studente -->
             <ng-template #bloccoStudente>

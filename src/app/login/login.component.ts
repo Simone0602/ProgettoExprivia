@@ -12,7 +12,7 @@ import { ServiceDatiStudenteService } from '../service-dati/studente/service-dat
 export class LoginComponent implements OnInit{
   showHide: string = 'password';
   tipoUtente: string;
-
+  
   constructor(private route: ActivatedRoute, public serviceStudente: ServiceDatiStudenteService){}
 
   ngOnInit(): void {

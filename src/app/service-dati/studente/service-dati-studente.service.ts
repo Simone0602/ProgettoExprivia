@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Studente } from 'src/app/classi/Studente';
+import { RicevitoreDatiStudenteService } from 'src/app/ricevitore-dati-studente/ricevitore-dati-studente.service';
 import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/ricevitore-studente.service';
 
 @Injectable({
