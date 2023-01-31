@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Studente } from 'src/app/classi/Studente';
-import { RicevitoreDatiStudenteService } from 'src/app/ricevitore-dati-studente/ricevitore-dati-studente.service';
 import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/ricevitore-studente.service';
 
 @Injectable({
@@ -11,11 +10,11 @@ import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/r
 export class ServiceDatiStudenteService {
   messageLogin: string;
   checkUser: string;
-  studente: Studente;
+  private studente: Studente;
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
 
-  loginStudente(studente: {userCode: string, pas: string}){
+  loginStudente(studente: {userCode: string, pas: string}): void{
     this.ricevitoreStudente.login(studente).subscribe({
       next: (studente_loggato: Studente) => {
         this.studente = studente_loggato;
@@ -30,5 +29,13 @@ export class ServiceDatiStudenteService {
         this.messageLogin = error.error;
       }
     });
+  }
+
+  resetPassword(studente: {mail: string, userCode: string}): void{
+    this.ricevitoreStudente.resetPassword(studente)
+  }
+
+  getStudente(): Studente{
+    return this.studente;
   }
 }
