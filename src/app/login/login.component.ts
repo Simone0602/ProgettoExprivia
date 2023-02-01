@@ -26,13 +26,13 @@ export class LoginComponent implements OnInit{
     if(this.tipoUtente==='studente'){
       this.formStudente = new FormGroup({
         userCode: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
-        pas: new FormControl(null, [Validators.required, Validators.minLength(8)])
+        password: new FormControl(null, [Validators.required, Validators.minLength(8)])
       });
     }else{
       this.formDocente = new FormGroup({
         mail: new FormControl(null, [Validators.required, Validators.email]),
         codiceFiscale: new FormControl(null, Validators.required),
-        pas: new FormControl(null, [Validators.required, Validators.minLength(8)])
+        password: new FormControl(null, [Validators.required, Validators.minLength(8)])
       });
     }
   }
@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit{
 
   validationPassword(): boolean{
     if(this.tipoUtente==='studente'){
-      if(this.formStudente.get('pas')!.valid){
+      if(this.formStudente.get('password')!.valid){
         return true;
       }
       return false;
     }else{
-      if(this.formDocente.get('pas')!.valid){
+      if(this.formDocente.get('password')!.valid){
         return true;
       }
       return false;
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit{
     if(this.tipoUtente=='studente'){
       const studente = {
         userCode: this.formStudente.get('userCode')!.value,
-        pas: this.formStudente.get('pas')!.value
+        password: this.formStudente.get('password')!.value
       }
       this.serviceStudente.loginStudente(studente);
     }

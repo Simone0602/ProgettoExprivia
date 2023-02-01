@@ -62,7 +62,7 @@
           <!-- Password input -->
           <div class="form-floating mt-3" style="display: flex;">
             <input type="{{ showHide }}" class="form-control" id="floatingInput" placeholder="name@example.com"
-              formControlName="pas" [ngClass]="validationPassword() ? 'is-valid' : 'is-invalid'">
+              formControlName="password" [ngClass]="validationPassword() ? 'is-valid' : 'is-invalid'">
             <label for="floatingInput">Password</label>
             <button type="button" class="btn btn-primary" style="font-size: 20px; width: 60px;"
               (click)="showHidePassword()">

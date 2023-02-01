@@ -15,7 +15,7 @@ export class ServiceDatiStudenteService {
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
 
-  loginStudente(studente: {userCode: string, pas: string}): void{
+  loginStudente(studente: {userCode: string, password: string}): void{
     this.ricevitoreStudente.login(studente).subscribe({
       next: (studente_loggato: Studente) => {
         this.studente = studente_loggato;

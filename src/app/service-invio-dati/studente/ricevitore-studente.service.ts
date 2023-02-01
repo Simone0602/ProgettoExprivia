@@ -12,7 +12,7 @@ export class RicevitoreStudenteService {
 
   constructor(private http: HttpClient) { }
 
-  public login(studente: {userCode: string, pas: string}): Observable<Studente>{
+  public login(studente: {userCode: string, password: string}): Observable<Studente>{
     return this.http.post<Studente>(`${this.url}/studente/loginStudente`, studente);
   }
 
