@@ -10,6 +10,7 @@ import { RicevitoreStudenteService } from 'src/app/service-invio-dati/studente/r
 export class ServiceDatiStudenteService {
   message: string;
   checkUser: string;
+  newToken: string;
   private studente: Studente;
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
@@ -31,8 +32,8 @@ export class ServiceDatiStudenteService {
     });
   }
 
-  resetPassword(studente: {mail: string, userCode: string}, tipoUtente: string): void{
-    this.ricevitoreStudente.resetPassword(studente, tipoUtente).subscribe({
+  sendEmail(studente: {mail: string, userCode: string}, tipoUtente: string): void{
+    this.ricevitoreStudente.sendEmail(studente, tipoUtente).subscribe({
       next: (message: string) => {
         this.message = message;
         this.checkUser = "true";
@@ -42,6 +43,34 @@ export class ServiceDatiStudenteService {
         this.message = error.error;
       }
     })
+  }
+
+  updatePassword(password: string, token: string): void{
+    this.ricevitoreStudente.updatePassword(password, token).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.message = error.error;
+        this.checkUser = 'false';
+      }
+    });
+  }
+
+  getToken(userCode: string): void{
+    this.ricevitoreStudente.getToken(userCode).subscribe({
+      next: (token: string) => {
+        this.message = 'Token trovato! Reindirizzamento al cambio password';
+        this.checkUser = 'true';
+        this.newToken = token;     
+      },
+      error: (error: HttpErrorResponse) => {
+        this.message = error.error;
+        this.checkUser = 'false';
+        this.newToken = '';
+      }
+    });
   }
 
   getStudente(): Studente{
