@@ -8,7 +8,7 @@ import { ServiceDatiStudenteService } from '../service-dati/studente/service-dat
   templateUrl: './password-dimenticata.component.html',
   styleUrls: ['./password-dimenticata.component.css']
 })
-export class PasswordDimenticataComponent implements OnInit{
+export class PasswordDimenticataComponent implements OnInit {
   tipoUtente: string;
   token: string;
 
@@ -18,31 +18,27 @@ export class PasswordDimenticataComponent implements OnInit{
 
   notFoundEmail: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, public serviceStudente: ServiceDatiStudenteService){}
+  constructor(private route: ActivatedRoute, private router: Router, public serviceStudente: ServiceDatiStudenteService) { }
 
   ngOnInit(): void {
     this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
     this.token = this.route.snapshot.paramMap.get('token')!;
 
-    if(this.token!=null){
+    if (this.token != null) {
       this.serviceStudente.checkUser = '';
       this.serviceStudente.message = '';
     }
-    
-    var inclusione = /^(?=.[A-Z])(?=.\d)(?=.[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$/gi;
 
     this.form = new FormGroup({
-      mail: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(1)]), 
+      mail: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(1)]),
       userCode: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8), Validators.pattern(inclusione)]),
-      confPassword: new FormControl()
+      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      confPassword: new FormControl(null, [Validators.required, Validators.minLength(8)])
     })
-
-    console.log(this.form.get('password')!.valid)
   }
 
-  showHidePassword(): void{
-    switch(this.showHide){
+  showHidePassword(): void {
+    switch (this.showHide) {
       case 'password':
         this.showHide = 'text';
         break;
@@ -52,17 +48,28 @@ export class PasswordDimenticataComponent implements OnInit{
     }
   }
 
-  controlloUgualianzaPassword(): void{
-    if(this.form.get('password')!.value==this.form.get('confPassword')!.value){
+  controlloUgualianzaPassword(): void {
+    if (this.form.get('password')!.value == this.form.get('confPassword')!.value) {
       this.ugualianzaPassword = true;
-    }else{
+    } else {
       this.ugualianzaPassword = false;
     }
     console.log(this.form.get('password')!.valid)
   }
 
-  sendEmail(): void{
-    if(this.tipoUtente === 'studente'){
+  disabledButtonRecuperaPassword(): boolean{
+    if((!this.form.get('mail')!.valid || !this.form.get('userCode')!.valid) && !this.notFoundEmail){
+      return true;
+    }else if(!this.form.get('userCode')!.valid && this.notFoundEmail){
+      return true;
+    }else if(!this.form.get('password')!.valid && !this.form.get('confPassword')!.valid){
+      return true;
+    }
+    return false;
+  }
+
+  sendEmail(): void {
+    if (this.tipoUtente === 'studente') {
       const studente = {
         mail: this.form.get('mail')!.value,
         userCode: this.form.get('userCode')!.value
@@ -71,8 +78,8 @@ export class PasswordDimenticataComponent implements OnInit{
     }
   }
 
-  resetPassword(): void{
-    if(this.tipoUtente === 'studente'){
+  resetPassword(): void {
+    if (this.tipoUtente === 'studente') {
       this.serviceStudente.updatePassword(this.form.get('password')!.value, this.token);
       setTimeout(() => {
         this.router.navigate(['login', this.tipoUtente]);
@@ -80,11 +87,11 @@ export class PasswordDimenticataComponent implements OnInit{
     }
   }
 
-  riceviToken(): void{ 
-    if(this.tipoUtente === 'studente'){
+  riceviToken(): void {
+    if (this.tipoUtente === 'studente') {
       this.serviceStudente.getToken(this.form.get('userCode')!.value);
       setTimeout(() => {
-        if(this.serviceStudente.newToken !== ''){
+        if (this.serviceStudente.newToken !== '') {
           this.router.navigate(['password-dimenticata', this.tipoUtente, this.serviceStudente.newToken]);
         }
       }, 1500)
