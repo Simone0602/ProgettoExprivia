@@ -1,96 +1,95 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <span class="navbar-brand">ProgettoExprivia</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" [ngClass]="active=='Home' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Home')" routerLink="">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='Personale' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
-                  <ul class="dropdown-menu menu-tendina">
-                    <li><a class="dropdown-item">Elenco docenti</a></li>
-                    <li><a class="dropdown-item">Elenco coordinatori</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (mouseenter)="getListaClassi()">Elenco classi <i class="fa fa-caret-right" style="margin-left: 50px;"></i></a></li>
-                    <li><a class="dropdown-item">Segreteria</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Famiglia')">Registro famiglie</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Docente')" *ngIf="!serviceStudente.getStudente()">Registro docenti</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;" (click)="navigazioneNavbar('Orario')">Orario</a>
-                </li>
-            </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-              <div class="btn-group" style="margin-left: 7px;">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Login</button>
-                <ul class="dropdown-menu" style="margin-left: -60px;">
-                  <li><a class="dropdown-item" [routerLink]="['/login', 'studente']">Studente</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
-                </ul>
-              </div>
-            </form>
+<nav class="navbar navbar-expand-xxl bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand">ProgettoExprivia</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="active=='Home' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('Home')" routerLink="">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='Personale' ? 'active' : ''"
+            [ngClass]="!isDropped ? 'show' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
+          <ul class="dropdown-menu menu-tendina">
+            <li><a class="dropdown-item">Elenco docenti</a></li>
+            <li><a class="dropdown-item">Elenco coordinatori</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" (click)="getListaClassi()">Elenco classi <i class="fa fa-caret-right"
+                  style="float: right; margin: 6px 20px;"></i></a></li>
+            <li><a class="dropdown-item">Segreteria</a></li>
+          </ul>
+          <ul class="dropdown-menu menu-classi" [ngClass]="isDropped ? 'show' : ''">
+            <li><a class="dropdown-item">Ciao</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('Famiglia')">Registro famiglie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('Docente')" *ngIf="!serviceStudente.getStudente()">Registro docenti</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('Orario')">Orario</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="btn-group" style="margin-left: 7px;">
+          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">Login</button>
+          <ul class="dropdown-menu" style="margin-left: -60px;">
+            <li><a class="dropdown-item" [routerLink]="['/login', 'studente']">Studente</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
+          </ul>
         </div>
+      </form>
     </div>
+  </div>
 </nav>
 
 <router-outlet></router-outlet>
 
 <footer class="text-center text-white" style="background-color: #f1f1f1;">
-    <!-- Grid container -->
-    <div class="container pt-4">
-      <!-- Section: Social media -->
-      <section class="mb-4">
-        <!-- Facebook -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fa fa-facebook-f"></i
-        ></a>
-        <!-- Twitter -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fa fa-twitter"></i
-        ></a>
-        <!-- Instagram -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fa fa-instagram"></i
-        ></a>
-  
-        <!-- Linkedin -->
-        <a
-          class="btn btn-link btn-floating btn-lg text-dark m-1"
-          role="button"
-          data-mdb-ripple-color="dark"
-          ><i class="fa fa-linkedin"></i
-        ></a>
-      </section>
-      <!-- Section: Social media -->
-    </div>
-    <!-- Grid container -->
-  
-    <!-- Copyright -->
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2023 Copyright:
-      <span class="text-dark">Tutti i diritti sono riservati</span>
-    </div>
-    <!-- Copyright -->
-  </footer>
+  <!-- Grid container -->
+  <div class="container pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+          class="fa fa-facebook-f"></i></a>
+      <!-- Twitter -->
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+          class="fa fa-twitter"></i></a>
+      <!-- Instagram -->
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+          class="fa fa-instagram"></i></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+          class="fa fa-linkedin"></i></a>
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2023 Copyright:
+    <span class="text-dark">Tutti i diritti sono riservati</span>
+  </div>
+  <!-- Copyright -->
+</footer>

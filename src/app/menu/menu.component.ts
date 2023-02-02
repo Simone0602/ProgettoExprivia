@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ServiceDatiStudenteService } from '../service-dati/studente/service-dati-studente.service';
 
 @Component({
@@ -6,10 +6,19 @@ import { ServiceDatiStudenteService } from '../service-dati/studente/service-dat
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit{
+export class MenuComponent implements OnInit, DoCheck{
+  isDropped: boolean;
   active = 'Home';
 
   constructor(public serviceStudente: ServiceDatiStudenteService){}
+
+  ngDoCheck(): void {
+    if(this.isDropped){
+      setTimeout(() => {
+        this.isDropped=false;
+      }, 3000)
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -19,7 +28,8 @@ export class MenuComponent implements OnInit{
   }
 
   getListaClassi(): void{
-    
+    this.isDropped = !this.isDropped;
   }
 }
+
 

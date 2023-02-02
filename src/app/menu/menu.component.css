@@ -1,10 +1,16 @@
 .menu-tendina{
     margin-left: 215px;
 }
+.menu-classi{
+    margin: 103px 0 0 180px;
+}
 
-@media screen and (max-width: 980px){
+@media screen and (max-width: 1400px){
     .show{
         margin-left: 0;
+    }
+    .menu-classi{
+        margin-top: 5px;
     }
 }
 
