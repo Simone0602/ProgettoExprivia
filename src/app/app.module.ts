@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu/menu.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { PasswordDimenticataComponent } from './password-dimenticata/password-dimenticata.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { HomeComponent } from './component/home/home.component';
+import { LoginComponent } from './component/login/login.component';
+import { PasswordDimenticataComponent } from './component/password-dimenticata/password-dimenticata.component';
+import { ElencoDocentiComponent } from './component/elenco-docenti/elenco-docenti.component';
+import { ElencoClassiComponent } from './component/elenco-classi/elenco-classi.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { PasswordDimenticataComponent } from './password-dimenticata/password-di
     MenuComponent,
     HomeComponent,
     LoginComponent,
-    PasswordDimenticataComponent
+    PasswordDimenticataComponent,
+    ElencoDocentiComponent,
+    ElencoClassiComponent
   ],
   imports: [
     BrowserModule,

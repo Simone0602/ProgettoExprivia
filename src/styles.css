@@ -5,9 +5,11 @@ body{
   width: 8px;
 }
 ::-webkit-scrollbar-track{
-  background-color: #080b0f;
+  background-color: white;
 }
 ::-webkit-scrollbar-thumb{
   background-color: #2196F3;
   border-radius: 0.50em;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

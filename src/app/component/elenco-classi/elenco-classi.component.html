@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-12 col-lg-6 mt-4">
+      <table class="table">
+        <caption>Lista classi</caption>
+        <thead>
+          <tr>
+            <th scope="col">N°</th>
+            <th scope="col">Aula</th>
+            <th scope="col">Sezione</th>
+            <th scope="col">Cordinatore</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let classe of serviceClasse.getClassi(); index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ classe.aula }}</td>
+            <td>{{ classe.sezione }}</td>
+            <td>{{ classe.cordinatore }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -2,7 +2,11 @@
     margin-left: 215px;
 }
 .menu-classi{
-    margin: 103px 0 0 180px;
+    margin: 10px 0 0 180px;
+}
+.div-ul{
+    height: 60px;
+    overflow-y: auto;
 }
 
 @media screen and (max-width: 1400px){

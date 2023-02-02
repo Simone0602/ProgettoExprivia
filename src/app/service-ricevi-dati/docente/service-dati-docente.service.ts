@@ -16,7 +16,6 @@ export class ServiceDatiDocenteService {
     this.ricevitoreDocenti.getListaDocenti().subscribe({
       next: (docenti: Docente[]) => {
         this.docenti = docenti;
-        console.log(docenti);
       }, 
       error: (error: HttpErrorResponse) => {
         console.log(error.error);
