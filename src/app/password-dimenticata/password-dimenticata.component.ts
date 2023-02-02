@@ -50,19 +50,20 @@ export class PasswordDimenticataComponent implements OnInit {
 
   controlloUgualianzaPassword(): void {
     if (this.form.get('password')!.value == this.form.get('confPassword')!.value) {
-      this.ugualianzaPassword = true;
+      if(this.form.get('password')!.value==='' || this.form.get('confPassword')!.value===''){
+        this.ugualianzaPassword = false;
+      }else{
+        this.ugualianzaPassword = true;
+      }
     } else {
       this.ugualianzaPassword = false;
     }
-    console.log(this.form.get('password')!.valid)
   }
 
   disabledButtonRecuperaPassword(): boolean{
     if((!this.form.get('mail')!.valid || !this.form.get('userCode')!.valid) && !this.notFoundEmail){
       return true;
     }else if(!this.form.get('userCode')!.valid && this.notFoundEmail){
-      return true;
-    }else if(!this.form.get('password')!.valid && !this.form.get('confPassword')!.valid){
       return true;
     }
     return false;
