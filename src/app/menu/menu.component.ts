@@ -1,5 +1,7 @@
 import { AfterContentInit, Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { ServiceDatiStudenteService } from '../service-dati/studente/service-dati-studente.service';
+import { Classe } from '../classi/Classe';
+import { ServiceDatiCalsseService } from '../service-ricevi-dati/classi/service-dati-classe.service';
+import { ServiceDatiStudenteService } from '../service-ricevi-dati/studente/service-dati-studente.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +12,7 @@ export class MenuComponent implements OnInit, DoCheck{
   isDropped: boolean;
   active = 'Home';
 
-  constructor(public serviceStudente: ServiceDatiStudenteService){}
+  constructor(public serviceStudente: ServiceDatiStudenteService, public serviceClasse: ServiceDatiCalsseService){}
 
   ngDoCheck(): void {
     if(this.isDropped){
@@ -29,6 +31,11 @@ export class MenuComponent implements OnInit, DoCheck{
 
   getListaClassi(): void{
     this.isDropped = !this.isDropped;
+    
+    const appoggio: Classe[] = [];
+    if(JSON.stringify(this.serviceClasse.getClassi()) == JSON.stringify(appoggio)){
+      this.serviceClasse.getListaClassi();
+    }
   }
 }
 

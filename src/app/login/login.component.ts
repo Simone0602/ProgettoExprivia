@@ -1,8 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ServiceDatiStudenteService } from '../service-dati/studente/service-dati-studente.service';
+import { ServiceDatiStudenteService } from '../service-ricevi-dati/studente/service-dati-studente.service';
 
 @Component({
   selector: 'app-login',

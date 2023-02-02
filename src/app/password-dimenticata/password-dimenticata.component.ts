@@ -1,7 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ServiceDatiStudenteService } from '../service-dati/studente/service-dati-studente.service';
+import { ServiceDatiStudenteService } from '../service-ricevi-dati/studente/service-dati-studente.service';
 
 @Component({
   selector: 'app-password-dimenticata',
