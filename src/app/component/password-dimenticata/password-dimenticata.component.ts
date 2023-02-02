@@ -49,8 +49,8 @@ export class PasswordDimenticataComponent implements OnInit {
   }
 
   controlloUgualianzaPassword(): void {
-    if (this.form.get('password')!.value == this.form.get('confPassword')!.value) {
-      if(this.form.get('password')!.value==='' || this.form.get('confPassword')!.value===''){
+    if (this.form.value.password === this.form.value.confPassword) {
+      if(this.form.value.password==='' || this.form.value.confPassword===''){
         this.ugualianzaPassword = false;
       }else{
         this.ugualianzaPassword = true;
@@ -72,8 +72,8 @@ export class PasswordDimenticataComponent implements OnInit {
   sendEmail(): void {
     if (this.tipoUtente === 'studente') {
       const studente = {
-        mail: this.form.get('mail')!.value,
-        userCode: this.form.get('userCode')!.value
+        mail: this.form.value.mail,
+        userCode: this.form.value.userCode
       }
       this.serviceStudente.sendEmail(studente, this.tipoUtente);
     }
@@ -81,7 +81,7 @@ export class PasswordDimenticataComponent implements OnInit {
 
   resetPassword(): void {
     if (this.tipoUtente === 'studente') {
-      this.serviceStudente.updatePassword(this.form.get('password')!.value, this.token);
+      this.serviceStudente.updatePassword(this.form.value.password, this.token);
       setTimeout(() => {
         this.router.navigate(['login', this.tipoUtente]);
       }, 1000)
@@ -90,7 +90,7 @@ export class PasswordDimenticataComponent implements OnInit {
 
   riceviToken(): void {
     if (this.tipoUtente === 'studente') {
-      this.serviceStudente.getToken(this.form.get('userCode')!.value);
+      this.serviceStudente.getToken(this.form.value.userCode);
       setTimeout(() => {
         if (this.serviceStudente.newToken !== '') {
           this.router.navigate(['password-dimenticata', this.tipoUtente, this.serviceStudente.newToken]);

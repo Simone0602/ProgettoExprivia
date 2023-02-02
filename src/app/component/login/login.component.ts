@@ -64,9 +64,9 @@ export class LoginComponent implements OnInit{
   login(): void{
     if(this.tipoUtente=='studente'){
       const studente = {
-        userCode: this.formStudente.get('userCode')!.value,
-        password: this.formStudente.get('password')!.value
-      }
+        userCode: this.formStudente.value.userCode,
+        password: this.formStudente.value.password
+      }      
       this.serviceStudente.loginStudente(studente);
     }
   }
