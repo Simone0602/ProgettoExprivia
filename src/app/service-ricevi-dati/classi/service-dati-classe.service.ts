@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Classe } from 'src/app/classi/Classe';
+import { Classe } from 'src/app/class/Classe';
 import { RicevitoreClasseService } from 'src/app/service-invio-dati/classi/ricevitore-classe.service';
 
 @Injectable({

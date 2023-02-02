@@ -13,10 +13,11 @@
         </li>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='Personale' ? 'active' : ''"
-            [ngClass]="!isDropped ? 'show' : ''" style="cursor: pointer;"
+            [ngClass]="!isDroppedDocente ? 'show' : ''" style="cursor: pointer;"
             (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
           <ul class="dropdown-menu menu-tendina">
-            <li><a class="dropdown-item">Elenco docenti</a></li>
+            <li><a class="dropdown-item" (click)="getListaDocenti()">Elenco docenti <i class="fa fa-caret-right"
+              style="float: right; margin: 6px 20px;"></i></a></li>
             <li><a class="dropdown-item">Elenco coordinatori</a></li>
             <li>
               <hr class="dropdown-divider">
@@ -25,8 +26,11 @@
                   style="float: right; margin: 6px 20px;"></i></a></li>
             <li><a class="dropdown-item">Segreteria</a></li>
           </ul>
-          <ul class="dropdown-menu menu-classi" [ngClass]="isDropped ? 'show' : ''" *ngFor="let classe of serviceClasse.getClassi()">
+          <ul class="dropdown-menu menu-classi" [ngClass]="isDroppedClass ? 'show' : ''" *ngFor="let classe of serviceClasse.getClassi()">
             <li><a class="dropdown-item">{{classe.sezione}}-{{classe.aula}}</a></li>
+          </ul>
+          <ul class="dropdown-menu menu-classi" [ngClass]="isDroppedDocente ? 'show' : ''" *ngFor="let docente of serviceDocente.getDocenti()">
+            <li><a class="dropdown-item">{{docente.nome}}-{{docente.cognome}}</a></li>
           </ul>
         </li>
         <li class="nav-item">
