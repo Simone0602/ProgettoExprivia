@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Docente } from 'src/app/class/Docente';
-import { ServiceDatiDocenteService } from 'src/app/service-ricevi-dati/docente/service-dati-docente.service';
+import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
 
 @Component({
   selector: 'app-elenco-docenti',
