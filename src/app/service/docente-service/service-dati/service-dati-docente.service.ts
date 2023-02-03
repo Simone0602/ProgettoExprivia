@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Docente } from 'src/app/class/Docente';
-import { RicevitoreDocenteService } from 'src/app/service-invio-dati/docente/ricevitore-docente.service';
+import { RicevitoreDocenteService } from '../ricevitore-dati/ricevitore-docente.service';
 
 @Injectable({
   providedIn: 'root'
