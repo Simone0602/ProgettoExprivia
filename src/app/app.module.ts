@@ -12,8 +12,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PasswordDimenticataComponent } from './components/password-dimenticata/password-dimenticata.component';
-import { ElencoDocentiComponent } from './components/elenco-docenti/elenco-docenti.component';
-import { ElencoClassiComponent } from './components/elenco-classi/elenco-classi.component';
+import { ElencoDocentiComponent } from './components/personale-ata/elenco-docenti/elenco-docenti.component';
+import { ElencoClassiComponent } from './components/personale-ata/elenco-classi/elenco-classi.component';
 
 
 @NgModule({

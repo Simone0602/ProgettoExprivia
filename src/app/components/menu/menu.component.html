@@ -41,7 +41,7 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
         <div class="btn-group" style="margin-left: 7px;">
-          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
             aria-expanded="false">Login</button>
           <ul class="dropdown-menu" style="margin-left: -60px;">
             <li><a class="dropdown-item" [routerLink]="['/login', 'studente']">Studente</a></li>
@@ -49,6 +49,10 @@
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item">Segreteria</a></li>
           </ul>
         </div>
       </form>
