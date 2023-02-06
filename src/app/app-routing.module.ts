@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PasswordDimenticataComponent } from './components/password-dimenticata/password-dimenticata.component';
+import { RegistroFamiglieComponent } from './components/registro-famiglie/registro-famiglie.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent,
@@ -13,7 +14,8 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'elenco-docenti', component: ElencoDocentiComponent },
-      { path: 'elenco-classi', component: ElencoClassiComponent }
+      { path: 'elenco-classi', component: ElencoClassiComponent },
+      { path: 'registro/registro-famiglie', component: RegistroFamiglieComponent }
     ]
   },
   { path: 'login/:user', component: LoginComponent },
