@@ -22,7 +22,9 @@ export class ServiceDatiStudenteService {
         this.checkUser = 'true';
         this.message = 'Reindirizzamento alla home';
         setTimeout(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then(() => {
+            sessionStorage.setItem('user', JSON.stringify(this.studente));
+          });
         }, 1500);
       },
       error: (error: HttpErrorResponse) => {

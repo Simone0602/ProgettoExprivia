@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PasswordDimenticataComponent } from './components/password-dimenticata/password-dimenticata.component';
 import { RegistroFamiglieComponent } from './components/registro-famiglie/registro-famiglie.component';
+import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent,
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'elenco-docenti', component: ElencoDocentiComponent },
       { path: 'elenco-classi', component: ElencoClassiComponent },
-      { path: 'registro/registro-famiglie', component: RegistroFamiglieComponent }
+      { path: 'registro/registro-famiglie', component: RegistroFamiglieComponent, canActivate: [AuthGuard] },
+      { path: 'registro/registro-docente', component: RegistroFamiglieComponent, canActivate: [AuthGuard] }
     ]
   },
   { path: 'login/:user', component: LoginComponent },

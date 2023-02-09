@@ -8,12 +8,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="active=='Home' ? 'active' : ''" style="cursor: pointer;"
-            (click)="navigazioneNavbar('Home')" routerLink="">Home</a>
+          <a class="nav-link" [ngClass]="active=='home' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('home')" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='Personale' ? 'active' : ''"
-            style="cursor: pointer;" (click)="navigazioneNavbar('Personale')">Docenti e Ata</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="active=='personale' ? 'active' : ''"
+            style="cursor: pointer;" (click)="navigazioneNavbar('personale')">Docenti e Ata</a>
           <ul class="dropdown-menu menu-tendina">
             <li><a class="dropdown-item" routerLink="elenco-docenti">Elenco docenti</a></li>
             <li><a class="dropdown-item">Elenco coordinatori</a></li>
@@ -25,16 +25,16 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="active=='Famiglia' ? 'active' : ''" style="cursor: pointer;"
-            (click)="navigazioneNavbar('Famiglia')" routerLink="registro/registro-famiglie">Registro famiglie</a>
+          <a class="nav-link" [ngClass]="active=='famiglie' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('famiglie')">Registro famiglie</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="active=='Docente' ? 'active' : ''" style="cursor: pointer;"
-            (click)="navigazioneNavbar('Docente')" *ngIf="!serviceStudente.getStudente()">Registro docenti</a>
+          <a class="nav-link" [ngClass]="active=='docente' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('docente')" *ngIf="!serviceStudente.getStudente()">Registro docenti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="active=='Orario' ? 'active' : ''" style="cursor: pointer;"
-            (click)="navigazioneNavbar('Orario')">Orario</a>
+          <a class="nav-link" [ngClass]="active=='orario' ? 'active' : ''" style="cursor: pointer;"
+            (click)="navigazioneNavbar('orario')">Orario</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -49,10 +49,6 @@
               <hr class="dropdown-divider">
             </li>
             <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item">Segreteria</a></li>
           </ul>
         </div>
       </form>

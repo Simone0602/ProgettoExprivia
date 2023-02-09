@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceDatiStudenteService } from 'src/app/service/studente-service/service-dati/service-dati-studente.service';
@@ -66,8 +67,8 @@ export class LoginComponent implements OnInit{
       const studente = {
         userCode: this.formStudente.value.userCode,
         password: this.formStudente.value.password
-      }      
-      this.serviceStudente.loginStudente(studente);
+      }       
+      this.serviceStudente.loginStudente(studente)
     }
   }
 }
