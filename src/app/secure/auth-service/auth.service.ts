@@ -9,6 +9,6 @@ export class AuthService {
 
   public isAuthenicated(): boolean{
     const token = localStorage.getItem('token');
-    return false;
+    return true;
   }
 }

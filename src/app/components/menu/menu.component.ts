@@ -21,8 +21,9 @@ export class MenuComponent implements OnInit, DoCheck {
   ngOnInit(): void { }
 
   navigazioneNavbar(value: string): void {
+    const utente = value==='famiglie' ? 'studente' : 'docente';
     if (value === 'famiglie' || value === 'docente') {
-      this.router.navigate(['registro', `registro-${value}`]).then((postNavigazione) => {
+      this.router.navigate(['registro', `${utente}`, `registro-${value}`]).then((postNavigazione) => {
         if (!postNavigazione && postNavigazione != null) {
           let bool_1 = confirm('Devi registrati prima di accedere a questa sezione!');
           if (bool_1) {
