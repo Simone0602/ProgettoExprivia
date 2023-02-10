@@ -14,8 +14,9 @@ import { LoginComponent } from './components/login/login.component';
 import { PasswordDimenticataComponent } from './components/password-dimenticata/password-dimenticata.component';
 import { ElencoDocentiComponent } from './components/personale-ata/elenco-docenti/elenco-docenti.component';
 import { ElencoClassiComponent } from './components/personale-ata/elenco-classi/elenco-classi.component';
-import { RegistroFamiglieComponent } from './components/registro-famiglie/registro-famiglie.component';
-import { RegistroDocentiComponent } from './registro-docenti/registro-docenti.component';
+import { RegistroComponent } from './components/registro-utenti/registro/registro.component';
+import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
+import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 
 
 @NgModule({
@@ -27,8 +28,9 @@ import { RegistroDocentiComponent } from './registro-docenti/registro-docenti.co
     PasswordDimenticataComponent,
     ElencoDocentiComponent,
     ElencoClassiComponent,
-    RegistroFamiglieComponent,
-    RegistroDocentiComponent
+    RegistroComponent,
+    RegistroFamigliaComponent,
+    RegistroDocenteComponent
   ],
   imports: [
     BrowserModule,
