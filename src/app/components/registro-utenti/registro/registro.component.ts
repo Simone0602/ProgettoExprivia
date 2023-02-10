@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+  user: string
 
-  constructor(){}
+  constructor(private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.user = params.get('user');
+    });
   }
 }

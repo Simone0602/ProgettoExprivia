@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -40,7 +41,8 @@ import { RegistroDocenteComponent } from './components/registro-utenti/registro-
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

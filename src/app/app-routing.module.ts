@@ -15,13 +15,14 @@ const routes: Routes = [
   { path: '', component: MenuComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: 'registro/:user', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'elenco-docenti', component: ElencoDocentiComponent },
       { path: 'elenco-classi', component: ElencoClassiComponent },
-      { path: 'registro', component: RegistroComponent, canActivate: [AuthGuard], 
+      { path: 'registro/:user', component: RegistroComponent, canActivate: [AuthGuard], 
         children: [
-          { path: ':user/registro-famiglie', component: RegistroFamigliaComponent },
-          { path: ':user/registro-docente', component: RegistroDocenteComponent }
+          { path: 'registro-famiglie', component: RegistroFamigliaComponent },
+          { path: 'registro-docente', component: RegistroDocenteComponent }
         ]
       }
     ]

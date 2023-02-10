@@ -1,32 +1,18 @@
-<!-- Vertical navbar -->
-<div class="vertical-nav bg-white" id="sidebar">
-    <ul class="nav flex-column bg-white mb-0">
-        <li class="nav-item">
-            <a class="nav-link text-dark font-italic bg-light">
-                Dati Anagrafici
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark font-italic">
-                {{user==="studente" ? "Assenze" : "Lista Studenti"}}
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark font-italic">
-                {{user === "studente" ? "Voti" : "Firma Docente"}}
-            </a>
-        </li>
-        <li *ngIf="user === 'studente'" class="nav-item">
-            <a class="nav-link text-dark font-italic">
-                Registro Classe
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark font-italic">
-                Orario
-            </a>
-        </li>
-    </ul>
-</div>
-<!-- End vertical navbar -->
+<mat-chip-listbox aria-label="Fish selection">
+    <mat-chip-option>
+        Dati Anagrafici
+    </mat-chip-option>
+    <mat-chip-option>
+        {{user==="studente" ? "Assenze" : "Lista Studenti"}}
+    </mat-chip-option>
+    <mat-chip-option>
+        {{user === "studente" ? "Voti" : "Firma Docente"}}
+    </mat-chip-option>
+    <mat-chip-option>
+        Registro Classe
+    </mat-chip-option>
+    <mat-chip-option>
+        Orario
+    </mat-chip-option>
+</mat-chip-listbox>
 <router-outlet></router-outlet>
