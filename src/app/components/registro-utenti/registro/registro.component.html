@@ -1,1 +1,32 @@
+<!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+    <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+            <a class="nav-link text-dark font-italic bg-light">
+                Dati Anagrafici
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark font-italic">
+                {{user==="studente" ? "Assenze" : "Lista Studenti"}}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark font-italic">
+                {{user === "studente" ? "Voti" : "Firma Docente"}}
+            </a>
+        </li>
+        <li *ngIf="user === 'studente'" class="nav-item">
+            <a class="nav-link text-dark font-italic">
+                Registro Classe
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark font-italic">
+                Orario
+            </a>
+        </li>
+    </ul>
+</div>
+<!-- End vertical navbar -->
 <router-outlet></router-outlet>
