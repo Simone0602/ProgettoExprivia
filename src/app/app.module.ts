@@ -15,6 +15,7 @@ import { PasswordDimenticataComponent } from './components/password-dimenticata/
 import { ElencoDocentiComponent } from './components/personale-ata/elenco-docenti/elenco-docenti.component';
 import { ElencoClassiComponent } from './components/personale-ata/elenco-classi/elenco-classi.component';
 import { RegistroFamiglieComponent } from './components/registro-famiglie/registro-famiglie.component';
+import { RegistroDocentiComponent } from './registro-docenti/registro-docenti.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RegistroFamiglieComponent } from './components/registro-famiglie/regist
     PasswordDimenticataComponent,
     ElencoDocentiComponent,
     ElencoClassiComponent,
-    RegistroFamiglieComponent
+    RegistroFamiglieComponent,
+    RegistroDocentiComponent
   ],
   imports: [
     BrowserModule,
