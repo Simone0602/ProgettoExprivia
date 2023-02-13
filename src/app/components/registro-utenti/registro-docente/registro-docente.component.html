@@ -1,26 +1,30 @@
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-12 col-lg-6 mt-4">
+                
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="selezione">
+            <option *ngFor="let classe of docenteService.getClassi()" [value]="classe.sezione"> 
+                {{classe.sezione}}
+            </option>
+        </select>
+
         <table class="table">
-            <caption>Lista classi</caption>
+            <caption>Lista Studenti</caption>
             <thead>
                 <tr>
-                    <th scope="col">N°</th>
-                    <th scope="col">Aula</th>
-                    <th scope="col">Sezione</th>
-                    <th scope="col">Cordinatore</th>
+                    <th scope="col">Studente</th>
+                    <th scope="col">Commento</th>
+                    <th scope="col">Presenza</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Note</th>
                 </tr>
             </thead>
-          <!--   <tbody>
-                <tr *ngFor="let classe of serviceClasse.getClassi(); index as i">
-                    <th scope="row">{{ i + 1 }}</th>
-                    <td>{{ classe.aula }}</td>
-                    <td>{{ classe.sezione }}</td>
-                    <td>{{ classe.cordinatore }}</td>
+            <tbody>
+                <tr>
+                    <td></td>
                 </tr>
-            </tbody> -->
+            </tbody>
         </table>
+
     </div>
 </div>
-
-<p>registro-docente works!</p>
