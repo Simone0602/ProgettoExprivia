@@ -1,9 +1,8 @@
 export interface Studente{
-    id: number;
-    name: string;
-    surname: string;
-    email: string;
-    pas: string;
+    nome: string;
+    cognome: string;
+    mail: string;
+    password: string;
     userCode: string;
     sezione: string;
 }

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { RegistroStudente } from 'src/app/class/RegistroStudente';
 import { Studente } from 'src/app/class/Studente';
 import { RicevitoreStudenteService } from '../ricevitore-dati/ricevitore-studente.service';
 
@@ -11,19 +12,21 @@ export class ServiceDatiStudenteService {
   message: string;
   checkUser: string;
   newToken: string;
-  private studente: Studente;
+
+  private _studente: Studente;
+  private _registro: RegistroStudente;
 
   constructor(private router: Router, private ricevitoreStudente: RicevitoreStudenteService) { }
 
   loginStudente(studente: {userCode: string, password: string}): void{
     this.ricevitoreStudente.login(studente).subscribe({
-      next: (studente_loggato: Studente) => {
-        this.studente = studente_loggato;
+      next: (_studente_loggato: Studente) => {
+        this._studente = _studente_loggato;
         this.checkUser = 'true';
         this.message = 'Reindirizzamento alla home';
         setTimeout(() => {
-          this.router.navigate(['/home']).then(() => {
-            sessionStorage.setItem('user', JSON.stringify(this.studente));
+          this.router.navigate(['/registro', 'studente', 'registro-famiglie']).then(() => {
+            sessionStorage.setItem('user', JSON.stringify(this._studente));
           });
         }, 1500);
       },
@@ -75,7 +78,22 @@ export class ServiceDatiStudenteService {
     });
   }
 
+  registro(): void{
+    this.ricevitoreStudente.getRegistro(this._studente.mail).subscribe(({
+      next: (_registro: RegistroStudente) => {
+        this._registro = _registro;
+      },
+      error: (error: HttpErrorResponse) => {
+        alert(`Qualcosa è andato storto\n${error.error}`)
+      }
+    }))
+  }
+
   getStudente(): Studente{
-    return this.studente;
+    return this._studente;
+  }
+
+  getRegistro(): RegistroStudente{
+    return this._registro;
   }
 }
