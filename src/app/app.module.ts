@@ -18,6 +18,7 @@ import { ElencoClassiComponent } from './components/personale-ata/elenco-classi/
 import { RegistroComponent } from './components/registro-utenti/registro/registro.component';
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
+import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegistroDocenteComponent } from './components/registro-utenti/registro-
     ElencoClassiComponent,
     RegistroComponent,
     RegistroFamigliaComponent,
-    RegistroDocenteComponent
+    RegistroDocenteComponent,
+    ListaStudentiDocenteComponent
   ],
   imports: [
     BrowserModule,

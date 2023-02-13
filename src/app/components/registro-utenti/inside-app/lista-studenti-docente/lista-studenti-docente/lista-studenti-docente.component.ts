@@ -1,14 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
 import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
 import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
 
 @Component({
-  selector: 'app-registro-docente',
-  templateUrl: './registro-docente.component.html',
-  styleUrls: ['./registro-docente.component.css']
+  selector: 'app-lista-studenti-docente',
+  templateUrl: './lista-studenti-docente.component.html',
+  styleUrls: ['./lista-studenti-docente.component.css']
 })
-export class RegistroDocenteComponent implements OnInit{
+export class ListaStudentiDocenteComponent implements OnInit{
   classi: Classe[] = [];
   selezione : string = "Seleziona una classe";
   voto: number;

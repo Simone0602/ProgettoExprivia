@@ -10,6 +10,7 @@ import { RegistroComponent } from './components/registro-utenti/registro/registr
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
 import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
+import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent,
@@ -22,7 +23,11 @@ const routes: Routes = [
       { path: 'registro/:user', component: RegistroComponent, canActivate: [AuthGuard], 
         children: [
           { path: 'registro-famiglie', component: RegistroFamigliaComponent },
-          { path: 'registro-docente', component: RegistroDocenteComponent }
+          { path: 'registro-docente', component: RegistroDocenteComponent, 
+            children: [
+              { path: 'lista-studenti', component: ListaStudentiDocenteComponent }
+            ]
+          }
         ]
       }
     ]

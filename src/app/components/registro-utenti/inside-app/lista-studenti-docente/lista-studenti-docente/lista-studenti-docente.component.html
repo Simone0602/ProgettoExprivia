@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-12 col-lg-6 mt-4">
+        <!-- Cambio sezione -->
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="selezione"
+            (change)="onOptionChanged($event)">
+            <option *ngFor="let classe of docenteService.getClassi()" [value]="classe.sezione">
+                {{classe.sezione}}
+            </option>
+        </select>
+        <!-- Tabella -->
+        <table class="table">
+            <caption>Lista Studenti</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Studente</th>
+                    <th scope="col">Commento</th>
+                    <th scope="col">Presenza</th>
+                    <th scope="col">Voto</th>
+                    <th scope="col">Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let studente of classService.getStudenti()">
+                    <td>{{ studente.nome }} {{ studente.cognome }}</td>
+                    <td>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                style="height: 80px;"></textarea>
+                            <label for="floatingTextarea">Commento</label>
+                        </div>
+                    </td>
+                    <td><input class="form-check-input me-2" type="checkbox"></td>
+                    <td><input class="form-control" type="text" (input)="controlloVoto($event)"></td>
+                    <td>
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                style="height: 80px;"></textarea>
+                            <label for="floatingTextarea">Note</label>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

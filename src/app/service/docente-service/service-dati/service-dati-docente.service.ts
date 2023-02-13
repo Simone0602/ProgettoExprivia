@@ -17,7 +17,7 @@ export class ServiceDatiDocenteService {
     cognome: ' ' ,
     mail: ' ',
     password: ' ',
-    codiceFiscale: 'sedffrfhtguj',
+    codiceFiscale: 'abcdefg',
     materia: ' '
   };
 
