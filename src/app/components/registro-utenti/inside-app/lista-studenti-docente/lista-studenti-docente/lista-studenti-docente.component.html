@@ -2,8 +2,8 @@
     <div class="col-lg-3"></div>
     <div class="col-12 col-lg-6 mt-4">
         <!-- Cambio sezione -->
-        <select class="form-select" aria-label="Default select example" [(ngModel)]="selezione"
-            (change)="onOptionChanged($event)">
+        <select class="form-select" aria-label="Default select example" (change)="onOptionChanged($event)">
+            <option value="0" selected>Seleziona una sezione</option>
             <option *ngFor="let classe of docenteService.getClassi()" [value]="classe.sezione">
                 {{classe.sezione}}
             </option>

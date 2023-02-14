@@ -44,4 +44,8 @@ export class ServiceDatiCalsseService {
     return this.studenti
   }
 
+  setStudenti(studenti: Studente[]): void{
+    this.studenti = studenti;
+  }
+
 }

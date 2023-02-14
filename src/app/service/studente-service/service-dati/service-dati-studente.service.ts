@@ -23,9 +23,9 @@ export class ServiceDatiStudenteService {
       next: (_studente_loggato: Studente) => {
         this._studente = _studente_loggato;
         this.checkUser = 'true';
-        this.message = 'Reindirizzamento alla home';
+        this.message = 'Reindirizzamento al registro elettronico';
         setTimeout(() => {
-          this.router.navigate(['/registro', 'studente', 'registro-famiglie']).then(() => {
+          this.router.navigate(['/studente', 'registro-famiglie']).then(() => {
             sessionStorage.setItem('user', JSON.stringify(this._studente));
           });
         }, 1500);

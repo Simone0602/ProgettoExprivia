@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { MatChipListboxChange, MatChipOption } from '@angular/material/chips';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -9,11 +10,15 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class RegistroComponent implements OnInit {
   user: string
 
-  constructor(private route: ActivatedRoute){}
+  constructor(private route: ActivatedRoute, private router: Router){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.user = params.get('user');
     });
+  }
+
+  onChangeOption(event: MatChipListboxChange) {
+    this.router.navigate([`${this.user}/registro-${this.user}/${event.value}`])
   }
 }

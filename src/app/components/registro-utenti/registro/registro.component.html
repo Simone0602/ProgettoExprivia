@@ -1,20 +1,26 @@
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-12 col-lg-6 justify-content-center d-flex">
-        <mat-chip-listbox>
-            <mat-chip-option>
+        <mat-chip-listbox [ngSwitch]="user" (change)="onChangeOption($event)">
+            <mat-chip-option #datiAnagrafici value="dati-anagrafici" selected [selectable]="!datiAnagrafici.selected">
                 Dati Anagrafici
             </mat-chip-option>
-            <mat-chip-option>
-                {{user==="studente" ? "Assenze" : "Lista Studenti"}}  
+            <mat-chip-option #assenze *ngSwitchCase="'studente'" value="assenze" [selectable]="!assenze.selected">
+                Assenze
             </mat-chip-option>
-            <mat-chip-option>
-                {{user === "studente" ? "Voti" : "Firma Docente"}}
+            <mat-chip-option #lista *ngSwitchCase="'docente'" value="lista-studenti" [selectable]="!lista.selected">
+                Lista studenti
             </mat-chip-option>
-            <mat-chip-option>
+            <mat-chip-option #voti *ngSwitchCase="'studente'" value="voti" [selectable]="!voti.selected">
+                Voti
+            </mat-chip-option>
+            <mat-chip-option #firma *ngSwitchCase="'docente'" value="firma-docente" [selectable]="!firma.selected">
+                Firma docente
+            </mat-chip-option>
+            <mat-chip-option #registro value="registro-classe" [selectable]="!registro.selected">
                 Registro Classe
             </mat-chip-option>
-            <mat-chip-option>
+            <mat-chip-option #orario value="orario" [selectable]="!orario.selected">
                 Orario
             </mat-chip-option>
         </mat-chip-listbox>

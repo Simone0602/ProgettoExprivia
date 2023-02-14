@@ -21,8 +21,11 @@ export class ListaStudentiDocenteComponent implements OnInit{
   }
 
   onOptionChanged(event: Event){
-    this.classService.getStudentiBySezione(this.selezione);
-    console.log(this.classService.getStudenti());
+    if(+(<HTMLInputElement>event.target).value!=0){
+      this.classService.getStudentiBySezione((<HTMLInputElement>event.target).value);
+    }else{
+      this.classService.setStudenti([]);
+    }
   }
 
   controlloVoto(event: Event){
