@@ -13,22 +13,6 @@ export class RicevitoreStudenteService {
 
   constructor(private http: HttpClient) { }
 
-  public login(studente: {userCode: string, password: string}): Observable<Studente>{
-    return this.http.post<Studente>(`${this.url}/loginStudente`, studente);
-  }
-
-  public sendEmail(studente: {mail: string, userCode: string}, tipoUtente: string): Observable<string>{
-    return this.http.post(`${this.url}/sendEmail/${tipoUtente}`, studente, { responseType: 'text' });
-  }
-
-  public updatePassword(password: string, token: string): Observable<string>{
-    return this.http.put(`${this.url}/updatePassword/${token}`, password, { responseType: 'text' });
-  }
-
-  public getToken(userCode: string): Observable<string>{
-    return this.http.post(`${this.url}/getToken`, userCode, { responseType: 'text' });
-  }
-
   public getRegistro(email: string): Observable<RegistroStudente>{
     return this.http.get<RegistroStudente>(`${this.url}/${email}/getRegistro`);
   }

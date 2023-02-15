@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
 import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
 import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
+import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 
 @Component({
   selector: 'app-lista-studenti-docente',
@@ -13,11 +14,12 @@ export class ListaStudentiDocenteComponent implements OnInit{
   selezione : string = "Seleziona una classe";
   voto: number;
 
-  constructor(public classService: ServiceDatiCalsseService, public docenteService: ServiceDatiDocenteService){}
+  constructor(public classService: ServiceDatiCalsseService, 
+    public docenteService: ServiceDatiDocenteService,
+    private loginService: LoginService){}
 
   ngOnInit(): void{
-    console.log(this.docenteService.getDocente().codiceFiscale)
-    this.docenteService.getListaClassi(this.docenteService.getDocente().codiceFiscale);
+    this.docenteService.getListaClassi(this.loginService.getDocente().codiceFiscale);
   }
 
   onOptionChanged(event: Event){

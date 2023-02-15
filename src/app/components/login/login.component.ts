@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
+import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { ServiceDatiStudenteService } from 'src/app/service/studente-service/service-dati/service-dati-studente.service';
 
 @Component({
@@ -16,12 +18,13 @@ export class LoginComponent implements OnInit{
   formStudente: FormGroup;
   formDocente: FormGroup;
   
-  constructor(private route: ActivatedRoute, public serviceStudente: ServiceDatiStudenteService){}
+  constructor(private route: ActivatedRoute, 
+    public loginService: LoginService){}
 
   ngOnInit(): void {
     this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
-    this.serviceStudente.checkUser = '';
-    this.serviceStudente.message = '';
+    this.loginService.checkUser = '';
+    this.loginService.message = '';
 
     if(this.tipoUtente==='studente'){
       this.formStudente = new FormGroup({
@@ -68,7 +71,14 @@ export class LoginComponent implements OnInit{
         userCode: this.formStudente.value.userCode,
         password: this.formStudente.value.password
       }       
-      this.serviceStudente.loginStudente(studente)
+      this.loginService.loginStudente(studente);
+    }else{
+      const docente = {
+        mail: this.formDocente.value.mail,
+        codiceFiscale: this.formDocente.value.codiceFiscale,
+        password: this.formDocente.value.password 
+      }
+      this.loginService.loginDocente(docente);
     }
   }
 }

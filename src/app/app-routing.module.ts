@@ -11,7 +11,7 @@ import { RegistroFamigliaComponent } from './components/registro-utenti/registro
 import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
-import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici/dati-anagrafici.component';
+import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent,
@@ -23,7 +23,12 @@ const routes: Routes = [
       { path: ':user', redirectTo: '/home', pathMatch: 'full' },
       { path: ':user', component: RegistroComponent, canActivate: [AuthGuard], 
         children: [
-          { path: 'registro-famiglie', component: RegistroFamigliaComponent },
+          { path: 'registro-famiglie', component: RegistroFamigliaComponent,
+            children: [
+              { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
+              { path: 'dati-anagrafici', component: DatiAnagraficiComponent }
+            ] 
+          },
           { path: 'registro-docente', component: RegistroDocenteComponent, 
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },

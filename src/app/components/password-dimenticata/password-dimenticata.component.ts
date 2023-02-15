@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { ServiceDatiStudenteService } from 'src/app/service/studente-service/service-dati/service-dati-studente.service';
 
 @Component({
@@ -18,15 +19,17 @@ export class PasswordDimenticataComponent implements OnInit {
 
   notFoundEmail: boolean;
 
-  constructor(private route: ActivatedRoute, private router: Router, public serviceStudente: ServiceDatiStudenteService) { }
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
     this.token = this.route.snapshot.paramMap.get('token')!;
 
     if (this.token != null) {
-      this.serviceStudente.checkUser = '';
-      this.serviceStudente.message = '';
+      this.loginService.checkUser = '';
+      this.loginService.message = '';
     }
 
     this.form = new FormGroup({
@@ -75,13 +78,13 @@ export class PasswordDimenticataComponent implements OnInit {
         mail: this.form.value.mail,
         userCode: this.form.value.userCode
       }
-      this.serviceStudente.sendEmail(studente, this.tipoUtente);
+      this.loginService.sendEmail(studente, this.tipoUtente);
     }
   }
 
   resetPassword(): void {
     if (this.tipoUtente === 'studente') {
-      this.serviceStudente.updatePassword(this.form.value.password, this.token);
+      this.loginService.updatePassword(this.form.value.password, this.token);
       setTimeout(() => {
         this.router.navigate(['login', this.tipoUtente]);
       }, 1000)
@@ -90,10 +93,10 @@ export class PasswordDimenticataComponent implements OnInit {
 
   riceviToken(): void {
     if (this.tipoUtente === 'studente') {
-      this.serviceStudente.getToken(this.form.value.userCode);
+      this.loginService.getToken(this.form.value.userCode);
       setTimeout(() => {
-        if (this.serviceStudente.newToken !== '') {
-          this.router.navigate(['password-dimenticata', this.tipoUtente, this.serviceStudente.newToken]);
+        if (this.loginService.newToken !== '') {
+          this.router.navigate(['password-dimenticata', this.tipoUtente, this.loginService.newToken]);
         }
       }, 1500)
     }

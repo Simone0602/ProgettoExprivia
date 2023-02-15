@@ -11,15 +11,6 @@ export class ServiceDatiDocenteService {
 
   private docenti: Docente[] = [];
   private classi: Classe[] = [];
-  private docente: Docente = { 
-    id: 0,
-    nome: ' ' ,
-    cognome: ' ' ,
-    mail: ' ',
-    password: ' ',
-    codiceFiscale: 'abcdefg',
-    materia: ' '
-  };
 
   constructor(private ricevitoreDocenti: RicevitoreDocenteService) { }
 
@@ -47,10 +38,6 @@ export class ServiceDatiDocenteService {
 
   getClassi(): Classe[]{
     return this.classi;
-  }
-
-  getDocente(): Docente{
-    return this.docente;
   }
 
   getDocenti(): Docente[]{

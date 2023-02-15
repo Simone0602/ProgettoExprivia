@@ -19,7 +19,7 @@ import { RegistroComponent } from './components/registro-utenti/registro/registr
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
-import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici/dati-anagrafici.component';
+import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 
 
 @NgModule({
