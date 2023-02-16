@@ -5,5 +5,5 @@ export interface Docente{
     mail: string;
     password: string;
     codiceFiscale: string;
-    materia: string;
+    materia: string[];
 }

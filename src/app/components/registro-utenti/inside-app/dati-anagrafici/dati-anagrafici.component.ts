@@ -23,29 +23,35 @@ export class DatiAnagraficiComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.formStudente = this.createFormGroup()
-    this.formDocente = this.createFormGroup()
-    this.gestioneRoutin();
+   this.gestioneRouting();
+  }
+
+  private gestioneRouting(): void{
+    if(this.router.url.includes('registro-docente')){
+      this.user = this.loginService.getDocente();
+      this.routingUser_studenteOrDocente = true;
+      this.formStudente = null;
+      this.formDocente = this.createFormGroup();
+      this.formDocente.addControl('codiceFiscale', new FormControl(this.user.codiceFiscale, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]));
+      this.formDocente.addControl('materia', new FormControl(this.user.materia, [Validators.required]));
+    }else{
+      this.user = this.loginService.getStudente();
+      this.routingUser_studenteOrDocente = false;
+      this.formDocente = null;
+      this.formStudente = this.createFormGroup();
+      this.formStudente.addControl('userCode', new FormControl(this.user.userCode, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]));
+      this.formStudente.addControl('sezione', new FormControl(this.user.sezione, [Validators.required, Validators.minLength(2), Validators.maxLength(3)]));
+    }
   }
 
   private createFormGroup(): FormGroup{
     const formUser = new FormGroup({
-      nome: new FormControl(null, [Validators.required]),
-      cognome: new FormControl(null, [Validators.required]),
-      mail: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
+      nome: new FormControl(this.user.nome, [Validators.required]),
+      cognome: new FormControl(this.user.cognome, [Validators.required]),
+      mail: new FormControl(this.user.mail, [Validators.required, Validators.email]),
+      password: new FormControl(this.user.password, [Validators.required, Validators.minLength(8)]), 
     });
     return formUser;
-  }
-  private gestioneRoutin(): void{
-    if (this.router.url.includes('registro-docente')) {
-      this.user = this.loginService.getDocente();
-      this.routingUser_studenteOrDocente = true;
-      this.formDocente.addControl('codiceFiscale', new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]))
-    } else {
-      this.user = this.loginService.getStudente();
-      this.routingUser_studenteOrDocente = false;
-    }
   }
 
   getUser(): Studente | Docente {
