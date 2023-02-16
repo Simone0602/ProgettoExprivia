@@ -1,14 +1,14 @@
 <div class="row mt-5">
     <div class="col-xl-3"></div>
     <div class="col-12 col-xl-6">
-        <form>
+        <form [formGroup]="routingUser_studenteOrDocente ? formDocente : formStudente">
             <!-- Name and surname -->
             <div class="row justify-content-center d-flex">
                 <div class="form-group col-md-5 padding-form-group">
                     <label for="inputEmail4">Nome</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
+                            <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
                         </div>
                         <input type="text" class="form-control" id="inputEmail4">
                     </div>
@@ -18,7 +18,7 @@
                     <label for="inputPassword4">Cognome</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
+                            <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
                         </div>
                         <input type="text" class="form-control" id="inputEmail4">
                     </div>
@@ -30,7 +30,7 @@
                     <label for="inputEmail4">Email</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text">@</div>
+                            <div class="input-group-text">@</div>
                         </div>
                         <input type="email" class="form-control" id="inputEmail4">
                     </div>
@@ -40,34 +40,61 @@
                     <label for="inputPassword4">Password</label>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
-                          <div class="input-group-text" style="height: 38px;"><i class="fa fa-lock"></i></div>
+                            <div class="input-group-text" style="height: 38px;"><i class="fa fa-lock"></i></div>
                         </div>
                         <input type="text" class="form-control" id="inputEmail4">
                     </div>
                 </div>
             </div>
-            <!-- Codice fiscale and subject -->
-            <div class="row justify-content-center d-flex">
-                <div class="form-group col-md-5 padding-form-group">
-                    <label for="inputEmail4">Codice fiscale</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text" style="height: 38px;"><i class="fa fa-list-alt"></i></div>
+            <div *ngIf="routingUser_studenteOrDocente; then bloccoDatiDocente else bloccoDatiStudente"></div>
+            <ng-template #bloccoDatiDocente>
+                <!-- Codice fiscale and subject -->
+                <div class="row justify-content-center d-flex">
+                    <div class="form-group col-md-5 padding-form-group">
+                        <label for="inputEmail4">Codice fiscale</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style="height: 38px;"><i class="fa fa-list-alt"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="inputEmail4">
                         </div>
-                        <input type="text" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="col-md-1 padding-form-group"></div>
+                    <div class="form-group col-md-5 padding-form-group">
+                        <label for="inputPassword4">Materia</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="inputEmail4">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-1 padding-form-group"></div>
-                <div class="form-group col-md-5 padding-form-group">
-                    <label for="inputPassword4">Materia</label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
+            </ng-template>
+            <ng-template #bloccoDatiStudente>
+                <!-- User code and sezione -->
+                <div class="row justify-content-center d-flex">
+                    <div class="form-group col-md-5 padding-form-group">
+                        <label for="inputEmail4">User code</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style="height: 38px;"><i class="fa fa-list-alt"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="inputEmail4">
                         </div>
-                        <input type="text" class="form-control" id="inputEmail4">
+                    </div>
+                    <div class="col-md-1 padding-form-group"></div>
+                    <div class="form-group col-md-5 padding-form-group">
+                        <label for="inputPassword4">Sezione</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
+                            </div>
+                            <input type="text" class="form-control" id="inputEmail4">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-template>
         </form>
     </div>
     <div class="col-xl-3"></div>
