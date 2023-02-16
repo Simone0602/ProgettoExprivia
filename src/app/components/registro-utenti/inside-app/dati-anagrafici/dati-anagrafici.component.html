@@ -1,7 +1,7 @@
 <div class="row mt-5">
     <div class="col-xl-3"></div>
     <div class="col-12 col-xl-6">
-        <form [formGroup]="routingUser_studenteOrDocente ? formDocente : formStudente">
+        <form [formGroup]="routingUser_studenteOrDocente ? formDocente : formStudente" (ngSubmit)="OnSave()">
             <!-- Name and surname -->
             <div class="row justify-content-center d-flex">
                 <div class="form-group col-md-5 padding-form-group">
@@ -10,7 +10,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
                         </div>
-                        <input type="text" class="form-control" id="inputEmail4" formControlName="nome">
+                        <input type="text" class="form-control" id="inputEmail4" formControlName="nome"
+                            [readOnly]="!update">
                     </div>
                 </div>
                 <div class="col-md-1 padding-form-group"></div>
@@ -20,7 +21,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" style="height: 38px;"><i class="fa fa-user"></i></div>
                         </div>
-                        <input type="text" class="form-control" id="inputEmail4" formControlName="cognome">
+                        <input type="text" class="form-control" id="inputEmail4" formControlName="cognome"
+                            [readOnly]="!update">
                     </div>
                 </div>
             </div>
@@ -32,7 +34,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">@</div>
                         </div>
-                        <input type="email" class="form-control" id="inputEmail4" formControlName="mail">
+                        <input type="email" class="form-control" id="inputEmail4" formControlName="mail"
+                            [readOnly]="!update">
                     </div>
                 </div>
                 <div class="col-md-1 padding-form-group"></div>
@@ -42,7 +45,8 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text" style="height: 38px;"><i class="fa fa-lock"></i></div>
                         </div>
-                        <input type="password" class="form-control" id="inputEmail4" formControlName="password">
+                        <input type="password" class="form-control" id="inputEmail4" formControlName="password"
+                            [readOnly]="!update">
                     </div>
                 </div>
             </div>
@@ -56,7 +60,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text" style="height: 38px;"><i class="fa fa-list-alt"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="inputEmail4" formControlName="codiceFiscale">
+                            <input type="text" class="form-control" id="inputEmail4" formControlName="codiceFiscale"
+                                [readOnly]="!update">
                         </div>
                     </div>
                     <div class="col-md-1 padding-form-group"></div>
@@ -66,7 +71,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="inputEmail4" formControlName="materia">
+                            <input type="text" class="form-control" id="inputEmail4" formControlName="materia"
+                                [readOnly]="!update">
                         </div>
                     </div>
                 </div>
@@ -80,7 +86,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text" style="height: 38px;"><i class="fa fa-list-alt"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="inputEmail4" formControlName="userCode">
+                            <input type="text" class="form-control" id="inputEmail4" formControlName="userCode"
+                                readonly>
                         </div>
                     </div>
                     <div class="col-md-1 padding-form-group"></div>
@@ -90,11 +97,19 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
                             </div>
-                            <input type="text" class="form-control" id="inputEmail4" formControlName="sezione">
+                            <input type="text" class="form-control" id="inputEmail4" formControlName="sezione"
+                                readonly>
                         </div>
                     </div>
                 </div>
             </ng-template>
+            <div class="row">
+                <div class="col-12 justify-content-center d-flex">
+                    <button type="button" class="btn btn-primary" (click)="OnChange()">{{ update ? 'Annulla' :
+                        'Modifica' }}</button>
+                    <button type="submit" class="btn btn-success padding-button" [disabled]="!update">Salva</button>
+                </div>
+            </div>
         </form>
     </div>
     <div class="col-xl-3"></div>

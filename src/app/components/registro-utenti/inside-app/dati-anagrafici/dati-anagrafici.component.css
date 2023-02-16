@@ -6,3 +6,12 @@
 .padding-form-group{
     padding: 0;
 }
+
+.btn{
+    margin: 10px;
+}
+
+.padding-button{
+    padding-right: 23.76px;
+    padding-left: 23.76px;
+}
