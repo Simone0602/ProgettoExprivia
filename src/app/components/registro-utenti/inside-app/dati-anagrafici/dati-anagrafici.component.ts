@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Docente } from 'src/app/class/Docente';
 import { Studente } from 'src/app/class/Studente';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
+import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
 @Component({
   selector: 'app-dati-anagrafici',
@@ -21,6 +22,7 @@ export class DatiAnagraficiComponent implements OnInit {
   private user: Studente | Docente;
 
   constructor(private loginService: LoginService,
+    public registroService: RegistroService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -74,6 +76,15 @@ export class DatiAnagraficiComponent implements OnInit {
   }
 
   OnSave(): void {
+    if(this.routingUser_studenteOrDocente){
+      this.formDocente.enable();
+      this.registroService.updateDocente(this.formDocente);
+      this.formDocente.disable();
+    }else{
+      this.formStudente.enable();
+      this.registroService.updateStudent(this.formStudente);
+      this.formStudente.disable();
+    }
     this.routingUser_studenteOrDocente ? this.formDocente.disable() : this.formStudente.disable();
     this.update = !this.update;
   }

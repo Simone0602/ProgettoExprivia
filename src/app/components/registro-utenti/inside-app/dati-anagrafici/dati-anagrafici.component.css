@@ -11,6 +11,11 @@
     margin: 10px;
 }
 
+.svg{
+    width: 20px; 
+    height: 20px;
+}
+
 .padding-button{
     padding-right: 23.76px;
     padding-left: 23.76px;

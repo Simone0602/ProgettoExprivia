@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 import { Classe } from 'src/app/class/Classe';
+import { Docente } from 'src/app/class/Docente';
 import { RegistroStudente } from 'src/app/class/RegistroStudente';
 import { Studente } from 'src/app/class/Studente';
 import { LoginService } from '../../login-service/service-dati/login.service';
@@ -11,11 +12,14 @@ import { RicevitoreRegistroService } from '../ricevitore-dati/ricevitore-registr
   providedIn: 'root'
 })
 export class RegistroService {
+
+  message: string;
+  check: string = '';
   private _registro: RegistroStudente;
   private classi: Classe[] = [];
   private studenti: Studente[] = [];
 
-  constructor(private router: Router, private ricevitoreRegistro: RicevitoreRegistroService, 
+  constructor(private ricevitoreRegistro: RicevitoreRegistroService, 
     private loginService: LoginService) { }
 
   registro(): void{
@@ -47,6 +51,32 @@ export class RegistroService {
       }, 
       error: (error: HttpErrorResponse) => {
         console.log(error.error);
+      }
+    });
+  }
+
+  updateDocente(docente: FormGroup): void{
+    this.ricevitoreRegistro.updateDocente(docente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.check = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.message = error.error;
+        this.check = 'false';
+      }
+    });
+  }
+
+  updateStudent(studente: FormGroup){
+    this.ricevitoreRegistro.updateStudente(studente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.check = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.message = error.error;
+        this.check = 'false';
       }
     });
   }
