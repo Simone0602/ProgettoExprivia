@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Docente } from 'src/app/class/Docente';
@@ -24,11 +24,11 @@ export class DatiAnagraficiComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-   this.gestioneRouting();
+    this.gestioneRouting();
   }
 
-  private gestioneRouting(): void{
-    if(this.router.url.includes('registro-docente')){
+  private gestioneRouting(): void {
+    if (this.router.url.includes('registro-docente')) {
       this.user = this.loginService.getDocente();
       this.routingUser_studenteOrDocente = true;
       this.formStudente = null;
@@ -36,7 +36,7 @@ export class DatiAnagraficiComponent implements OnInit {
       this.formDocente.addControl('codiceFiscale', new FormControl(this.user.codiceFiscale, [Validators.minLength(16), Validators.maxLength(16)]));
       this.formDocente.addControl('materia', new FormControl(this.user.materia, []));
       this.formDocente.disable();
-    }else{
+    } else {
       this.user = this.loginService.getStudente();
       this.routingUser_studenteOrDocente = false;
       this.formDocente = null;
@@ -47,30 +47,33 @@ export class DatiAnagraficiComponent implements OnInit {
     }
   }
 
-  private createFormGroup(): FormGroup{
+  private createFormGroup(): FormGroup {
     const formUser = new FormGroup({
       nome: new FormControl(this.user.nome, []),
       cognome: new FormControl(this.user.cognome, []),
       mail: new FormControl(this.user.mail, [Validators.email]),
-      password: new FormControl(this.user.password, [Validators.minLength(8)]), 
+      password: new FormControl(this.user.password, [Validators.minLength(8)]),
     });
     return formUser;
   }
 
-  OnChange(): void{
+  OnChange(): void {
     this.update = !this.update;
-    if(this.routingUser_studenteOrDocente){
-      this.formDocente.disabled ? this.formDocente.enable() : this.formDocente.disable();
-      this.formDocente.get("codiceFiscale").disable();
-      this.formDocente.get("materia").disable();
-    }else{
-      this.formStudente.disabled ? this.formStudente.enable() : this.formStudente.disable();
-      this.formStudente.get("userCode").disable();
-      this.formStudente.get("sezione").disable();
+    this.routingUser_studenteOrDocente ?
+      this.setEnable_DisableForm(this.formDocente.disabled, this.formDocente) :
+      this.setEnable_DisableForm(this.formStudente.disabled, this.formStudente)
+  }
+
+  private setEnable_DisableForm(disabled: boolean, formUser: FormGroup) {
+    if (disabled) {
+      formUser.get("mail").enable();
+      formUser.get("password").enable();
+    } else {
+      formUser.disable();
     }
   }
 
-  OnSave(): void{
+  OnSave(): void {
     this.routingUser_studenteOrDocente ? this.formDocente.disable() : this.formStudente.disable();
     this.update = !this.update;
   }

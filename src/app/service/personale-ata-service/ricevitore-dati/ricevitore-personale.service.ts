@@ -8,18 +8,17 @@ import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
-export class RicevitoreDocenteService {
+export class RicevitorePersonaleService {
 
-  url = environment.baseUrl + "/docente";
+  url = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
   public getListaDocenti(): Observable<Docente[]>{
-    return this.http.get<Docente[]>(`${this.url}/findAll`);
+    return this.http.get<Docente[]>(`${this.url}/docente/findAll`);
   }
 
-  public getListaClassi(codiceFiscale: string): Observable<Classe[]>{
-    return this.http.get<Classe[]>(`${this.url}/find/${codiceFiscale}`)
+  public getListaClassi(): Observable<Classe[]>{
+    return this.http.get<Classe[]>(`${this.url}/classe/findAll`);
   }
-
 }

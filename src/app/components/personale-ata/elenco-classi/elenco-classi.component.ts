@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
-import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
+import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
 
 @Component({
   selector: 'app-elenco-classi',
@@ -9,16 +9,16 @@ import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service
 })
 export class ElencoClassiComponent {
 
-  constructor(public serviceClasse: ServiceDatiCalsseService){}
+  constructor(public serviceAta: PersonaleService){}
 
   ngOnInit(): void {
-    this.getListaDocenti();
+    this.getListaClassi();
   }
 
-  getListaDocenti(): void{
+  getListaClassi(): void{
     const appoggio: Classe[] = [];
-    if(JSON.stringify(this.serviceClasse.getClassi()) == JSON.stringify(appoggio)){
-      this.serviceClasse.getListaClassi();
+    if(JSON.stringify(this.serviceAta.getClassi()) == JSON.stringify(appoggio)){
+      this.serviceAta.getListaClassi();
     }
   }
 }

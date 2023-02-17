@@ -2,20 +2,21 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
 import { Docente } from 'src/app/class/Docente';
-import { RicevitoreDocenteService } from '../ricevitore-dati/ricevitore-docente.service';
+import { RicevitorePersonaleService } from '../ricevitore-dati/ricevitore-personale.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServiceDatiDocenteService {
+export class PersonaleService {
 
   private docenti: Docente[] = [];
   private classi: Classe[] = [];
 
-  constructor(private ricevitoreDocenti: RicevitoreDocenteService) { }
+
+  constructor(private ricevitorePersonale: RicevitorePersonaleService) { }
 
   getListaDocenti(): void{
-    this.ricevitoreDocenti.getListaDocenti().subscribe({
+    this.ricevitorePersonale.getListaDocenti().subscribe({
       next: (docenti: Docente[]) => {
         this.docenti = docenti;
       }, 
@@ -25,8 +26,8 @@ export class ServiceDatiDocenteService {
     })
   }
   
-  getListaClassi(codiceFiscale: string): void{
-    this.ricevitoreDocenti.getListaClassi(codiceFiscale).subscribe({
+  getListaClassi(): void{
+    this.ricevitorePersonale.getListaClassi().subscribe({
       next: (classi: Classe[]) => {
         this.classi = classi;
       }, 
@@ -43,5 +44,4 @@ export class ServiceDatiDocenteService {
   getDocenti(): Docente[]{
     return this.docenti;
   }
-  
 }

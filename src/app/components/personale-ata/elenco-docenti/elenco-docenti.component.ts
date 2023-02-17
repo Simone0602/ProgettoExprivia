@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Docente } from 'src/app/class/Docente';
-import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
+import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
 
 @Component({
   selector: 'app-elenco-docenti',
@@ -9,7 +9,7 @@ import { ServiceDatiDocenteService } from 'src/app/service/docente-service/servi
 })
 export class ElencoDocentiComponent implements OnInit {
 
-  constructor(public serviceDocente: ServiceDatiDocenteService){}
+  constructor(public serviceAta: PersonaleService){}
 
   ngOnInit(): void {
     this.getListaDocenti();
@@ -17,8 +17,8 @@ export class ElencoDocentiComponent implements OnInit {
 
   getListaDocenti(): void{
     const appoggio: Docente[] = [];
-    if(JSON.stringify(this.serviceDocente.getDocenti()) == JSON.stringify(appoggio)){
-      this.serviceDocente.getListaDocenti();
+    if(JSON.stringify(this.serviceAta.getDocenti()) == JSON.stringify(appoggio)){
+      this.serviceAta.getListaDocenti();
     }
   }
 }

@@ -4,7 +4,7 @@
         <!-- Cambio sezione -->
         <select class="form-select" aria-label="Default select example" (change)="onOptionChanged($event)">
             <option value="0" selected>Seleziona una sezione</option>
-            <option *ngFor="let classe of docenteService.getClassi()" [value]="classe.sezione">
+            <option *ngFor="let classe of registroService.getClassi()" [value]="classe.sezione">
                 {{classe.sezione}}
             </option>
         </select>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let studente of classService.getStudenti()">
+                <tr *ngFor="let studente of registroService.getStudenti()">
                     <td>{{ studente.nome }} {{ studente.cognome }}</td>
                     <td>
                         <div class="form-floating">

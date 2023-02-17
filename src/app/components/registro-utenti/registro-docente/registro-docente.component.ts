@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Classe } from 'src/app/class/Classe';
-import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
-import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-registro-docente',

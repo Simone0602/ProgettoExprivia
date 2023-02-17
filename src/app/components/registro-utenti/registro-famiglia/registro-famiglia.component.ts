@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceDatiStudenteService } from 'src/app/service/studente-service/service-dati/service-dati-studente.service';
+import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
 @Component({
   selector: 'app-registro-famiglia',
@@ -8,10 +8,10 @@ import { ServiceDatiStudenteService } from 'src/app/service/studente-service/ser
 })
 export class RegistroFamigliaComponent implements OnInit{
 
-  constructor(private studentService: ServiceDatiStudenteService){}
+  constructor(private registroService: RegistroService){}
 
   ngOnInit(): void {
-    this.studentService.registro();
+    this.registroService.registro();
   }
 
 }

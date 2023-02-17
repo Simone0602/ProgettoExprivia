@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
-import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
-import { ServiceDatiDocenteService } from 'src/app/service/docente-service/service-dati/service-dati-docente.service';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
+import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
 @Component({
   selector: 'app-lista-studenti-docente',
@@ -14,19 +13,18 @@ export class ListaStudentiDocenteComponent implements OnInit{
   selezione : string = "Seleziona una classe";
   voto: number;
 
-  constructor(public classService: ServiceDatiCalsseService, 
-    public docenteService: ServiceDatiDocenteService,
+  constructor(public registroService: RegistroService,
     private loginService: LoginService){}
 
   ngOnInit(): void{
-    this.docenteService.getListaClassi(this.loginService.getDocente().codiceFiscale);
+    this.registroService.getListaClassi(this.loginService.getDocente().codiceFiscale);
   }
 
   onOptionChanged(event: Event){
     if(+(<HTMLInputElement>event.target).value!=0){
-      this.classService.getStudentiBySezione((<HTMLInputElement>event.target).value);
+      this.registroService.getStudentiBySezione((<HTMLInputElement>event.target).value);
     }else{
-      this.classService.setStudenti([]);
+      this.registroService.setStudenti([]);
     }
   }
 

@@ -1,7 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { Router, RouterLinkActive } from '@angular/router';
-import { ServiceDatiCalsseService } from 'src/app/service/classe-service/service-dati/service-dati-classe.service';
-import { ServiceDatiStudenteService } from 'src/app/service/studente-service/service-dati/service-dati-studente.service';
+import { Router} from '@angular/router';
+import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 import { Classe } from '../../class/Classe';
 
 @Component({
@@ -11,9 +10,8 @@ import { Classe } from '../../class/Classe';
 })
 export class MenuComponent implements OnInit, DoCheck {
 
-  constructor(public serviceStudente: ServiceDatiStudenteService,
-    public serviceClasse: ServiceDatiCalsseService,
-    public router: Router) { }
+  constructor(public router: Router, 
+    private registroService: RegistroService) { }
 
   ngDoCheck(): void { }
 
@@ -42,12 +40,6 @@ export class MenuComponent implements OnInit, DoCheck {
     return '';
   }
 
-  getListaClassi(): void {
-    const appoggio: Classe[] = [];
-    if (JSON.stringify(this.serviceClasse.getClassi()) == JSON.stringify(appoggio)) {
-      this.serviceClasse.getListaClassi();
-    }
-  }
 }
 
 

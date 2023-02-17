@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Docente } from 'src/app/class/Docente';
 import { Studente } from 'src/app/class/Studente';
-import { RicevitoreDocenteService } from '../../docente-service/ricevitore-dati/ricevitore-docente.service';
-import { RicevitoreStudenteService } from '../../studente-service/ricevitore-dati/ricevitore-studente.service';
 import { RicevitoreLoginService } from '../ricevitore-dati/ricevitore-login.service';
 
 @Injectable({
