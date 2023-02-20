@@ -22,15 +22,15 @@ export class RicevitoreLoginService {
     return this.http.post<Docente>(`${this.url}/docente/login`, docente);
   }
 
-  public sendEmail(studente: {mail: string, userCode: string}, tipoUtente: string): Observable<string>{
-    return this.http.post(`${this.url}/studente/sendEmail/${tipoUtente}`, studente, { responseType: 'text' });
+  public sendEmailStudente(studente: {mail: string, userCode: string}, tipoUtente: string): Observable<string>{
+    return this.http.post(`${this.url}/studente/send-mail/${tipoUtente}`, studente, { responseType: 'text' });
+  }
+
+  public sendMessageStudente(studente: {number: string, userCode: string}, tipoUtente: string): Observable<string>{
+    return this.http.post(`${this.url}/studente/send-message/${tipoUtente}`, studente, { responseType: 'text' });
   }
 
   public updatePassword(password: string, token: string): Observable<string>{
-    return this.http.put(`${this.url}/studente/updatePassword/${token}`, password, { responseType: 'text' });
-  }
-
-  public getToken(userCode: string): Observable<string>{
-    return this.http.post(`${this.url}/studente/getToken`, userCode, { responseType: 'text' });
+    return this.http.put(`${this.url}/studente/update-password/${token}`, password, { responseType: 'text' });
   }
 }

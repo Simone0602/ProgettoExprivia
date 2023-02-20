@@ -11,7 +11,6 @@ import { RicevitoreLoginService } from '../ricevitore-dati/ricevitore-login.serv
 export class LoginService {
   message: string;
   checkUser: string;
-  newToken: string;
 
   private _studente: Studente;
   private _docente: Docente;
@@ -58,16 +57,37 @@ export class LoginService {
   }
 
   sendEmail(studente: {mail: string, userCode: string}, tipoUtente: string): void{
-    this.ricevitore.sendEmail(studente, tipoUtente).subscribe({
-      next: (message: string) => {
-        this.message = message;
-        this.checkUser = "true";
-      },
-      error: (error: HttpErrorResponse) => {
-        this.checkUser = "false"
-        this.message = error.error;
-      }
-    })
+    if(tipoUtente=='studente'){
+      this.ricevitore.sendEmailStudente(studente, tipoUtente).subscribe({
+        next: (message: string) => {
+          this.message = message;
+          this.checkUser = "true";
+        },
+        error: (error: HttpErrorResponse) => {
+          this.checkUser = "false"
+          this.message = error.error;
+        }
+      })
+    }else{
+
+    }
+  }
+
+  sendMessage(studente: {number: string, userCode: string}, tipoUtente: string): void{
+    if(tipoUtente=='studente'){
+      this.ricevitore.sendMessageStudente(studente, tipoUtente).subscribe({
+        next: (message: string) => {
+          this.message = message;
+          this.checkUser = "true";
+        },
+        error: (error: HttpErrorResponse) => {
+          this.checkUser = "false"
+          this.message = error.error;
+        }
+      });
+    }else{
+
+    }
   }
 
   updatePassword(password: string, token: string): void{
@@ -79,21 +99,6 @@ export class LoginService {
       error: (error: HttpErrorResponse) => {
         this.message = error.error;
         this.checkUser = 'false';
-      }
-    });
-  }
-
-  getToken(userCode: string): void{
-    this.ricevitore.getToken(userCode).subscribe({
-      next: (token: string) => {
-        this.message = 'Token trovato! Reindirizzamento al cambio password';
-        this.checkUser = 'true';
-        this.newToken = token;     
-      },
-      error: (error: HttpErrorResponse) => {
-        this.message = error.error;
-        this.checkUser = 'false';
-        this.newToken = '';
       }
     });
   }

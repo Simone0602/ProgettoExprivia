@@ -16,7 +16,7 @@ export class PasswordDimenticataComponent implements OnInit {
   ugualianzaPassword: boolean;
   form: FormGroup;
 
-  notFoundEmail: boolean;
+  mobilePhone: boolean = false;
 
   constructor(private route: ActivatedRoute, 
     private router: Router, 
@@ -33,6 +33,7 @@ export class PasswordDimenticataComponent implements OnInit {
 
     this.form = new FormGroup({
       mail: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(1)]),
+      numberMobilePhone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
       userCode: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       confPassword: new FormControl(null, [Validators.required, Validators.minLength(8)])
@@ -63,9 +64,9 @@ export class PasswordDimenticataComponent implements OnInit {
   }
 
   disabledButtonRecuperaPassword(): boolean{
-    if((!this.form.get('mail')!.valid || !this.form.get('userCode')!.valid) && !this.notFoundEmail){
+    if((!this.form.get('mail')!.valid || !this.form.get('userCode')!.valid) && !this.mobilePhone){
       return true;
-    }else if(!this.form.get('userCode')!.valid && this.notFoundEmail){
+    }else if(!this.form.get('userCode')!.valid && this.mobilePhone){
       return true;
     }
     return false;
@@ -73,11 +74,15 @@ export class PasswordDimenticataComponent implements OnInit {
 
   sendEmail(): void {
     if (this.tipoUtente === 'studente') {
-      const studente = {
-        mail: this.form.value.mail,
-        userCode: this.form.value.userCode
-      }
-      this.loginService.sendEmail(studente, this.tipoUtente);
+      this.mobilePhone ? 
+        this.loginService.sendMessage(this.getStudente(), this.tipoUtente)
+        : this.loginService.sendEmail(this.getStudente(), this.tipoUtente);
+    }
+  }
+
+  reinvioEmail(): void{
+    if(this.tipoUtente==='studente'){
+      this.loginService.sendEmail(this.getStudente(), this.tipoUtente);
     }
   }
 
@@ -90,14 +95,19 @@ export class PasswordDimenticataComponent implements OnInit {
     }
   }
 
-  riceviToken(): void {
-    if (this.tipoUtente === 'studente') {
-      this.loginService.getToken(this.form.value.userCode);
-      setTimeout(() => {
-        if (this.loginService.newToken !== '') {
-          this.router.navigate(['password-dimenticata', this.tipoUtente, this.loginService.newToken]);
-        }
-      }, 1500)
+  private getStudente(): any{
+    let studente = {};
+    if(!this.mobilePhone){
+      studente = {
+        mail: this.form.value.mail,
+        userCode: this.form.value.userCode
+      }
+    }else{
+      studente = {
+        number: this.form.value.numberMobilePhone,
+        userCode: this.form.value.userCode
+      }
     }
+    return studente;
   }
 }
