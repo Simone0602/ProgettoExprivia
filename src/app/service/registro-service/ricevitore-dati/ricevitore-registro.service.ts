@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -30,10 +30,16 @@ export class RicevitoreRegistroService {
   }
 
   public updateDocente(docente: FormGroup): Observable<string>{
-    return this.http.put(`${this.url}/docente/update`, docente.value, { responseType: 'text' })
+    const header = new HttpHeaders({
+      Authorization: JSON.parse(localStorage.getItem('token')).token
+    });
+    return this.http.put(`${this.url}/docente/update`, docente.value, { headers: header, responseType: 'text' })
   }
 
   public updateStudente(studente: FormGroup): Observable<string>{
-    return this.http.put(`${this.url}/studente/update`, studente.value, { responseType: 'text' })
+    const header = new HttpHeaders({
+      Authorization: JSON.parse(localStorage.getItem('token')).token
+    });
+    return this.http.put(`${this.url}/studente/update`, studente.value, { headers: header, responseType: 'text' })
   }
 }

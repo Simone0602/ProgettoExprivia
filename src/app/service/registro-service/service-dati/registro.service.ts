@@ -12,25 +12,26 @@ import { RicevitoreRegistroService } from '../ricevitore-dati/ricevitore-registr
   providedIn: 'root'
 })
 export class RegistroService {
+  loading: boolean = true;
 
   message: string;
   check: string = '';
+  
   private _registro: RegistroStudente;
   private classi: Classe[] = [];
   private studenti: Studente[] = [];
 
-  constructor(private ricevitoreRegistro: RicevitoreRegistroService, 
-    private loginService: LoginService) { }
+  constructor(private ricevitoreRegistro: RicevitoreRegistroService) { }
 
   registro(): void{
-    this.ricevitoreRegistro.getRegistro(this.loginService.getStudente().mail).subscribe(({
+    /* this.ricevitoreRegistro.getRegistro(this.loginService.getStudente().mail).subscribe(({
       next: (_registro: RegistroStudente) => {
         this._registro = _registro;
       },
       error: (error: HttpErrorResponse) => {
         alert(`Qualcosa è andato storto\n${error.error}`)
       }
-    })) 
+    }))  */
   }
 
   getListaClassi(codiceFiscale: string): void{

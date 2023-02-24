@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatChipListboxChange} from '@angular/material/chips';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,9 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 export class RegistroComponent implements OnInit {
   user: string
 
-  constructor(private route: ActivatedRoute, private router: Router){}
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    public registroService: RegistroService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params: ParamMap) => {

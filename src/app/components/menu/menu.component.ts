@@ -1,31 +1,35 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router} from '@angular/router';
-import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
-import { Classe } from '../../class/Classe';
+import { Response } from 'src/app/class/Response';
+import { AuthService } from 'src/app/secure/auth-service/auth.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit, DoCheck {
+export class MenuComponent implements OnInit {
+  role: string = '';
+  token: Response;
 
-  constructor(public router: Router, 
-    private registroService: RegistroService) { }
+  constructor(public router: Router,
+    public authService: AuthService) { }
 
-  ngDoCheck(): void { }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.token = JSON.parse(localStorage.getItem('token'));
+    if(this.token==null){
+      this.role = '';
+    }else{
+      this.role = this.token.utenza;
+    }
+  }
 
   navigazioneNavbar(value: string): void {
     this.router.navigate([`${value}`, `registro-${value==='studente' ? 'famiglie' : value}`]).then((postNavigazione) => {
       if (!postNavigazione && postNavigazione != null) {
         let bool_1 = confirm('Devi registrati prima di accedere a questa sezione!');
         if (bool_1) {
-          let bool_2 = confirm(`Sei ${value === 'studente' ? 'uno studente' : 'un docente'}?\nPremere 'ok' per confermare`);
-          if (bool_2) {
-            this.router.navigate([`login/${value}`])
-          }
+          this.router.navigate([`login/${value}`])
         }
       }
     })
@@ -40,6 +44,11 @@ export class MenuComponent implements OnInit, DoCheck {
     return '';
   }
 
+  logout(): void{
+    localStorage.removeItem('token');
+    this.role='';
+    this.router.navigate(['/home']);
+  }
 }
 
 

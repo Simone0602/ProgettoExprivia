@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
+import { JwtDecodeService } from 'src/app/service/jwt-decode/jwt-decode.service';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
@@ -14,10 +15,12 @@ export class ListaStudentiDocenteComponent implements OnInit{
   voto: number;
 
   constructor(public registroService: RegistroService,
-    private loginService: LoginService){}
+    private jwtDecode: JwtDecodeService){}
 
   ngOnInit(): void{
-    this.registroService.getListaClassi(this.loginService.getDocente().codiceFiscale);
+    const token = JSON.parse(localStorage.getItem('token'));
+    const token_decode = this.jwtDecode.getTokenDecode(token.token);
+    this.registroService.getListaClassi(token_decode.sub);
   }
 
   onOptionChanged(event: Event){

@@ -29,10 +29,10 @@
           alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form [formGroup]="tipoUtente==='studente' ? formStudente : formDocente" (ngSubmit)="login()" novalidate>
+        <form [formGroup]="isStudente ? formStudente : formDocente" (ngSubmit)="isStudente ? loginStudente() : loginDocente()" novalidate>
           <span class="lead fw-normal me-3 mt-5" style="font-size: 22px;">Login</span>
 
-          <div *ngIf="tipoUtente=='studente'; then bloccoStudente else bloccoInsegnante"></div>
+          <div *ngIf="isStudente; then bloccoStudente else bloccoInsegnante"></div>
           <!-- Blocco studente -->
           <ng-template #bloccoStudente>
             <!-- User code input -->
@@ -81,12 +81,12 @@
                 Ricordami
               </label>
             </div>
-            <a class="text-body" [routerLink]="['/password-dimenticata', tipoUtente]">Password dimenticata?</a>
+            <a class="text-body" [routerLink]="['/password-dimenticata', isStudente ? 'studente' : 'docente']">Password dimenticata?</a>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-              [disabled]="tipoUtente==='studente' ? !formStudente.valid : !formDocente.valid">
+              [disabled]="isStudente ? !formStudente.valid : !formDocente.valid">
               Login
             </button>
           </div>

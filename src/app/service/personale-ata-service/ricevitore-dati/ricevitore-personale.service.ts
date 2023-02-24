@@ -15,10 +15,10 @@ export class RicevitorePersonaleService {
   constructor(private http: HttpClient) { }
 
   public getListaDocenti(): Observable<Docente[]>{
-    return this.http.get<Docente[]>(`${this.url}/docente/findAll`);
+    return this.http.get<Docente[]>(`${this.url}/docente/find-all`);
   }
 
   public getListaClassi(): Observable<Classe[]>{
-    return this.http.get<Classe[]>(`${this.url}/classe/findAll`);
+    return this.http.get<Classe[]>(`${this.url}/classe/find-all`);
   }
 }

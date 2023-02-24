@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
 
+import { HalfCircleSpinnerModule } from 'angular-epic-spinners'
+
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -46,7 +48,8 @@ import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app
     RouterModule,
     HttpClientModule,
     NgbModule,
-    MatChipsModule
+    MatChipsModule,
+    HalfCircleSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

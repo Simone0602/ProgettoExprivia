@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Docente } from 'src/app/class/Docente';
+import { Response } from 'src/app/class/Response';
 import { Studente } from 'src/app/class/Studente';
 import { RicevitoreLoginService } from '../ricevitore-dati/ricevitore-login.service';
 
@@ -12,102 +13,137 @@ export class LoginService {
   message: string;
   checkUser: string;
 
-  private _studente: Studente;
-  private _docente: Docente;
-
   constructor(private router: Router,
     private ricevitore: RicevitoreLoginService) { }
 
-  loginDocente(docente: {mail: string, codiceFiscale: string, password: string}): void{
-    this.ricevitore.loginDocente(docente).subscribe({
-      next: (docente: Docente) => {
-        this._docente = docente;
-        this.checkUser = 'true';
-        this.message = 'Reindirizzamento al registro elettronico';
-        setTimeout(() => {
-          this.router.navigate(['/docente', 'registro-docente']).then(() => {
-            sessionStorage.setItem('user', JSON.stringify(this._docente));
-          });
-        }, 1500);
-      }, 
-      error: (error: HttpErrorResponse) => {
-        this.checkUser = 'false'
-        this.message = error.error;
-      }
-    });
-  }
-
-  loginStudente(studente: {userCode: string, password: string}): void{
-    this.ricevitore.loginStudente(studente).subscribe({
-      next: (_studente_loggato: Studente) => {
-        this._studente = _studente_loggato;
-        this.checkUser = 'true';
-        this.message = 'Reindirizzamento al registro elettronico';
-        setTimeout(() => {
-          this.router.navigate(['/studente', 'registro-famiglie']).then(() => {
-            sessionStorage.setItem('user', JSON.stringify(this._studente));
-          });
-        }, 1500);
-      },
-      error: (error: HttpErrorResponse) => {
-        this.checkUser = 'false'
-        this.message = error.error;
-      }
-    });
-  }
-
-  sendEmail(studente: {mail: string, userCode: string}, tipoUtente: string): void{
-    if(tipoUtente=='studente'){
-      this.ricevitore.sendEmailStudente(studente, tipoUtente).subscribe({
-        next: (message: string) => {
-          this.message = message;
-          this.checkUser = "true";
-        },
+  loginDocente(docente: {mail: string, codiceFiscale: string, password: string}): Promise<Response>{
+    let promise = new Promise<Response>((res) => {
+      this.ricevitore.loginDocente(docente).subscribe({
+        next: (token_docente: Response) => {
+          token_docente.token = "Bearer " + token_docente.token;
+          res(token_docente);
+          this.checkUser = 'true';
+          this.message = 'Reindirizzamento al registro elettronico';
+          this.router.navigate(['/docente', 'registro-docente']);
+        }, 
         error: (error: HttpErrorResponse) => {
-          this.checkUser = "false"
-          this.message = error.error;
-        }
-      })
-    }else{
-
-    }
-  }
-
-  sendMessage(studente: {number: string, userCode: string}, tipoUtente: string): void{
-    if(tipoUtente=='studente'){
-      this.ricevitore.sendMessageStudente(studente, tipoUtente).subscribe({
-        next: (message: string) => {
-          this.message = message;
-          this.checkUser = "true";
-        },
-        error: (error: HttpErrorResponse) => {
-          this.checkUser = "false"
-          this.message = error.error;
+          this.checkUser = 'false'
+          this.message = error.error.message;
         }
       });
-    }else{
-
-    }
+    })
+    return promise;
   }
 
-  updatePassword(password: string, token: string): void{
-    this.ricevitore.updatePassword(password, token).subscribe({
+  loginStudente(studente: {userCode: string, password: string}): Promise<Response>{
+    let promise = new Promise<Response>((res) => {
+      this.ricevitore.loginStudente(studente).subscribe({
+        next: (token_studente: Response) => {
+          token_studente.token = "Bearer " + token_studente.token;
+          res(token_studente);
+          this.checkUser = 'true';
+          this.message = 'Reindirizzamento al registro elettronico';
+          this.router.navigate(['/studente', 'registro-famiglie']);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.checkUser = 'false'
+          this.message = error.error.message;
+        }
+      });
+    })
+    return promise;
+  }
+
+  sendEmailStudente(studente: {mail: string, userCode: string}): void{
+    this.ricevitore.sendEmailStudente(studente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = "true";
+      },
+      error: (error: HttpErrorResponse) => {
+        this.checkUser = "false"
+        this.message = error.error.message;
+      }
+    })
+  }
+
+  sendEmailDocente(docente: {mail: string, codiceFiscale: string}): void{
+    this.ricevitore.sendEmailDocente(docente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = "true";
+      },
+      error: (error: HttpErrorResponse) => {
+        this.checkUser = "false"
+        this.message = error.error.message;
+      }
+    })
+  }
+
+  sendMessageStudente(studente: {number: string, userCode: string}): void{
+    this.ricevitore.sendMessageStudente(studente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = "true";
+      },
+      error: (error: HttpErrorResponse) => {
+        this.checkUser = "false"
+        this.message = error.error.message;
+      }
+    });
+  }
+
+  sendMessageDocente(docente: {number: string, codiceFiscale: string}): void{
+    this.ricevitore.sendMessageDocente(docente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.checkUser = "true";
+      },
+      error: (error: HttpErrorResponse) => {
+        this.checkUser = "false"
+        this.message = error.error.message;
+      }
+    });
+  }
+
+  updatePassword(password: string, token: string, tipoUser: string): void{
+    this.ricevitore.updatePassword(password, token, tipoUser).subscribe({
       next: (message: string) => {
         this.message = message;
         this.checkUser = 'true';
       },
       error: (error: HttpErrorResponse) => {
-        this.message = error.error;
         this.checkUser = 'false';
+        this.message = error.error.message;
       }
     });
   }
 
-  getStudente(): Studente{
-    return this._studente;
+  getStudente(userCode: string, token: string): Promise<Studente>{
+    let promise = new Promise<Studente>((res, rej) => {
+      this.ricevitore.getStudente(userCode, token).subscribe({
+        next: (studente: Studente) => {
+          res(studente);
+        },
+        error: (error: HttpErrorResponse) => {
+          rej(error.error);
+        }
+      });
+    })
+    return promise;
   }
 
-  getDocente(): Docente{
-    return this._docente;
+  getDocente(codiceFiscale: string, token: string): Promise<Docente>{
+    let promise = new Promise<Docente>((res, rej) => {
+      this.ricevitore.getDocente(codiceFiscale, token).subscribe({
+        next: (docente: Docente) => {
+          res(docente);
+        },
+        error: (error: HttpErrorResponse) => {
+          rej(error.error);
+        }
+      });
+    })
+    return promise;
   }
 }

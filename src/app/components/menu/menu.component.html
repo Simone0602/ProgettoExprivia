@@ -8,12 +8,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" style="cursor: pointer;"
-            routerLink="home" [ngClass]="isActive(['home'])">Home</a>
+          <a class="nav-link" style="cursor: pointer;" routerLink="home" [ngClass]="isActive(['home'])">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" [ngClass]="isActive(['elenco-docenti', 'elenco-classi'])"
-            style="cursor: pointer;">Docenti e Ata</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+            [ngClass]="isActive(['elenco-docenti', 'elenco-classi'])" style="cursor: pointer;">Docenti e Ata</a>
           <ul class="dropdown-menu menu-tendina">
             <li><a class="dropdown-item" routerLink="elenco-docenti">Elenco docenti</a></li>
             <li><a class="dropdown-item">Elenco coordinatori</a></li>
@@ -26,31 +25,41 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActive(['registro-famiglie'])" style="cursor: pointer;"
-            (click)="navigazioneNavbar('studente')">Registro famiglie</a>
+            (click)="navigazioneNavbar('studente')" *ngIf="role=='studente' || role==''">Registro famiglie</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActive(['registro-docente'])" style="cursor: pointer;"
-            (click)="navigazioneNavbar('docente')">Registro docenti</a>
+            (click)="navigazioneNavbar('docente')" *ngIf="role=='docente' || role==''">Registro docenti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="isActive(['orario'])" style="cursor: pointer;"
-          routerLink="orario">Orario</a>
+          <a class="nav-link" [ngClass]="isActive(['orario'])" style="cursor: pointer;" routerLink="orario">Orario</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
-        <div class="btn-group" style="margin-left: 7px;">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false">Login</button>
-          <ul class="dropdown-menu" style="margin-left: -60px;">
-            <li><a class="dropdown-item" [routerLink]="['/login', 'studente']">Studente</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
-          </ul>
-        </div>
+        <!-- Blocco condizione -->
+        <div *ngIf="!authService.isAuthenicated(); then bloccoLogin else bloccoLogout"></div>
+        <!-- Blocco login -->
+        <ng-template #bloccoLogin>
+          <div #bloccoLogin class="btn-group" style="margin-left: 7px;">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false">Login</button>
+            <ul class="dropdown-menu" style="margin-left: -60px;">
+              <li><a class="dropdown-item" [routerLink]="['/login', 'studente']">Studente</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" [routerLink]="['/login', 'docente']">Docente</a></li>
+            </ul>
+          </div>
+        </ng-template>
+        <!-- Blocco logout -->
+        <ng-template #bloccoLogout>
+          <div #bloccoLogin class="btn-group" style="margin-left: 7px;">
+            <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+          </div>
+        </ng-template>
       </form>
     </div>
   </div>

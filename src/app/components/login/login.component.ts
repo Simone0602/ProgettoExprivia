@@ -10,7 +10,7 @@ import { LoginService } from 'src/app/service/login-service/service-dati/login.s
 })
 export class LoginComponent implements OnInit{
   showHide: string = 'password';
-  tipoUtente: string;
+  isStudente: boolean;
 
   formStudente: FormGroup;
   formDocente: FormGroup;
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit{
     public loginService: LoginService){}
 
   ngOnInit(): void {
-    this.tipoUtente = this.route.snapshot.paramMap.get('user')!;
+    this.isStudente = this.route.snapshot.paramMap.get('user')=='studente' ? true : false;
     this.loginService.checkUser = '';
     this.loginService.message = '';
 
-    if(this.tipoUtente==='studente'){
+    if(this.isStudente){
       this.formStudente = new FormGroup({
         userCode: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
         password: new FormControl(null, [Validators.required, Validators.minLength(8)])
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
   }
 
   validationPassword(): boolean{
-    if(this.tipoUtente==='studente'){
+    if(this.isStudente){
       if(this.formStudente.get('password')!.valid){
         return true;
       }
@@ -62,20 +62,28 @@ export class LoginComponent implements OnInit{
     }
   }
 
-  login(): void{
-    if(this.tipoUtente=='studente'){
+  async loginStudente(): Promise<void>{
       const studente = {
         userCode: this.formStudente.value.userCode,
         password: this.formStudente.value.password
       }       
-      this.loginService.loginStudente(studente);
-    }else{
-      const docente = {
-        mail: this.formDocente.value.mail,
-        codiceFiscale: this.formDocente.value.codiceFiscale,
-        password: this.formDocente.value.password 
-      }
-      this.loginService.loginDocente(docente);
+      await this.loginService.loginStudente(studente).then(
+        (res) => {
+          localStorage.setItem('token', JSON.stringify(res));
+        }
+      );
+  }
+
+  async loginDocente(): Promise<void>{
+    const docente = {
+      mail: this.formDocente.value.mail,
+      codiceFiscale: this.formDocente.value.codiceFiscale,
+      password: this.formDocente.value.password 
     }
+    await this.loginService.loginDocente(docente).then(
+      (res) => {
+        localStorage.setItem('token', JSON.stringify(res));
+      }
+    );
   }
 }
