@@ -37,33 +37,33 @@
           <ng-template #bloccoStudente>
             <!-- User code input -->
             <div class="form-floating mt-3">
-              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+              <input type="text" class="form-control" id="floatingInput1" placeholder="name@example.com"
                 formControlName="userCode"
                 [ngClass]="this.formStudente.get('userCode')!.valid ? 'is-valid' : 'is-invalid'">
-              <label for="floatingInput">User code</label>
+              <label for="floatingInput1">User code</label>
             </div>
           </ng-template>
           <!-- Blocco insegnante -->
           <ng-template #bloccoInsegnante>
             <!-- Email input -->
             <div class="form-floating mt-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+              <input type="email" class="form-control" id="floatingInput2" placeholder="name@example.com"
                 formControlName="mail" [ngClass]="this.formDocente.get('mail')!.valid ? 'is-valid' : 'is-invalid'">
-              <label for="floatingInput">Inserisci e-mail</label>
+              <label for="floatingInput2">Inserisci e-mail</label>
             </div>
             <!-- Codice fiscale input -->
             <div class="form-floating mt-3">
-              <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+              <input type="text" class="form-control" id="floatingInput3" placeholder="name@example.com"
                 formControlName="codiceFiscale"
                 [ngClass]="this.formDocente.get('codiceFiscale')!.valid ? 'is-valid' : 'is-invalid'">
-              <label for="floatingInput">Codice fiscale</label>
+              <label for="floatingInput3">Codice fiscale</label>
             </div>
           </ng-template>
           <!-- Password input -->
           <div class="form-floating mt-3" style="display: flex;">
-            <input type="{{ showHide }}" class="form-control" id="floatingInput" placeholder="name@example.com"
+            <input type="{{ showHide }}" class="form-control" id="floatingInput4" placeholder="name@example.com"
               formControlName="password" [ngClass]="validationPassword() ? 'is-valid' : 'is-invalid'">
-            <label for="floatingInput">Password</label>
+            <label for="floatingInput4">Password</label>
             <button type="button" class="btn btn-primary" style="font-size: 20px; width: 60px;"
               (click)="showHidePassword()">
               <i [ngClass]="showHide=='password' ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>

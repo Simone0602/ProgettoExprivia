@@ -50,17 +50,11 @@ export class RicevitoreLoginService {
     return this.http.put(`${this.url}/${tipoUser}/update-password/${token}`, password, { responseType: 'text' });
   }
 
-  public getStudente(userCode: string, token: string): Observable<Studente>{
-    const header = new HttpHeaders({
-      Authorization: token
-    })
-    return this.http.get<Studente>(`${this.url}/studente/${userCode}/get-studente`, { headers: header });
+  public getStudente(userCode: string): Observable<Studente>{
+    return this.http.get<Studente>(`${this.url}/studente/${userCode}/get-studente`);
   }
 
-  public getDocente(codiceFiscale: string, token: string): Observable<Docente>{
-    const header = new HttpHeaders({
-      Authorization: token
-    })
-    return this.http.get<Docente>(`${this.url}/docente/${codiceFiscale}/get-docente`, { headers: header });
+  public getDocente(codiceFiscale: string): Observable<Docente>{
+    return this.http.get<Docente>(`${this.url}/docente/${codiceFiscale}/get-docente`);
   }
 }

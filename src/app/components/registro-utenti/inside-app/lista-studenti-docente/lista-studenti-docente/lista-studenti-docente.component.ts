@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
-import { JwtDecodeService } from 'src/app/service/jwt-decode/jwt-decode.service';
+import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 

@@ -13,6 +13,8 @@ import { RegistroDocenteComponent } from './components/registro-utenti/registro-
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 import { RoleGuard } from './secure/guard/role-guard/role.guard';
+import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
+import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
 
 const routes: Routes = [ 
   { path: '', component: MenuComponent,
@@ -21,13 +23,14 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'elenco-docenti', component: ElencoDocentiComponent },
       { path: 'elenco-classi', component: ElencoClassiComponent },
-      { path: ':user', redirectTo: '/home', pathMatch: 'full' },
-      { path: ':user', component: RegistroComponent, canActivate: [AuthGuard], 
+      { path: ':user/registro', redirectTo: '/home', pathMatch: 'full' },
+      { path: ':user/registro', component: RegistroComponent, canActivate: [AuthGuard], 
         children: [
           { path: 'registro-famiglie', component: RegistroFamigliaComponent, canActivate: [RoleGuard],
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
-              { path: 'dati-anagrafici', component: DatiAnagraficiComponent }
+              { path: 'dati-anagrafici', component: DatiAnagraficiComponent },
+              { path: 'assenze', component: AssenzeComponent }
             ] 
           },
           { path: 'registro-docente', component: RegistroDocenteComponent, canActivate: [!RoleGuard],
@@ -44,6 +47,8 @@ const routes: Routes = [
   { path: 'login/:user', component: LoginComponent },
   { path: 'password-dimenticata/:user', component: PasswordDimenticataComponent },
   { path: 'password-dimenticata/:user/:token', component: PasswordDimenticataComponent },
+  { path: '**', redirectTo: '/page-not-found', pathMatch: 'full' },
+  { path: 'page-not-found', component: PageNotFoundComponent }
 ];
 
 @NgModule({

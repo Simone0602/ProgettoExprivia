@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Response } from 'src/app/class/Response';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
-import { JwtDecodeService } from 'src/app/service/jwt-decode/jwt-decode.service';
+import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
 
 @Component({
   selector: 'app-dati-anagrafici',
   templateUrl: './dati-anagrafici.component.html',
   styleUrls: ['./dati-anagrafici.component.css']
 })
-export class DatiAnagraficiComponent implements OnInit {
+export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
   isStudente: boolean;
   update: boolean = false;
 
@@ -36,6 +36,11 @@ export class DatiAnagraficiComponent implements OnInit {
     }, 500)
   }
 
+  ngAfterContentInit(): void {
+    this.registroService.check = '';
+    this.registroService.message = '';
+  }
+
   private async routing(): Promise<void>{
     if (!this.isStudente) {
       this.docenteActive();
@@ -45,7 +50,7 @@ export class DatiAnagraficiComponent implements OnInit {
   }
 
   private async docenteActive(): Promise<void>{
-    await this.loginService.getDocente(this.token_decode.sub, this.token.token)
+    await this.loginService.getDocente(this.token_decode.sub)
           .then(
             (res) => {
               this.user = res;
@@ -61,7 +66,7 @@ export class DatiAnagraficiComponent implements OnInit {
   }
 
   private async studenteActive(): Promise<void>{
-    await this.loginService.getStudente(this.token_decode.sub, this.token.token)
+    await this.loginService.getStudente(this.token_decode.sub)
         .then(
           (res) => {
             this.user = res;
@@ -81,7 +86,7 @@ export class DatiAnagraficiComponent implements OnInit {
       nome: new FormControl(this.user.nome, []),
       cognome: new FormControl(this.user.cognome, []),
       mail: new FormControl(this.user.mail, [Validators.email]),
-      password: new FormControl(this.user.password, [Validators.minLength(8)]),
+      password: new FormControl('****************', [Validators.minLength(8)]),
     });
     return formUser;
   }
@@ -95,8 +100,8 @@ export class DatiAnagraficiComponent implements OnInit {
 
   private setEnable_DisableForm(disabled: boolean, formUser: FormGroup) {
     if (disabled) {
-      formUser.get("mail").enable();
-      formUser.get("password").enable();
+      formUser.get('mail').enable();
+      formUser.get('password').enable();
     } else {
       formUser.disable();
     }

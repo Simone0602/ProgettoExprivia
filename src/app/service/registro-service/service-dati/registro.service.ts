@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Assenza } from 'src/app/class/Assenza';
 import { Classe } from 'src/app/class/Classe';
 import { Docente } from 'src/app/class/Docente';
 import { RegistroStudente } from 'src/app/class/RegistroStudente';
@@ -69,8 +70,35 @@ export class RegistroService {
     });
   }
 
-  updateStudent(studente: FormGroup){
+  updateStudent(studente: FormGroup): void{
     this.ricevitoreRegistro.updateStudente(studente).subscribe({
+      next: (message: string) => {
+        this.message = message;
+        this.check = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.message = error.error + 'Si prega di cambiarla se si vuole eseguire una modifica';
+        this.check = 'false';
+      }
+    });
+  }
+
+  async callGetAssenze(userCode: string): Promise<Assenza[]>{
+    let promise = new Promise<Assenza[]>((res, rej) => {
+      this.ricevitoreRegistro.getAssenze(userCode).subscribe({
+        next: (_assenze: Assenza[]) => {
+          res(_assenze);
+        },
+        error: (error: HttpErrorResponse) => {
+          rej(error.error);
+        }
+      });
+    });
+    return promise;
+  }
+
+  giustificaAssenze(listaAssenze: Assenza[], userCode: string): void{
+    this.ricevitoreRegistro.giustificaAssenze(listaAssenze, userCode).subscribe({
       next: (message: string) => {
         this.message = message;
         this.check = 'true';
@@ -79,7 +107,7 @@ export class RegistroService {
         this.message = error.error;
         this.check = 'false';
       }
-    });
+    })
   }
 
   getRegistro(): RegistroStudente{

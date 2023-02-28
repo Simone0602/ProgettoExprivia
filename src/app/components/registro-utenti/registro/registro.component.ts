@@ -22,6 +22,7 @@ export class RegistroComponent implements OnInit {
   }
 
   onChangeOption(event: MatChipListboxChange) {
-    this.router.navigate([`${this.user}/registro-${this.user}/${event.value}`])
+    const percorso = this.user === 'studente' ? 'famiglie' : 'docente'
+    this.router.navigate([`${this.user}`, 'registro', `registro-${percorso}`, `${event.value}`])
   }
 }

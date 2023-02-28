@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/service/login-service/service-dati/login.s
   templateUrl: './password-dimenticata.component.html',
   styleUrls: ['./password-dimenticata.component.css']
 })
-export class PasswordDimenticataComponent implements OnInit {
+export class PasswordDimenticataComponent implements OnInit, AfterContentInit {
   isStudente: boolean;
   token: string;
 
@@ -26,11 +26,6 @@ export class PasswordDimenticataComponent implements OnInit {
     this.isStudente = this.route.snapshot.paramMap.get('user')==='studente' ? true : false;
     this.token = this.route.snapshot.paramMap.get('token');
 
-    if (this.token != null) {
-      this.loginService.checkUser = '';
-      this.loginService.message = '';
-    }
-
     this.form = new FormGroup({
       mail: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(1)]),
       numberMobilePhone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
@@ -39,6 +34,13 @@ export class PasswordDimenticataComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       confPassword: new FormControl(null, [Validators.required, Validators.minLength(8)])
     })
+  }
+
+  ngAfterContentInit(): void{
+    if (this.token != null) {
+      this.loginService.checkUser = '';
+      this.loginService.message = '';
+    }
   }
 
   showHidePassword(): void {

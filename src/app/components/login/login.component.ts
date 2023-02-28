@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/service/login-service/service-dati/login.s
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit, AfterContentInit{
   showHide: string = 'password';
   isStudente: boolean;
 
@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.isStudente = this.route.snapshot.paramMap.get('user')=='studente' ? true : false;
-    this.loginService.checkUser = '';
-    this.loginService.message = '';
 
     if(this.isStudente){
       this.formStudente = new FormGroup({
@@ -35,6 +33,11 @@ export class LoginComponent implements OnInit{
         password: new FormControl(null, [Validators.required, Validators.minLength(8)])
       });
     }
+  }
+
+  ngAfterContentInit(): void {
+    this.loginService.checkUser = '';
+    this.loginService.message = '';
   }
 
   showHidePassword(): void{
@@ -67,11 +70,7 @@ export class LoginComponent implements OnInit{
         userCode: this.formStudente.value.userCode,
         password: this.formStudente.value.password
       }       
-      await this.loginService.loginStudente(studente).then(
-        (res) => {
-          localStorage.setItem('token', JSON.stringify(res));
-        }
-      );
+      await this.loginService.loginStudente(studente);
   }
 
   async loginDocente(): Promise<void>{
@@ -80,10 +79,6 @@ export class LoginComponent implements OnInit{
       codiceFiscale: this.formDocente.value.codiceFiscale,
       password: this.formDocente.value.password 
     }
-    await this.loginService.loginDocente(docente).then(
-      (res) => {
-        localStorage.setItem('token', JSON.stringify(res));
-      }
-    );
+    await this.loginService.loginDocente(docente);
   }
 }

@@ -25,7 +25,8 @@ export class MenuComponent implements OnInit {
   }
 
   navigazioneNavbar(value: string): void {
-    this.router.navigate([`${value}`, `registro-${value==='studente' ? 'famiglie' : value}`]).then((postNavigazione) => {
+    this.router.navigate([`${value}`, 'registro', `registro-${value==='studente' ? 'famiglie' : value}`])
+    .then((postNavigazione) => {
       if (!postNavigazione && postNavigazione != null) {
         let bool_1 = confirm('Devi registrati prima di accedere a questa sezione!');
         if (bool_1) {

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
@@ -22,6 +22,9 @@ import { RegistroFamigliaComponent } from './components/registro-utenti/registro
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
+import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
+import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
+import { Interceptor } from './config/intercetptor';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app
     RegistroFamigliaComponent,
     RegistroDocenteComponent,
     ListaStudentiDocenteComponent,
-    DatiAnagraficiComponent
+    DatiAnagraficiComponent,
+    PageNotFoundComponent,
+    AssenzeComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,9 @@ import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app
     MatChipsModule,
     HalfCircleSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

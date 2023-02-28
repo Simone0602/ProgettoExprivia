@@ -16,15 +16,15 @@ export class LoginService {
   constructor(private router: Router,
     private ricevitore: RicevitoreLoginService) { }
 
-  loginDocente(docente: {mail: string, codiceFiscale: string, password: string}): Promise<Response>{
-    let promise = new Promise<Response>((res) => {
+  loginDocente(docente: {mail: string, codiceFiscale: string, password: string}): Promise<void>{
+    let promise = new Promise<void>(() => {
       this.ricevitore.loginDocente(docente).subscribe({
         next: (token_docente: Response) => {
           token_docente.token = "Bearer " + token_docente.token;
-          res(token_docente);
+          localStorage.setItem('token', JSON.stringify(token_docente));
           this.checkUser = 'true';
           this.message = 'Reindirizzamento al registro elettronico';
-          this.router.navigate(['/docente', 'registro-docente']);
+          this.router.navigate(['/docente', 'registro', 'registro-docente']);
         }, 
         error: (error: HttpErrorResponse) => {
           this.checkUser = 'false'
@@ -35,15 +35,15 @@ export class LoginService {
     return promise;
   }
 
-  loginStudente(studente: {userCode: string, password: string}): Promise<Response>{
-    let promise = new Promise<Response>((res) => {
+  loginStudente(studente: {userCode: string, password: string}): Promise<void>{
+    let promise = new Promise<void>(() => {
       this.ricevitore.loginStudente(studente).subscribe({
         next: (token_studente: Response) => {
           token_studente.token = "Bearer " + token_studente.token;
-          res(token_studente);
+          localStorage.setItem('token', JSON.stringify(token_studente));
           this.checkUser = 'true';
           this.message = 'Reindirizzamento al registro elettronico';
-          this.router.navigate(['/studente', 'registro-famiglie']);
+          this.router.navigate(['/studente', 'registro', 'registro-famiglie']);
         },
         error: (error: HttpErrorResponse) => {
           this.checkUser = 'false'
@@ -119,9 +119,9 @@ export class LoginService {
     });
   }
 
-  getStudente(userCode: string, token: string): Promise<Studente>{
+  getStudente(userCode: string): Promise<Studente>{
     let promise = new Promise<Studente>((res, rej) => {
-      this.ricevitore.getStudente(userCode, token).subscribe({
+      this.ricevitore.getStudente(userCode).subscribe({
         next: (studente: Studente) => {
           res(studente);
         },
@@ -133,9 +133,9 @@ export class LoginService {
     return promise;
   }
 
-  getDocente(codiceFiscale: string, token: string): Promise<Docente>{
+  getDocente(codiceFiscale: string): Promise<Docente>{
     let promise = new Promise<Docente>((res, rej) => {
-      this.ricevitore.getDocente(codiceFiscale, token).subscribe({
+      this.ricevitore.getDocente(codiceFiscale).subscribe({
         next: (docente: Docente) => {
           res(docente);
         },
