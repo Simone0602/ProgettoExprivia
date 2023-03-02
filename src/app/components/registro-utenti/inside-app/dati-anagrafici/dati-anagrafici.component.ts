@@ -61,7 +61,7 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
           )
     this.formDocente = this.createFormGroup();
     this.formDocente.addControl('codiceFiscale', new FormControl(this.user.codiceFiscale, [Validators.minLength(16), Validators.maxLength(16)]));
-    this.formDocente.addControl('materia', new FormControl(this.user.materia, []));
+    this.formDocente.addControl('materie', new FormControl(this.user.materie, []));
     this.formDocente.disable();
   }
 
@@ -105,6 +105,11 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
     } else {
       formUser.disable();
     }
+  }
+
+  deleteAlert(): void{
+    this.registroService.check = '';
+    this.registroService.message = '';
   }
 
   OnSave(): void {

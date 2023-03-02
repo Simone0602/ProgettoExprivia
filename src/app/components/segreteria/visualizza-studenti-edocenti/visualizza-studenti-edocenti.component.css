@@ -1,7 +1,15 @@
+*{
+    font-size: 18px;
+}
+
 .row{
-    background-color: rgb(241, 241, 241); 
     margin-left: 0;
     margin-right: 0;
+}
+
+.svg{
+    width: 20px;
+    height: 20px;
 }
 
 h2{

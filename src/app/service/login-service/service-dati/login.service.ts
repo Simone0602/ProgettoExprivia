@@ -24,7 +24,9 @@ export class LoginService {
           localStorage.setItem('token', JSON.stringify(token_docente));
           this.checkUser = 'true';
           this.message = 'Reindirizzamento al registro elettronico';
-          this.router.navigate(['/docente', 'registro', 'registro-docente']);
+          setTimeout(() => {
+            this.router.navigate(['/docente', 'registro', 'registro-docente']);
+          }, 1500)
         }, 
         error: (error: HttpErrorResponse) => {
           this.checkUser = 'false'
@@ -43,7 +45,9 @@ export class LoginService {
           localStorage.setItem('token', JSON.stringify(token_studente));
           this.checkUser = 'true';
           this.message = 'Reindirizzamento al registro elettronico';
-          this.router.navigate(['/studente', 'registro', 'registro-famiglie']);
+          setTimeout(() => {
+            this.router.navigate(['/studente', 'registro', 'registro-famiglie']);
+          }, 1500)
         },
         error: (error: HttpErrorResponse) => {
           this.checkUser = 'false'

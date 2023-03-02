@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Classe } from 'src/app/class/Classe';
 import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
-import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
 import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
 
 @Component({
@@ -10,36 +8,42 @@ import { RegistroService } from 'src/app/service/registro-service/service-dati/r
   styleUrls: ['./lista-studenti-docente.component.css']
 })
 export class ListaStudentiDocenteComponent implements OnInit{
-  classi: Classe[] = [];
-  selezione : string = "Seleziona una classe";
-  voto: number;
+  isTableVisible: boolean = false;
 
   constructor(public registroService: RegistroService,
     private jwtDecode: JwtDecodeService){}
 
   ngOnInit(): void{
+    this.registroService.loading = true;
     const token = JSON.parse(localStorage.getItem('token'));
     const token_decode = this.jwtDecode.getTokenDecode(token.token);
     this.registroService.getListaClassi(token_decode.sub);
+    setTimeout(() => {
+      this.registroService.loading = false;
+    }, 500)
   }
 
   onOptionChanged(event: Event){
     if(+(<HTMLInputElement>event.target).value!=0){
+      this.isTableVisible = true;
       this.registroService.getStudentiBySezione((<HTMLInputElement>event.target).value);
     }else{
+      this.isTableVisible = false;
       this.registroService.setStudenti([]);
     }
   }
 
   controlloVoto(event: Event){
-    const voto = +(<HTMLInputElement>event.target).value;
-    if(voto){
+    const input = (<HTMLInputElement>event.target).value;
+    if(input!=''){
+      const voto = parseInt(input);
       if(voto>10){
-        (<HTMLInputElement>event.target).value = "10";
+        (<HTMLInputElement>event.target).value = '10';
+      }else if(voto<1){
+        (<HTMLInputElement>event.target).value = '1';
       }
-      if(voto<1){
-        (<HTMLInputElement>event.target).value = "1";
-      }
+    }else{
+      (<HTMLInputElement>event.target).value = '';
     }
   }
 }

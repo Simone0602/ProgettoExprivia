@@ -1,8 +1,9 @@
 export interface RegistroStudente{
-    listaVoti_materie: {
-        materia: [{
+    listaVoti: [
+        {
+            materia: string;
             voto: number;
             data: Date;
-        }]
-    }
+        }
+    ]
 }

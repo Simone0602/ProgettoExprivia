@@ -66,11 +66,11 @@ export class LoginComponent implements OnInit, AfterContentInit{
   }
 
   async loginStudente(): Promise<void>{
-      const studente = {
-        userCode: this.formStudente.value.userCode,
-        password: this.formStudente.value.password
-      }       
-      await this.loginService.loginStudente(studente);
+    const studente = {
+      userCode: this.formStudente.value.userCode,
+      password: this.formStudente.value.password
+    }       
+    await this.loginService.loginStudente(studente);
   }
 
   async loginDocente(): Promise<void>{

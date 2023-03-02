@@ -10,6 +10,7 @@ import { RegistroService } from 'src/app/service/registro-service/service-dati/r
 })
 export class RegistroComponent implements OnInit {
   user: string
+  selezioneNavbarRegistro: string;
 
   constructor(private route: ActivatedRoute, 
     private router: Router, 
@@ -19,6 +20,12 @@ export class RegistroComponent implements OnInit {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.user = params.get('user');
     });
+    this.selezioneByRouting();
+  }
+
+  private selezioneByRouting(): void{
+    const position = this.router.url.lastIndexOf('/');
+    this.selezioneNavbarRegistro = this.router.url.substring(position + 1);
   }
 
   onChangeOption(event: MatChipListboxChange) {

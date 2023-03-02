@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-xxl bg-body-tertiary">
+    <div class="container-fluid">
+        <span class="navbar-brand">Segreteria</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" routerLink="visualizza-studenti-e-docenti"
+                        [ngClass]="isActive(['visualizza-studenti-e-docenti'])">Visualizza studenti e docenti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" routerLink='aggiungi-studente'
+                        [ngClass]="isActive(['aggiungi-studente'])">Aggiungi studente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" routerLink='aggiungi-docente'
+                        [ngClass]="isActive(['aggiungi-docente'])">Aggiungi docente</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <!-- Blocco logout -->
+                <div class="btn-group" style="margin-left: 7px;">
+                    <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div style="min-height: 76.6vh;">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+    <!-- Grid container -->
+    <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+                    class="fa fa-facebook-f"></i></a>
+            <!-- Twitter -->
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+                    class="fa fa-twitter"></i></a>
+            <!-- Instagram -->
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+                    class="fa fa-instagram"></i></a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+                    class="fa fa-linkedin"></i></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <span class="text-dark">Tutti i diritti sono riservati</span>
+    </div>
+    <!-- Copyright -->
+</footer>

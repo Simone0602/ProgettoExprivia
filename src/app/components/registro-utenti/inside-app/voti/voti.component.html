@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-12 col-xl-6 justify-content-center d-flex" *ngIf="registroService.loading" style="margin-top: 12rem;">
+        <app-half-circle-spinner [animationDuration]="1000" [size]="60" [color]="'#ff1d5e'"></app-half-circle-spinner>
+    </div>
+    <div class="col-12 col-lg-6 mt-4" *ngIf="!registroService.loading">
+        <div class="table-responsive">
+            <table class="table">
+                <caption>Registro voti</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Materia</th>
+                        <th scope="col" class="justify-content-center d-flex">Valutazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let materia of registroStudente(); index as i">
+                        <td>{{ materia }}</td>
+                        <td>
+                            <div class="d-flex" style="overflow-x: auto;">
+                                <div class="container" *ngFor="let valutazione of registroService.getRegistro().listaVoti">
+                                    <div *ngIf="valutazione.materia.toLowerCase()==materia">
+                                        <div>
+                                            <span>{{ valutazione.data | date: 'dd/MM/yy' }}</span>
+                                        </div>
+                                        <div>
+                                            <span>{{ valutazione.voto }} <i class="fa" [ngClass]="valutazione.voto>=6 ? ' fa-check green' : 'fa-times red'"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

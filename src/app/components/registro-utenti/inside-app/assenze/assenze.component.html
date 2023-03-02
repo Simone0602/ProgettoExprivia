@@ -9,21 +9,34 @@
     </symbol>
 </svg>
 <div class="alert alert-success d-flex align-items-center mt-3" role="alert" *ngIf="registroService.check=='true'">
-    <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
-        <use xlink:href="#check-circle-fill" />
-    </svg>
-    Modifica riuscita - {{ registroService.message }}
+    <div class="col-11">
+        <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+        </svg>
+        Modifica riuscita - {{ registroService.message }}
+    </div>
+    <div class="col-1 d-flex justify-content-end">
+        <i class="fa fa-times" style="font-size: 20px; cursor: pointer;" (click)="deleteAlert()"></i>
+    </div>
 </div>
 <div class="alert alert-danger d-flex align-items-center mt-3" role="alert" *ngIf="registroService.check=='false'">
-    <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
-        <use xlink:href="#exclamation-triangle-fill" />
-    </svg>
-    Modifica non riuscita - {{ registroService.message }}
+    <div class="col-11">
+        <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
+            <use xlink:href="#exclamation-triangle-fill" />
+        </svg>
+        Modifica non riuscita - {{ registroService.message }}
+    </div>
+    <div class="col-1 d-flex justify-content-end">
+        <i class="fa fa-times" style="font-size: 20px; cursor: pointer;" (click)="deleteAlert()"></i>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-lg-3"></div>
-    <div class="col-12 col-lg-6 mt-4">
+    <div class="col-12 col-xl-6 justify-content-center d-flex" *ngIf="registroService.loading" style="margin-top: 12rem;">
+        <app-half-circle-spinner [animationDuration]="1000" [size]="60" [color]="'#ff1d5e'"></app-half-circle-spinner>
+    </div>
+    <div class="col-12 col-lg-6 mt-4" *ngIf="!registroService.loading">
         <table class="table">
             <caption>Lista Assenze</caption>
             <caption>
@@ -39,7 +52,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let assenza of getAssenze(); index as i">
+                <tr *ngFor="let assenza of registroService.getAssenze(); index as i">
                     <td>{{ i + 1 }}</td>
                     <td>{{ assenza.giornataAssenza }}</td>
                     <td class="justify-content-center d-flex">

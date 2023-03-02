@@ -8,10 +8,9 @@ import { RegistroService } from 'src/app/service/registro-service/service-dati/r
 })
 export class RegistroFamigliaComponent implements OnInit{
 
-  constructor(private registroService: RegistroService){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.registroService.registro();
   }
 
 }

@@ -18,8 +18,8 @@ export class RicevitoreRegistroService {
 
   constructor(private http: HttpClient) { }
 
-  public getRegistro(email: string): Observable<RegistroStudente>{
-    return this.http.get<RegistroStudente>(`${this.url}/studente/${email}/getRegistro`);
+  public getRegistro(userCode: string): Observable<RegistroStudente>{
+    return this.http.get<RegistroStudente>(`${this.url}/studente/${userCode}/get-registro`);
   }
 
   public getListaClassi(codiceFiscale: string): Observable<Classe[]>{

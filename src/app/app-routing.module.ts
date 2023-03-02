@@ -12,11 +12,23 @@ import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
-import { RoleGuard } from './secure/guard/role-guard/role.guard';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
+import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
+import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria/menu-segreteria.component';
+import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
+import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
+import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 
 const routes: Routes = [ 
+  { path: 'segreteria', component: MenuSegreteriaComponent,
+    children: [
+      { path: '', redirectTo: 'visualizza-studenti-e-docenti', pathMatch: 'full' },
+      { path: 'visualizza-studenti-e-docenti', component: VisualizzaStudentiEDocentiComponent },
+      { path: 'aggiungi-studente', component: RegisterStudenteComponent },
+      { path: 'aggiungi-docente', component: RegisterDocenteComponent }
+    ]
+  },
   { path: '', component: MenuComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,14 +38,15 @@ const routes: Routes = [
       { path: ':user/registro', redirectTo: '/home', pathMatch: 'full' },
       { path: ':user/registro', component: RegistroComponent, canActivate: [AuthGuard], 
         children: [
-          { path: 'registro-famiglie', component: RegistroFamigliaComponent, canActivate: [RoleGuard],
+          { path: 'registro-famiglie', component: RegistroFamigliaComponent,
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
               { path: 'dati-anagrafici', component: DatiAnagraficiComponent },
-              { path: 'assenze', component: AssenzeComponent }
+              { path: 'assenze', component: AssenzeComponent },
+              { path: 'voti', component: VotiComponent }
             ] 
           },
-          { path: 'registro-docente', component: RegistroDocenteComponent, canActivate: [!RoleGuard],
+          { path: 'registro-docente', component: RegistroDocenteComponent,
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
               { path: 'dati-anagrafici', component: DatiAnagraficiComponent },

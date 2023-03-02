@@ -25,6 +25,11 @@ import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
 import { Interceptor } from './config/intercetptor';
+import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
+import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria/menu-segreteria.component';
+import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
+import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
+import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 
 
 @NgModule({
@@ -42,7 +47,12 @@ import { Interceptor } from './config/intercetptor';
     ListaStudentiDocenteComponent,
     DatiAnagraficiComponent,
     PageNotFoundComponent,
-    AssenzeComponent
+    AssenzeComponent,
+    VotiComponent,
+    MenuSegreteriaComponent,
+    VisualizzaStudentiEDocentiComponent,
+    RegisterStudenteComponent,
+    RegisterDocenteComponent
   ],
   imports: [
     BrowserModule,

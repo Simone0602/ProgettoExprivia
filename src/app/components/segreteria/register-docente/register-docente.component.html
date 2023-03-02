@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" viewBox="0 0 16 16">
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+    </symbol>
+    <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+      <path
+        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </symbol>
+  </svg>
+  <div class="alert alert-success d-flex align-items-center" role="alert" *ngIf="segreteriaService.check=='true'">
+    <div class="col-11">
+      <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
+        <use xlink:href="#check-circle-fill" />
+      </svg>
+      {{ segreteriaService.message }}
+    </div>
+    <div class="col-1 d-flex justify-content-end">
+      <i class="fa fa-times" style="font-size: 20px; cursor: pointer;" (click)="deleteAlert()"></i>
+    </div>
+  </div>
+  
+  <div class="alert alert-danger d-flex align-items-center" role="alert" *ngIf="segreteriaService.check=='false'">
+    <div class="col-11">
+      <svg class="bi flex-shrink-0 me-2 svg" role="img" aria-label="Success:">
+        <use xlink:href="#exclamation-triangle-fill" />
+      </svg>
+      {{ segreteriaService.message }}
+    </div>
+    <div class="col-1 d-flex justify-content-end">
+      <i class="fa fa-times" style="font-size: 20px; cursor: pointer;" (click)="deleteAlert()"></i>
+    </div>
+  </div>
+  
+  <div class="row mt-5">
+    <div class="col-xl-3"></div>
+    <div class="col-12 col-xl-6">
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <!-- Name and surname -->
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="floatingInput1" placeholder="name@example.com"
+            formControlName="nome" [ngClass]="this.form.get('nome')!.valid ? 'is-valid' : 'is-invalid'">
+          <label for="floatingInput2">Inserisci nome</label>
+        </div>
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="floatingInput2" placeholder="name@example.com"
+            formControlName="cognome" [ngClass]="this.form.get('cognome')!.valid ? 'is-valid' : 'is-invalid'">
+          <label for="floatingInput2">Inserisci cognome</label>
+        </div>
+  
+        <!-- Email and password -->
+        <div class="form-floating mt-3">
+          <input type="email" class="form-control" id="floatingInput3" placeholder="name@example.com"
+            formControlName="mail" [ngClass]="this.form.get('mail')!.valid ? 'is-valid' : 'is-invalid'">
+          <label for="floatingInput2">Inserisci e-mail</label>
+        </div>
+        <div class="form-floating mt-3">
+          <input type="password" class="form-control" id="floatingInput4" placeholder="name@example.com"
+            formControlName="password" [ngClass]="this.form.get('password')!.valid ? 'is-valid' : 'is-invalid'">
+          <label for="floatingInput2">Inserisci password</label>
+        </div>
+  
+        <!-- User code and sezione -->
+        <div class="form-floating mt-3">
+          <input type="text" class="form-control" id="floatingInput5" placeholder="name@example.com"
+            formControlName="codiceFiscale" [ngClass]="this.form.get('codiceFiscale')!.valid ? 'is-valid' : 'is-invalid'">
+          <label for="floatingInput2">Inserisci codice fiscale</label>
+        </div>
+        <div class="form-floating mt-3">
+          <input type="button" class="form-control input-sezione" id="floatingInput6" formControlName="materie"
+            (click)="isDivVisible()" [ngClass]="this.form.get('materie')!.valid ? 'is-valid' : 'is-invalid'">
+          <div class="form-floating" [@selectNoSelect]="isVisible ? 'selected' : 'noSelected'" *ngIf="showHideDiv">
+            <div class="mt-2" *ngFor="let materia of segreteriaService.getMaterie()">
+              <input type="button" class="form-control input-sezione w-100" id="floatingInput7" [value]="materia.materia"
+                (click)="cambioMateria(materia.materia)" [disabled]="!isVisible" >
+            </div>
+          </div>
+        </div>
+  
+        <button type="submit" class="btn btn-outline-success w-25 mt-4"
+          [disabled]="this.form.invalid">Salva</button>
+      </form>
+    </div>
+  </div>

@@ -10,15 +10,18 @@ import { RegistroService } from 'src/app/service/registro-service/service-dati/r
 })
 export class AssenzeComponent implements OnInit, AfterContentInit{
   private userCode: string;
-  private assenze: Assenza[];
   private listAssenzeDaGiustificare: Assenza[] = [];
 
   constructor(private jwtService: JwtDecodeService, public registroService: RegistroService){}
 
   ngOnInit(): void {
+    this.registroService.loading = true;
     this.userCode = this.jwtService.getTokenDecode(JSON.parse(localStorage.getItem('token')).token).sub;
     this.listAssenzeDaGiustificare = [];
     this.callGetAssenze(this.userCode);
+    setTimeout(() => {
+      this.registroService.loading = false;
+    }, 500);
   }
 
   ngAfterContentInit(): void {
@@ -35,20 +38,12 @@ export class AssenzeComponent implements OnInit, AfterContentInit{
 
   private async callGetAssenze(userCode: string): Promise<void>{
     await this.registroService.callGetAssenze(userCode)
-      .then(
-        (res)=> {
-          this.assenze = res;
-        }
-      )
-      .catch(
-        (rej) => {
-          console.log(rej);
-        }
-      );
+      .then(()=> {})
+      .catch(() => {});
   }
 
   checkAssenza(position: number, isGiustificata: boolean): void{
-    const assenza = this.assenze[position];
+    const assenza = this.registroService.getAssenze()[position];
     assenza.giustificata = !isGiustificata;
     this.listAssenzeDaGiustificare.push(assenza);
   }
@@ -58,7 +53,8 @@ export class AssenzeComponent implements OnInit, AfterContentInit{
     this.listAssenzeDaGiustificare = [];
   }
 
-  getAssenze(): Assenza[]{
-    return this.assenze;
+  deleteAlert(): void{
+    this.registroService.check = '';
+    this.registroService.message = '';
   }
 }
