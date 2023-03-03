@@ -2,6 +2,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-register-docente',
@@ -33,9 +34,30 @@ export class RegisterDocenteComponent {
 
   form: FormGroup;
 
-  private listMaterie: string[] = [];
+  dropdownList = [{}];
+  dropdownSettings: IDropdownSettings;
 
-  constructor(public segreteriaService: SegreteriaService){}
+  listMaterie: [
+    {id: number, materia: string}
+  ];
+
+  constructor(public segreteriaService: SegreteriaService){
+    this.dropdownList = [
+      { id: 1, materia: 'matematica' },
+      { id: 2, materia: 'storia' },
+      { id: 3, materia: 'italiano' }
+    ];
+    this.dropdownSettings = {
+      singleSelection: false,
+      searchPlaceholderText: 'Cerca il nome di una materia',
+      idField: 'id',
+      textField: 'materia',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -43,8 +65,7 @@ export class RegisterDocenteComponent {
       cognome: new FormControl(null, [Validators.required]),
       mail: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      codiceFiscale: new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
-      materie: new FormControl('Selezionare una o più materie', [Validators.required])
+      codiceFiscale: new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)])
     });
     this.getListaMaterie();
   }
@@ -72,25 +93,22 @@ export class RegisterDocenteComponent {
     }
   }
 
-  cambioMateria(materia: string){
-    if(this.form.value.materie=='Selezionare una o più materie'){
-      this.form.value.materie = '';
-      this.form.get('materie').setValue(materia)
-    }else{
-      if(!this.form.value.materie.includes(materia)){
-        this.form.get('materie').setValue(this.form.value.materie + ', ' + materia)
-      }
-    }
-    this.listMaterie.push(materia);
-  }
-
   deleteAlert(): void{
     this.segreteriaService.check = '';
     this.segreteriaService.message = '';
   }
 
   save(): void{
-    this.form.value.materie = this.listMaterie;
+    this.form.addControl('materie', new FormControl(this.conversioneListMaterie()));
     this.segreteriaService.saveDocente(this.form);
+  }
+
+  private conversioneListMaterie(): string[]{
+    let materie: string[] = [];
+    for(let iter of this.listMaterie){
+      console.log(iter.materia);
+      materie.push(iter.materia)
+    }
+    return materie;
   }
 }

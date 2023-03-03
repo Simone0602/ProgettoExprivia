@@ -19,8 +19,9 @@ import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
-const routes: Routes = [ 
+const routes: Routes = [
   { path: 'segreteria', component: MenuSegreteriaComponent,
     children: [
       { path: '', redirectTo: 'visualizza-studenti-e-docenti', pathMatch: 'full' },
@@ -57,6 +58,7 @@ const routes: Routes = [
       }
     ]
   },
+  { path: 'contattaci', component: ContactUsComponent },
   { path: 'login/:user', component: LoginComponent },
   { path: 'password-dimenticata/:user', component: PasswordDimenticataComponent },
   { path: 'password-dimenticata/:user/:token', component: PasswordDimenticataComponent },
