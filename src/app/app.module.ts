@@ -8,7 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
 
-import { HalfCircleSpinnerModule } from 'angular-epic-spinners'
+import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -30,6 +32,7 @@ import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 
 @NgModule({
@@ -52,7 +55,8 @@ import { RegisterDocenteComponent } from './components/segreteria/register-docen
     MenuSegreteriaComponent,
     VisualizzaStudentiEDocentiComponent,
     RegisterStudenteComponent,
-    RegisterDocenteComponent
+    RegisterDocenteComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import { RegisterDocenteComponent } from './components/segreteria/register-docen
     HttpClientModule,
     NgbModule,
     MatChipsModule,
-    HalfCircleSpinnerModule
+    HalfCircleSpinnerModule,
+    NgMultiSelectDropDownModule,
+    CKEditorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}

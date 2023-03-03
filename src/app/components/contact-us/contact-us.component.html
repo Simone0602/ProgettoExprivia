@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row mt-5"></div>
+    <div class="row mt-5"></div>
+    <div class="row mt-5"></div>
+    <div class="row mt-5"></div>
+    <div class="row mt-5"></div>
+    <div class="row mt-5">
+        <div class="col-lg-3"></div>
+        <div class="col-12 col-lg-6 border border-primary">
+            <div class="d-flex justify-content-center align-items-center mt-3 bg-primary bg-gradient text-white" style="height: 50px;">
+                <span style="font-size: 25px;">Contattaci</span>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="send()">
+                <div class="form-group mt-4 mb-4">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Enter email" formControlName="mail">
+                    <small id="emailHelp" class="form-text text-muted">Inserisci una mail prima di inviare il
+                        contenuto.</small>
+                </div>
+                <div class="form-group mb-3">
+                    <ckeditor [editor]="Editor" [(ngModel)]="descrizione" [ngModelOptions]="{standalone: true}"></ckeditor>
+                    <input type="hidden" [(ngModel)]="descrizione" formControlName="descrizione">
+                </div>
+                <div class="form-group mb-3">
+                    <button class="btn btn-outline-primary">Invia report</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>
