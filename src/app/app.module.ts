@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
 
-import { HalfCircleSpinnerModule } from 'angular-epic-spinners'
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -30,6 +29,7 @@ import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
+import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 
 
 @NgModule({
@@ -63,7 +63,7 @@ import { RegisterDocenteComponent } from './components/segreteria/register-docen
     RouterModule,
     HttpClientModule,
     NgbModule,
-    MatChipsModule,
+    MatChipsModule, 
     HalfCircleSpinnerModule
   ],
   providers: [
