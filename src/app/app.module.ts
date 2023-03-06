@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
@@ -31,9 +32,9 @@ import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/vis
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { UpdateComponent } from './components/segreteria/update/update.component';
 
 import { Interceptor } from './config/intercetptor';
-import { UpdateComponent } from './components/segreteria/update/update.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { UpdateComponent } from './components/segreteria/update/update.component
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    MatChipsModule,
+    NgbModule,
+    MatChipsModule, 
     HalfCircleSpinnerModule,
     NgMultiSelectDropDownModule,
     CKEditorModule
