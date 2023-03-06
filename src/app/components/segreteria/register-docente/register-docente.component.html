@@ -67,12 +67,13 @@
         <label for="floatingInput2">Inserisci codice fiscale</label>
       </div>
       <div class="form-floating mt-3">
-        <ng-multiselect-dropdown [placeholder]="'Seleziona una materia'" [settings]="dropdownSettings" [data]="dropdownList"
-          [(ngModel)]="listMaterie" [ngModelOptions]="{standalone: true}" [style]="{'font-size': '20px'}">
+        <ng-multiselect-dropdown [placeholder]="'Seleziona una materia'" [settings]="dropdownSettings"
+          [data]="dropdownList" (onSelect)="onSelect($event)" (onDeSelect)="onDeselect($event)"
+          (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeselectAll($event)" [style]="{'font-size': '20px'}">
         </ng-multiselect-dropdown>
       </div>
 
-      <button type="submit" class="btn btn-outline-success w-25 mt-4" [disabled]="this.form.invalid">Salva</button>
+      <button type="submit" class="btn btn-outline-success w-25 mt-4" [disabled]="this.form.invalid"><i class="fa fa-floppy-o"></i> Salva</button>
     </form>
   </div>
 </div>

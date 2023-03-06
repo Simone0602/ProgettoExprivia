@@ -1,5 +1,9 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateComponent } from '../update/update.component';
+import { Studente } from 'src/app/class/Studente';
+import { Docente } from 'src/app/class/Docente';
 
 @Component({
   selector: 'app-visualizza-studenti-edocenti',
@@ -7,9 +11,8 @@ import { SegreteriaService } from 'src/app/service/segreteria-service/service-da
   styleUrls: ['./visualizza-studenti-edocenti.component.css']
 })
 export class VisualizzaStudentiEDocentiComponent implements OnInit, AfterContentInit{
-  loading: boolean;
 
-  constructor(public segreteriaService: SegreteriaService){}
+  constructor(public segreteriaService: SegreteriaService, private modalService: NgbModal){}
 
   ngOnInit(): void {
     this.findAllStudent();
@@ -50,5 +53,17 @@ export class VisualizzaStudentiEDocentiComponent implements OnInit, AfterContent
     setTimeout(() => {
       this.findAllDocenti();
     }, 500)
+  }
+
+  updateStudente(studente: Studente){
+    this.segreteriaService.user = 'studente';
+    this.segreteriaService.setStudente(studente);
+    this.modalService.open(UpdateComponent);
+  }
+
+  updateDocente(docente: Docente){
+    this.segreteriaService.user = 'docente';
+    this.segreteriaService.setDocente(docente);
+    this.modalService.open(UpdateComponent);
   }
 }

@@ -1,0 +1,57 @@
+<div class="modal-header">
+    <h4 class="modal-title">Modifica {{ isStudente ? 'studente' : 'docente' }}</h4>
+    <button type="button" class="btn btn-outline-danger" aria-label="Close" (click)="cancel()">
+        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control" formControlName="nome">
+        </div>
+        <div class="form-group mt-1">
+            <label>Cognome</label>
+            <input type="text" class="form-control" formControlName="cognome">
+        </div>
+        <div class="form-group mt-1">
+            <label>Mail</label>
+            <input type="email" class="form-control" formControlName="mail">
+        </div>
+        <div class="form-group mt-1">
+            <label>Password</label>
+            <input type="password" class="form-control" formControlName="password">
+        </div>
+        <!-- div scelta dei 2 blocchi -->
+        <div *ngIf="isStudente; then bloccoStudente else bloccoDocente"></div>
+        <!-- Blocco studente -->
+        <ng-template #bloccoStudente>
+            <div class="form-group mt-1">
+                <label>User code</label>
+                <input type="text" class="form-control" formControlName="userCode">
+            </div>
+            <div class="form-group mt-1">
+                <label>Sezione</label>
+                <input type="text" class="form-control" formControlName="sezione">
+            </div>
+        </ng-template>
+        <!-- Blocco docente -->
+        <ng-template #bloccoDocente>
+            <div class="form-group mt-1">
+                <label>Codice fiscale</label>
+                <input type="text" class="form-control" formControlName="codiceFiscale">
+            </div>
+            <div class="form-group mt-1">
+                <label>Materie</label>
+                <ng-multiselect-dropdown [placeholder]="'Seleziona una materia'" [settings]="dropdownSettings"
+                    [data]="dropdownList" [(ngModel)]="selectedList" [ngModelOptions]="{standalone: true}"
+                    (onSelect)="onSelect($event)" (onDeSelect)="onDeselect($event)" (onSelectAll)="onSelectAll($event)"
+                    (onDeSelectAll)="onDeselectAll($event)" [style]="{'font-size': '15px'}">
+                </ng-multiselect-dropdown>
+            </div>
+        </ng-template>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="update()"><i class="fa fa-floppy-o"></i> Salva modifica</button>
+</div>

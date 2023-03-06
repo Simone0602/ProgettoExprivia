@@ -1,23 +1,52 @@
-.menu-tendina{
+.menu-tendina {
     margin-left: 215px;
 }
-.menu-classi{
+
+.menu-classi {
     margin: 10px 0 0 180px;
 }
-.div-ul{
+
+.div-ul {
     height: 60px;
     overflow-y: auto;
 }
 
-@media screen and (max-width: 1400px){
-    .show{
+@media screen and (max-width: 1400px) {
+    .show {
         margin-left: 0;
     }
-    .menu-classi{
+
+    .menu-classi {
         margin-top: 5px;
     }
 }
 
-span, a, input[type=search], button{
+span,
+a,
+input[type=search],
+button {
     font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #333;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
 }

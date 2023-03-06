@@ -12,6 +12,10 @@ import { RicevitoreSegreteriaService } from '../ricevitore-dati/ricevitore-segre
 export class SegreteriaService {
   check: string;
   message: string;
+  user: string;
+
+  private docente: Docente;
+  private studente: Studente;
 
   private studenti: Studente[] = [];
   private docenti: Docente[] = [];
@@ -131,5 +135,21 @@ export class SegreteriaService {
 
   getDocenti(): Docente[]{
     return this.docenti;
+  }
+
+  getStudente(): Studente{
+    return this.studente;
+  }
+
+  setStudente(studente: Studente): void{
+    this.studente = studente;
+  }
+
+  getDocente(): Docente{
+    return this.docente;
+  }
+
+  setDocente(docente: Docente): void{
+    this.docente = docente;
   }
 }

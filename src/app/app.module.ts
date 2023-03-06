@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
 
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
@@ -26,13 +25,15 @@ import { ListaStudentiDocenteComponent } from './components/registro-utenti/insi
 import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
-import { Interceptor } from './config/intercetptor';
 import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
 import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria/menu-segreteria.component';
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+
+import { Interceptor } from './config/intercetptor';
+import { UpdateComponent } from './components/segreteria/update/update.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     VisualizzaStudentiEDocentiComponent,
     RegisterStudenteComponent,
     RegisterDocenteComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,6 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    NgbModule,
     MatChipsModule,
     HalfCircleSpinnerModule,
     NgMultiSelectDropDownModule,
