@@ -16,7 +16,9 @@ export class VotiComponent implements OnInit {
   ngOnInit(): void {
     this.registroService.loading = true;
     this.userCode = this.jwtService.getTokenDecode(JSON.parse(localStorage.getItem('token')).token).sub;
-    this.callGetRegistro();
+    if(JSON.stringify(this.registroService.getRegistro()) == undefined){
+      this.callGetRegistro();
+    }
     setTimeout(() => {
       this.registroService.loading = false;
     }, 500)
@@ -32,7 +34,7 @@ export class VotiComponent implements OnInit {
     const materie: string[] = [];
 
     for (const iterator of this.registroService.getRegistro().listaVoti) {
-      let nome_materia: string = iterator.materia.toLowerCase()
+      let nome_materia: string = iterator.materia
       if(!materie.includes(nome_materia)){
         materie.push(nome_materia)
       }

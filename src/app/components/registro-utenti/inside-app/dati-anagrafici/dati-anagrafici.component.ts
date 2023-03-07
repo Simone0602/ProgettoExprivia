@@ -18,8 +18,7 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
   formStudente: FormGroup;
 
   private token: Response;
-  private token_decode: {sub: string, exp: Date, iat: Date};
-  private user: any;
+  private token_decode: { sub: string, exp: Date, iat: Date };
 
   constructor(private loginService: LoginService,
     public registroService: RegistroService,
@@ -41,7 +40,7 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
     this.registroService.message = '';
   }
 
-  private async routing(): Promise<void>{
+  private async routing(): Promise<void> {
     if (!this.isStudente) {
       this.docenteActive();
     } else {
@@ -49,43 +48,50 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
     }
   }
 
-  private async docenteActive(): Promise<void>{
-    await this.loginService.getDocente(this.token_decode.sub)
-          .then(
-            (res) => {
-              this.user = res;
+  private async docenteActive(): Promise<void> {
+    if (JSON.stringify(this.registroService.getUser()) == undefined) {
+      await this.loginService.getDocente(this.token_decode.sub)
+        .then(
+          (res) => {
+            this.registroService.setUser(res);
           }).catch(
             (rej) => {
               console.log(rej);
             }
           )
+    }
     this.formDocente = this.createFormGroup();
-    this.formDocente.addControl('codiceFiscale', new FormControl(this.user.codiceFiscale, [Validators.minLength(16), Validators.maxLength(16)]));
-    this.formDocente.addControl('materie', new FormControl(this.user.materie, []));
+    this.formDocente.addControl('codiceFiscale', new FormControl(this.registroService.getUser().codiceFiscale, [Validators.minLength(16), Validators.maxLength(16)]));
+    this.formDocente.addControl('materie', new FormControl(this.registroService.getUser().materie, []));
+    this.formDocente.addControl('sezioni', new FormControl(this.registroService.getUser().sezioni, []));
     this.formDocente.disable();
   }
 
-  private async studenteActive(): Promise<void>{
-    await this.loginService.getStudente(this.token_decode.sub)
+  private async studenteActive(): Promise<void> {
+    if (JSON.stringify(this.registroService.getUser()) == undefined) {
+      await this.loginService.getStudente(this.token_decode.sub)
         .then(
           (res) => {
-            this.user = res;
-        }).catch(
-          (rej) => {
-            console.log(rej);
-          }
-        );
-      this.formStudente = this.createFormGroup();
-      this.formStudente.addControl('userCode', new FormControl(this.user.userCode, [Validators.minLength(6), Validators.maxLength(6)]));
-      this.formStudente.addControl('sezione', new FormControl(this.user.sezione, [Validators.minLength(2), Validators.maxLength(3)]));
-      this.formStudente.disable();
+            this.registroService.setUser(res);
+          }).catch(
+            (rej) => {
+              console.log(rej);
+            }
+          );
+    }
+    console.log(this.registroService.getUser());
+    
+    this.formStudente = this.createFormGroup();
+    this.formStudente.addControl('userCode', new FormControl(this.registroService.getUser().userCode, [Validators.minLength(6), Validators.maxLength(6)]));
+    this.formStudente.addControl('sezione', new FormControl(this.registroService.getUser().sezione, [Validators.minLength(2), Validators.maxLength(3)]));
+    this.formStudente.disable();
   }
 
   private createFormGroup(): FormGroup {
     const formUser = new FormGroup({
-      nome: new FormControl(this.user.nome, []),
-      cognome: new FormControl(this.user.cognome, []),
-      mail: new FormControl(this.user.mail, [Validators.email]),
+      nome: new FormControl(this.registroService.getUser().nome, []),
+      cognome: new FormControl(this.registroService.getUser().cognome, []),
+      mail: new FormControl(this.registroService.getUser().mail, [Validators.email]),
       password: new FormControl('****************', [Validators.minLength(8)]),
     });
     return formUser;
@@ -107,17 +113,17 @@ export class DatiAnagraficiComponent implements OnInit, AfterContentInit {
     }
   }
 
-  deleteAlert(): void{
+  deleteAlert(): void {
     this.registroService.check = '';
     this.registroService.message = '';
   }
 
   OnSave(): void {
-    if(!this.isStudente){
+    if (!this.isStudente) {
       this.formDocente.enable();
       this.registroService.updateDocente(this.formDocente);
       this.formDocente.disable();
-    }else{
+    } else {
       this.formStudente.enable();
       this.registroService.updateStudent(this.formStudente);
       this.formStudente.disable();

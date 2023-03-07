@@ -17,7 +17,9 @@ export class ListaStudentiDocenteComponent implements OnInit{
     this.registroService.loading = true;
     const token = JSON.parse(localStorage.getItem('token'));
     const token_decode = this.jwtDecode.getTokenDecode(token.token);
-    this.registroService.getListaClassi(token_decode.sub);
+    if(JSON.stringify(this.registroService.getClassi()) == '[]'){
+      this.registroService.getListaClassi(token_decode.sub);
+    }
     setTimeout(() => {
       this.registroService.loading = false;
     }, 500)

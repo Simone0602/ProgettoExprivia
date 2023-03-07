@@ -16,6 +16,7 @@ export class RegistroService {
   message: string;
   check: string = '';
   
+  private user: any;
   private registro: RegistroStudente;
   private assenze: Assenza[] = [];
   private classi: Classe[] = [];
@@ -130,5 +131,13 @@ export class RegistroService {
 
   setStudenti(studenti: Studente[]): void{
     this.studenti = studenti;
+  }
+
+  getUser(): any{
+    return this.user;
+  }
+
+  setUser(user: any): void{
+    this.user = user;
   }
 }

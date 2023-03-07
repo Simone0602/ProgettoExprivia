@@ -107,6 +107,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row justify-content-center d-flex">
+                    <div class="form-group col-md-5 padding-form-group">
+                        <label for="inputPassword4">Classi</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text" style="height: 38px;"><i class="fa fa-book"></i></div>
+                            </div>
+                            <input type="text" class="form-control" formControlName="sezioni" [readOnly]="!update">
+                        </div>
+                    </div>
+                </div>
             </ng-template>
             <ng-template #bloccoDatiStudente>
                 <!-- User code and sezione -->

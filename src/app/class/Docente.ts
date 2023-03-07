@@ -5,4 +5,5 @@ export interface Docente{
     password: string;
     codiceFiscale: string;
     materie: string[];
+    sezioni: string[];
 }

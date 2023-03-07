@@ -46,7 +46,9 @@ export class RegisterStudenteComponent implements OnInit, AfterContentInit{
       userCode: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
       sezione: new FormControl('Selezionare una sezione', [Validators.required, Validators.minLength(2), Validators.maxLength(3)])
     });
-    this.personaleService.getListaClassi();
+    if(JSON.stringify(this.personaleService.getClassi()) == '[]'){
+      this.personaleService.getListaClassi();
+    }
   }
 
   ngAfterContentInit(): void {

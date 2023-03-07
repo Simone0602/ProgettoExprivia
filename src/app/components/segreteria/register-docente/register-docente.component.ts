@@ -13,20 +13,41 @@ import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 export class RegisterDocenteComponent {
   form: FormGroup;
 
-  dropdownList = [{}];
-  dropdownSettings: IDropdownSettings;
+  dropdownListMaterie = [{}];
+  dropdownSettingsMaterie: IDropdownSettings;
+
+  dropdownListClassi = [{}];
+  dropdownSettingsClassi: IDropdownSettings;
 
   listMaterie: string[] = [];
+  listClassi: string[] = [];
 
   constructor(public segreteriaService: SegreteriaService){
-    this.dropdownList = [
+    this.dropdownListMaterie = [
       { id: 1, text: 'matematica' },
       { id: 2, text: 'storia' },
       { id: 3, text: 'italiano' }
     ];
-    this.dropdownSettings = {
+    this.dropdownListClassi = [
+      { id: 1, text: '1c' },
+      { id: 2, text: '2c' },
+      { id: 3, text: '3c' },
+      { id: 4, text: '4c' },
+      { id: 5, text: '5c' }
+    ];
+    this.dropdownSettingsMaterie = {
       singleSelection: false,
       searchPlaceholderText: 'Cerca il nome di una materia',
+      idField: 'id',
+      textField: 'text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    this.dropdownSettingsClassi = {
+      singleSelection: false,
+      searchPlaceholderText: 'Cerca la sezione',
       idField: 'id',
       textField: 'text',
       selectAllText: 'Select All',
@@ -44,7 +65,9 @@ export class RegisterDocenteComponent {
       password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
       codiceFiscale: new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)])
     });
-    this.getListaMaterie();
+    if(JSON.stringify(this.segreteriaService.getMaterie()) == '[]'){
+      this.getListaMaterie();
+    }
   }
 
   ngAfterContentInit(): void {
@@ -61,24 +84,41 @@ export class RegisterDocenteComponent {
     this.segreteriaService.message = '';
   }
 
-  onSelect(event: ListItem){
+  onSelectMaterie(event: ListItem){
     this.listMaterie.push(event.text.toString())
   }
 
-  onDeselect(event: ListItem){
+  onDeselectMaterie(event: ListItem){
     this.listMaterie = this.listMaterie.filter(materia => materia !== event.text.toString())
   }
 
-  onSelectAll(event: ListItem[]){
+  onSelectAllMaterie(event: ListItem[]){
     this.listMaterie = Array.from(new Set(event.map(item => item.text.toString())))
   }
 
-  onDeselectAll(event: ListItem[]){
+  onDeselectAllMaterie(event: ListItem[]){
     this.listMaterie = Array.from(new Set(event.map(item => item.text.toString())))
+  }
+
+  onSelectClassi(event: ListItem){
+    this.listClassi.push(event.text.toString())
+  }
+
+  onDeselectClassi(event: ListItem){
+    this.listClassi = this.listClassi.filter(materia => materia !== event.text.toString())
+  }
+
+  onSelectAllClassi(event: ListItem[]){
+    this.listClassi = Array.from(new Set(event.map(item => item.text.toString())))
+  }
+
+  onDeselectAllClassi(event: ListItem[]){
+    this.listClassi = Array.from(new Set(event.map(item => item.text.toString())))
   }
 
   save(): void{
     this.form.addControl('materie', new FormControl(this.listMaterie));
+    this.form.addControl('sezioni', new FormControl(this.listClassi));
     this.segreteriaService.saveDocente(this.form);
   }
 }

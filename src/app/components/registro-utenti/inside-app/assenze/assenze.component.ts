@@ -18,7 +18,9 @@ export class AssenzeComponent implements OnInit, AfterContentInit{
     this.registroService.loading = true;
     this.userCode = this.jwtService.getTokenDecode(JSON.parse(localStorage.getItem('token')).token).sub;
     this.listAssenzeDaGiustificare = [];
-    this.callGetAssenze(this.userCode);
+    if(JSON.stringify(this.registroService.getAssenze()) == '[]'){
+      this.callGetAssenze(this.userCode);
+    }
     setTimeout(() => {
       this.registroService.loading = false;
     }, 500);

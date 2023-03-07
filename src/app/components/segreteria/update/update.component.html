@@ -4,7 +4,7 @@
         <span aria-hidden="true"><i class="fa fa-times"></i></span>
     </button>
 </div>
-<div class="modal-body">
+<div class="modal-body max-height">
     <form [formGroup]="form">
         <div class="form-group">
             <label>Nome</label>
@@ -32,8 +32,15 @@
             </div>
             <div class="form-group mt-1">
                 <label>Sezione</label>
-                <input type="text" class="form-control" formControlName="sezione">
+                <input type="button" class="form-control input-sezione" formControlName="sezione" (click)="isDivVisible()">
             </div>
+            <div class="form-floating" [@selectNoSelect]="isVisible ? 'selected' : 'noSelected'"
+                    *ngIf="showHideDiv">
+                    <div class="mt-2" *ngFor="let classe of personaleService.getClassi()">
+                        <input type="button" class="form-control input-sezione w-100" id="floatingInput7"
+                            [value]="classe.sezione" (click)="cambioSezione(classe.sezione)" [disabled]="!isVisible">
+                    </div>
+                </div>
         </ng-template>
         <!-- Blocco docente -->
         <ng-template #bloccoDocente>
@@ -53,5 +60,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" (click)="update()"><i class="fa fa-floppy-o"></i> Salva modifica</button>
+    <button type="button" class="btn btn-outline-primary" (click)="isStudente ? updateStudente() : updateDocente()"><i
+            class="fa fa-floppy-o"></i> Salva modifica</button>
 </div>
