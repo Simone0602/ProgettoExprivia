@@ -23,7 +23,6 @@ import { RegistroComponent } from './components/registro-utenti/registro/registr
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
-import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
 import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
@@ -32,10 +31,12 @@ import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/vis
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-import { UpdateComponent } from './components/segreteria/update/update.component';
+import { DatiAnagraficiStudenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-studente/dati-anagrafici-studente.component';
+import { DatiAnagraficiDocenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-docente/dati-anagrafici-docente.component';
+import { UpdateDocenteComponent } from './components/segreteria/update-docente/update-docente.component';
+import { UpdateStudenteComponent } from './components/segreteria/update-studente/update-studente.component';
 
 import { Interceptor } from './config/intercetptor';
-
 
 @NgModule({
   declarations: [
@@ -50,7 +51,6 @@ import { Interceptor } from './config/intercetptor';
     RegistroFamigliaComponent,
     RegistroDocenteComponent,
     ListaStudentiDocenteComponent,
-    DatiAnagraficiComponent,
     PageNotFoundComponent,
     AssenzeComponent,
     VotiComponent,
@@ -59,7 +59,10 @@ import { Interceptor } from './config/intercetptor';
     RegisterStudenteComponent,
     RegisterDocenteComponent,
     ContactUsComponent,
-    UpdateComponent
+    DatiAnagraficiStudenteComponent,
+    DatiAnagraficiDocenteComponent,
+    UpdateDocenteComponent,
+    UpdateStudenteComponent
   ],
   imports: [
     BrowserModule,

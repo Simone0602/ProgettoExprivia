@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Assenza } from 'src/app/class/Assenza';
 import { Classe } from 'src/app/class/Classe';
+import { Docente } from 'src/app/class/Docente';
 import { RegistroStudente } from 'src/app/class/RegistroStudente';
 import { Studente } from 'src/app/class/Studente';
 import { RicevitoreRegistroService } from '../ricevitore-dati/ricevitore-registro.service';
@@ -16,7 +17,9 @@ export class RegistroService {
   message: string;
   check: string = '';
   
-  private user: any;
+  private studente: Studente;
+  private docente: Docente;
+
   private registro: RegistroStudente;
   private assenze: Assenza[] = [];
   private classi: Classe[] = [];
@@ -133,11 +136,19 @@ export class RegistroService {
     this.studenti = studenti;
   }
 
-  getUser(): any{
-    return this.user;
+  getStudenteDatiAnagrafici(): any{
+    return this.studente;
   }
 
-  setUser(user: any): void{
-    this.user = user;
+  setStudenteDatiAnagrafici(studente: Studente): void{
+    this.studente = studente;
+  }
+
+  getDocenteDatiAnagrafici(): any{
+    return this.docente;
+  }
+
+  setDocenteDatiAnagrafici(docente: Docente): void{
+    this.docente = docente;
   }
 }

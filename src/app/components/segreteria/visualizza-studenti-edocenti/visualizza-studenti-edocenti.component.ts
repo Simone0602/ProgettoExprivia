@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UpdateComponent } from '../update/update.component';
 import { Studente } from 'src/app/class/Studente';
 import { Docente } from 'src/app/class/Docente';
+import { UpdateStudenteComponent } from '../update-studente/update-studente.component';
+import { UpdateDocenteComponent } from '../update-docente/update-docente.component';
 
 @Component({
   selector: 'app-visualizza-studenti-edocenti',
@@ -58,12 +59,12 @@ export class VisualizzaStudentiEDocentiComponent implements OnInit, AfterContent
   updateStudente(studente: Studente){
     this.segreteriaService.user = 'studente';
     this.segreteriaService.setStudente(studente);
-    this.modalService.open(UpdateComponent);
+    this.modalService.open(UpdateStudenteComponent);
   }
 
   updateDocente(docente: Docente){
     this.segreteriaService.user = 'docente';
     this.segreteriaService.setDocente(docente);
-    this.modalService.open(UpdateComponent);
+    this.modalService.open(UpdateDocenteComponent);
   }
 }

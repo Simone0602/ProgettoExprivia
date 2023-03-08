@@ -11,7 +11,6 @@ import { RegistroFamigliaComponent } from './components/registro-utenti/registro
 import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
-import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
 import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
@@ -20,6 +19,8 @@ import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/vis
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { DatiAnagraficiStudenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-studente/dati-anagrafici-studente.component';
+import { DatiAnagraficiDocenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-docente/dati-anagrafici-docente.component';
 
 const routes: Routes = [
   { path: 'segreteria', component: MenuSegreteriaComponent,
@@ -42,7 +43,7 @@ const routes: Routes = [
           { path: 'registro-famiglie', component: RegistroFamigliaComponent,
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
-              { path: 'dati-anagrafici', component: DatiAnagraficiComponent },
+              { path: 'dati-anagrafici', component: DatiAnagraficiStudenteComponent },
               { path: 'assenze', component: AssenzeComponent },
               { path: 'voti', component: VotiComponent }
             ] 
@@ -50,7 +51,7 @@ const routes: Routes = [
           { path: 'registro-docente', component: RegistroDocenteComponent,
             children: [
               { path: '', redirectTo: 'dati-anagrafici', pathMatch: 'full' },
-              { path: 'dati-anagrafici', component: DatiAnagraficiComponent },
+              { path: 'dati-anagrafici', component: DatiAnagraficiDocenteComponent },
               { path: 'lista-studenti', component: ListaStudentiDocenteComponent }
             ]
           }
