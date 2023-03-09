@@ -8,13 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
 
-<<<<<<< HEAD
-=======
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
->>>>>>> d22c768f64e390170d56d620f92db12cb60f4f9b
-
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -35,11 +31,7 @@ import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
-<<<<<<< HEAD
-import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
-=======
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
->>>>>>> d22c768f64e390170d56d620f92db12cb60f4f9b
 
 
 @NgModule({
@@ -74,15 +66,10 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     RouterModule,
     HttpClientModule,
     NgbModule,
-<<<<<<< HEAD
-    MatChipsModule, 
-    HalfCircleSpinnerModule
-=======
     MatChipsModule,
     HalfCircleSpinnerModule,
     NgMultiSelectDropDownModule,
     CKEditorModule
->>>>>>> d22c768f64e390170d56d620f92db12cb60f4f9b
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}
