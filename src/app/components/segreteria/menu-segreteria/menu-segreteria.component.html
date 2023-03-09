@@ -13,11 +13,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="cursor: pointer;" routerLink='aggiungi-studente'
-                        [ngClass]="isActive(['aggiungi-studente'])">Aggiungi studente</a>
+                        [ngClass]="isActive(['aggiungi-studente'])"><i class="fa fa-user-plus"></i> Aggiungi
+                        studente</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="cursor: pointer;" routerLink='aggiungi-docente'
-                        [ngClass]="isActive(['aggiungi-docente'])">Aggiungi docente</a>
+                        [ngClass]="isActive(['aggiungi-docente'])"><i class="fa fa-user-plus"></i> Aggiungi docente</a>
                 </li>
             </ul>
             <form class="d-flex" role="search">
@@ -61,8 +62,15 @@
 
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2023 Copyright:
-        <span class="text-dark">Tutti i diritti sono riservati</span>
+        <span class="d-flex justify-content-center align-item-center text-dark mt-2">© 2023 Copyright: Tutti i diritti
+            sono
+            riservati</span>
+        <div class="d-flex justify-content-center align-item-center">
+            <a routerLink="/contattaci" class="btn btn-link btn-floating btn-lg text-dark m-1" role="button"
+                data-mdb-ripple-color="dark"><i class="fa fa-envelope"></i> Contact Support</a>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" role="button" data-mdb-ripple-color="dark"><i
+                    class="fa fa-info"></i> Informativa sulla privacy</a>
+        </div>
     </div>
     <!-- Copyright -->
 </footer>

@@ -15,11 +15,11 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let materia of registroStudente(); index as i">
-                        <td>{{ materia }}</td>
+                        <td>{{ materia | lowercase }}</td>
                         <td>
                             <div class="d-flex" style="overflow-x: auto;">
                                 <div class="container" *ngFor="let valutazione of registroService.getRegistro().listaVoti">
-                                    <div *ngIf="valutazione.materia.toLowerCase()==materia">
+                                    <div *ngIf="valutazione.materia==materia">
                                         <div>
                                             <span>{{ valutazione.data | date: 'dd/MM/yy' }}</span>
                                         </div>

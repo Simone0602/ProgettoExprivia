@@ -60,19 +60,26 @@
         <label for="floatingInput2">Inserisci password</label>
       </div>
 
-      <!-- User code and sezione -->
+      <!-- Codice fiscale and materie and classi -->
       <div class="form-floating mt-3">
         <input type="text" class="form-control" id="floatingInput5" placeholder="name@example.com"
           formControlName="codiceFiscale" [ngClass]="this.form.get('codiceFiscale')!.valid ? 'is-valid' : 'is-invalid'">
         <label for="floatingInput2">Inserisci codice fiscale</label>
       </div>
       <div class="form-floating mt-3">
-        <ng-multiselect-dropdown [placeholder]="'Seleziona una materia'" [settings]="dropdownSettings" [data]="dropdownList"
-          [(ngModel)]="listMaterie" [ngModelOptions]="{standalone: true}" [style]="{'font-size': '20px'}">
+        <ng-multiselect-dropdown [placeholder]="'Seleziona una materia'" [settings]="dropdownSettingsMaterie"
+          [data]="dropdownListMaterie" (onSelect)="onSelectMaterie($event)" (onDeSelect)="onDeselectMaterie($event)"
+          (onSelectAll)="onSelectAllMaterie($event)" (onDeSelectAll)="onDeselectAllMaterie($event)" [style]="{'font-size': '20px'}">
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="form-floating mt-3">
+        <ng-multiselect-dropdown [placeholder]="'Seleziona una o più classi'" [settings]="dropdownSettingsClassi"
+          [data]="dropdownListClassi" (onSelect)="onSelectClassi($event)" (onDeSelect)="onDeselectClassi($event)"
+          (onSelectAll)="onSelectAllClassi($event)" (onDeSelectAll)="onDeselectAllClassi($event)" [style]="{'font-size': '20px'}">
         </ng-multiselect-dropdown>
       </div>
 
-      <button type="submit" class="btn btn-outline-success w-25 mt-4" [disabled]="this.form.invalid">Salva</button>
+      <button type="submit" class="btn btn-outline-success w-25 mt-4" [disabled]="this.form.invalid"><i class="fa fa-floppy-o"></i> Salva</button>
     </form>
   </div>
 </div>

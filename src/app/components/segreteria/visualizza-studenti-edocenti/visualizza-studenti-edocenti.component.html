@@ -32,9 +32,10 @@
     </div>
   </div>
 
-<div class="row mt-4" *ngIf="!loading">
+<div class="row mt-4">
+    <div class="col-lg-1"></div>
     <!-- Visualizzazione studenti -->
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-lg-4">
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -60,10 +61,10 @@
                                     <span>{{ studente.sezione }}</span>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <button class="btn btn-warning">Modifica</button>
+                                    <button class="btn btn-warning" (click)="updateStudente(studente)"><i class="fa fa-pencil"></i> Modifica</button>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <button class="btn btn-danger" (click)="deleteStudent(studente.userCode)">Elimina</button>
+                                    <button class="btn btn-danger" (click)="deleteStudent(studente.userCode)"><i class="fa fa-trash-o"></i> Elimina</button>
                                 </div>
                             </div>
                         </div>
@@ -73,9 +74,9 @@
         </div>
     </div>
     <!-- div di separazione -->
-    <div class="col-md-2"></div>
+    <div class="col-lg-2"></div>
     <!-- Visualizzazione docenti -->
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-lg-4">
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
@@ -99,10 +100,10 @@
                                 </div>
                                 <div class="col-1"></div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <button class="btn btn-warning">Modifica</button>
+                                    <button class="btn btn-warning" (click)="updateDocente(docente)"><i class="fa fa-pencil"></i> Modifica</button>
                                 </div>
                                 <div class="col-3 d-flex justify-content-center">
-                                    <button class="btn btn-danger" (click)="deleteDocente(docente.codiceFiscale)">Elimina</button>
+                                    <button class="btn btn-danger" (click)="deleteDocente(docente.codiceFiscale)"><i class="fa fa-trash-o"></i> Elimina</button>
                                 </div>
                             </div>
                         </div>
@@ -111,4 +112,5 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-1"></div>
 </div>

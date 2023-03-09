@@ -2,16 +2,24 @@
     <div class="col-lg-3"></div>
     <div class="col-12 col-lg-6 justify-content-center d-flex">
         <mat-chip-listbox [ngSwitch]="user" (change)="onChangeOption($event)">
-            <mat-chip-option #datiAnagrafici value="dati-anagrafici" [selected]="selezioneNavbarRegistro=='dati-anagrafici'" [selectable]="!datiAnagrafici.selected">
+            <mat-chip-option #datiAnagraficiStudente value="dati-anagrafici" *ngSwitchCase="'studente'"
+                [selected]="selezioneNavbarRegistro=='dati-anagrafici'" [selectable]="!datiAnagraficiStudente.selected">
                 Dati Anagrafici
             </mat-chip-option>
-            <mat-chip-option #assenze *ngSwitchCase="'studente'" value="assenze" [selected]="selezioneNavbarRegistro=='assenze'" [selectable]="!assenze.selected">
+            <mat-chip-option #datiAnagraficiDocente value="dati-anagrafici" *ngSwitchCase="'docente'"
+                [selected]="selezioneNavbarRegistro=='dati-anagrafici'" [selectable]="!datiAnagraficiDocente.selected">
+                Dati Anagrafici
+            </mat-chip-option>
+            <mat-chip-option #assenze *ngSwitchCase="'studente'" value="assenze"
+                [selected]="selezioneNavbarRegistro=='assenze'" [selectable]="!assenze.selected">
                 Assenze
             </mat-chip-option>
-            <mat-chip-option #lista *ngSwitchCase="'docente'" value="lista-studenti" [selected]="selezioneNavbarRegistro=='lista-studenti'" [selectable]="!lista.selected">
+            <mat-chip-option #lista *ngSwitchCase="'docente'" value="lista-studenti"
+                [selected]="selezioneNavbarRegistro=='lista-studenti'" [selectable]="!lista.selected">
                 Lista studenti
             </mat-chip-option>
-            <mat-chip-option #voti *ngSwitchCase="'studente'" value="voti" [selected]="selezioneNavbarRegistro=='voti'" [selectable]="!voti.selected">
+            <mat-chip-option #voti *ngSwitchCase="'studente'" value="voti" [selected]="selezioneNavbarRegistro=='voti'"
+                [selectable]="!voti.selected">
                 Voti
             </mat-chip-option>
             <mat-chip-option #firma *ngSwitchCase="'docente'" value="firma-docente" [selectable]="!firma.selected">

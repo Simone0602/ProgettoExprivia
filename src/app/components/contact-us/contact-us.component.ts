@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ContattaciService } from 'src/app/service/contattaci-service/service-dati/contattaci.service';
 
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css']
 })
-export class ContactUsComponent implements OnInit{
+export class ContactUsComponent implements OnInit, AfterContentInit{
   form: FormGroup;
   descrizione: string = "<p>Inserisci il tuo feedback.</p>";
 
   Editor: any = ClassicEditor;
 
-  constructor(){}
+  constructor(public contattaciService: ContattaciService){}
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -22,7 +23,17 @@ export class ContactUsComponent implements OnInit{
     }); 
   }
 
+  ngAfterContentInit(): void {
+    this.contattaciService.check = '';
+    this.contattaciService.message = '';
+  }
+
+  deleteAlert(): void{
+    this.contattaciService.check = '';
+    this.contattaciService.message = '';
+  }
+
   send(): void{
-    console.log(this.form.value);
+    this.contattaciService.sendMail(this.form);
   }
 }

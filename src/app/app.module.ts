@@ -5,12 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -22,17 +26,23 @@ import { RegistroComponent } from './components/registro-utenti/registro/registr
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
-import { DatiAnagraficiComponent } from './components/registro-utenti/inside-app/dati-anagrafici/dati-anagrafici.component';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
 import { AssenzeComponent } from './components/registro-utenti/inside-app/assenze/assenze.component';
-import { Interceptor } from './config/intercetptor';
 import { VotiComponent } from './components/registro-utenti/inside-app/voti/voti.component';
 import { MenuSegreteriaComponent } from './components/segreteria/menu-segreteria/menu-segreteria.component';
 import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/visualizza-studenti-edocenti/visualizza-studenti-edocenti.component';
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+<<<<<<< HEAD
+=======
+import { DatiAnagraficiStudenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-studente/dati-anagrafici-studente.component';
+import { DatiAnagraficiDocenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-docente/dati-anagrafici-docente.component';
+import { UpdateDocenteComponent } from './components/segreteria/update-docente/update-docente.component';
+import { UpdateStudenteComponent } from './components/segreteria/update-studente/update-studente.component';
+>>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
 
+import { Interceptor } from './config/intercetptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +57,6 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     RegistroFamigliaComponent,
     RegistroDocenteComponent,
     ListaStudentiDocenteComponent,
-    DatiAnagraficiComponent,
     PageNotFoundComponent,
     AssenzeComponent,
     VotiComponent,
@@ -55,7 +64,11 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     VisualizzaStudentiEDocentiComponent,
     RegisterStudenteComponent,
     RegisterDocenteComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    DatiAnagraficiStudenteComponent,
+    DatiAnagraficiDocenteComponent,
+    UpdateDocenteComponent,
+    UpdateStudenteComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +79,11 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     RouterModule,
     HttpClientModule,
     NgbModule,
+<<<<<<< HEAD
     MatChipsModule,
+=======
+    MatChipsModule, 
+>>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
     HalfCircleSpinnerModule,
     NgMultiSelectDropDownModule,
     CKEditorModule
