@@ -11,7 +11,10 @@ import { RicevitoreSegreteriaService } from '../ricevitore-dati/ricevitore-segre
 })
 export class SegreteriaService {
   check: string;
+  checkUpdate: string;
   message: string;
+  messageUpdate: string;
+
   user: string;
 
   private docente: Docente;
@@ -87,6 +90,32 @@ export class SegreteriaService {
       error: (error: HttpErrorResponse) => {
         this.message = error.error;
         this.check = 'false';
+      }
+    });
+  }
+
+  updateStudente(form: FormGroup): void{
+    this.ricevitoreSegreteria.updateStudente(form).subscribe({
+      next: (message: string) => {
+        this.messageUpdate = message;
+        this.checkUpdate = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.messageUpdate = error.error;
+        this.checkUpdate = 'false';
+      }
+    });
+  }
+
+  updateDocente(form: FormGroup): void{
+    this.ricevitoreSegreteria.updateDocente(form).subscribe({
+      next: (message: string) => {
+        this.messageUpdate = message;
+        this.checkUpdate = 'true';
+      },
+      error: (error: HttpErrorResponse) => {
+        this.messageUpdate = error.error;
+        this.checkUpdate = 'false';
       }
     });
   }

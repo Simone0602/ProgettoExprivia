@@ -35,6 +35,14 @@ export class RicevitoreSegreteriaService {
     return this.http.post(`${this.url}/segreteria/save-docente`, form.value, { responseType: 'text' });
   }
 
+  public updateStudente(form: FormGroup): Observable<string>{
+    return this.http.put(`${this.url}/segreteria/update-studente`, form.value, { responseType: 'text' });
+  }
+
+  public updateDocente(form: FormGroup): Observable<string>{
+    return this.http.put(`${this.url}/segreteria/update-docente`, form.value, { responseType: 'text' });
+  }
+
   public deleteStudent(userCode: string): Observable<string>{
     return this.http.delete(`${this.url}/segreteria/${userCode}/delete-studente`, { responseType: 'text' });
   }

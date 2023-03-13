@@ -2,3 +2,8 @@
     max-height: 550px;
     overflow: auto;
 }
+
+.svg{
+    width: 20px; 
+    height: 20px;
+}

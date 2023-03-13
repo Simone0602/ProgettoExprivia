@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
@@ -12,8 +12,7 @@ import { SegreteriaService } from 'src/app/service/segreteria-service/service-da
   templateUrl: './update-studente.component.html',
   styleUrls: ['./update-studente.component.css']
 })
-export class UpdateStudenteComponent implements OnInit{
-
+export class UpdateStudenteComponent implements OnInit, AfterContentInit{
   dropdownList: any = [{}];
   selectedSezione: any = [{}];
   dropdownSettings: IDropdownSettings;
@@ -22,7 +21,7 @@ export class UpdateStudenteComponent implements OnInit{
   form: FormGroup;
 
   constructor(public activeModal: NgbActiveModal,
-    private segreteriaService: SegreteriaService,
+    public segreteriaService: SegreteriaService,
     public personaleService: PersonaleService,) {
     this.dropdownList = [
       { id: 1, text: '1c' },
@@ -46,6 +45,11 @@ export class UpdateStudenteComponent implements OnInit{
     this.settingFormStudente();
   }
 
+  ngAfterContentInit(): void {
+    this.segreteriaService.checkUpdate = '';
+    this.segreteriaService.messageUpdate = '';
+  }
+
   settingFormStudente(): void {
     this.personaleService.getListaClassi();
     const studente = this.segreteriaService.getStudente();
@@ -53,7 +57,7 @@ export class UpdateStudenteComponent implements OnInit{
       nome: new FormControl(studente.nome, [Validators.required]),
       cognome: new FormControl(studente.cognome, [Validators.required]),
       mail: new FormControl(studente.mail, [Validators.required, Validators.email]),
-      password: new FormControl(studente.password, [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('****************', [Validators.required, Validators.minLength(8)]),
       userCode: new FormControl(studente.userCode, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]),
       sezione: new FormControl(studente.sezione, [Validators.required, Validators.minLength(2), Validators.maxLength(3)])
     });
@@ -70,6 +74,11 @@ export class UpdateStudenteComponent implements OnInit{
     this.selectedSezione.shift();
   }
 
+  deleteAlert(): void {
+    this.segreteriaService.checkUpdate = '';
+    this.segreteriaService.messageUpdate = '';
+  }
+
   onSelect(event: ListItem){
     this.sezione = event.text.toString()
   }
@@ -79,7 +88,7 @@ export class UpdateStudenteComponent implements OnInit{
   }
 
   updateStudente(): void {
-
+    this.segreteriaService.updateStudente(this.form);
   }
 
   cancel(): void {

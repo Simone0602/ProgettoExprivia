@@ -26,7 +26,7 @@ export class UpdateDocenteComponent implements OnInit{
   form: FormGroup;
 
   constructor(public activeModal: NgbActiveModal,
-    private segreteriaService: SegreteriaService,
+    public segreteriaService: SegreteriaService,
     public personaleService: PersonaleService) {
     this.dropdownListMaterie = [
       { id: 1, text: 'matematica' },
@@ -66,15 +66,21 @@ export class UpdateDocenteComponent implements OnInit{
     this.settingFormDocente();
   }
 
+  ngAfterContentInit(): void {
+    this.segreteriaService.checkUpdate = '';
+    this.segreteriaService.messageUpdate = '';
+  }
+
   settingFormDocente(): void {
     const docente = this.segreteriaService.getDocente();
     this.form = new FormGroup({
       nome: new FormControl(docente.nome, [Validators.required]),
       cognome: new FormControl(docente.cognome, [Validators.required]),
       mail: new FormControl(docente.mail, [Validators.required, Validators.email]),
-      password: new FormControl(docente.password, [Validators.required, Validators.minLength(8)]),
+      password: new FormControl('****************', [Validators.required, Validators.minLength(8)]),
       codiceFiscale: new FormControl(docente.codiceFiscale, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
-      materie: new FormControl(null, [Validators.required])
+      materie: new FormControl(null, [Validators.required]),
+      sezioni: new FormControl(null, [Validators.required])
     });
     this.settingVariablesMaterie(docente);
     this.settingVariablesClassi(docente);
@@ -100,24 +106,47 @@ export class UpdateDocenteComponent implements OnInit{
     this.selectedListClassi.shift();
   }
 
-  onSelect(event: ListItem){
+  deleteAlert(): void {
+    this.segreteriaService.checkUpdate = '';
+    this.segreteriaService.messageUpdate = '';
+  }
+
+  onSelectMaterie(event: ListItem){
     this.listMaterie.push(event.text.toString())
   }
 
-  onDeselect(event: ListItem){
+  onDeselectMaterie(event: ListItem){
     this.listMaterie = this.listMaterie.filter(materia => materia !== event.text.toString())
   }
 
-  onSelectAll(event: ListItem[]){
+  onSelectAllMaterie(event: ListItem[]){
     this.listMaterie = Array.from(new Set(event.map(item => item.text.toString())))
   }
 
-  onDeselectAll(event: ListItem[]){
+  onDeselectAllMaterie(event: ListItem[]){
     this.listMaterie = Array.from(new Set(event.map(item => item.text.toString())))
+  }
+
+  onSelectClassi(event: ListItem){
+    this.listClassi.push(event.text.toString())
+  }
+
+  onDeselectClassi(event: ListItem){
+    this.listClassi = this.listClassi.filter(sezione => sezione !== event.text.toString())
+  }
+
+  onSelectAllClassi(event: ListItem[]){
+    this.listClassi = Array.from(new Set(event.map(item => item.text.toString())))
+  }
+
+  onDeselectAllClassi(event: ListItem[]){
+    this.listClassi = Array.from(new Set(event.map(item => item.text.toString())))
   }
 
   updateDocente(): void{
-    this.form.get('materie').setValue(this.listMaterie)
+    this.form.get('materie').setValue(this.listMaterie);
+    this.form.get('sezioni').setValue(this.listClassi);
+    this.segreteriaService.updateDocente(this.form);
   }
 
   cancel(): void {
