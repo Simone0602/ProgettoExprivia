@@ -10,10 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HalfCircleSpinnerModule } from 'angular-epic-spinners';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-<<<<<<< HEAD
-=======
 
->>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
 import { AppComponent } from './app.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -33,13 +30,11 @@ import { VisualizzaStudentiEDocentiComponent } from './components/segreteria/vis
 import { RegisterStudenteComponent } from './components/segreteria/register-studente/register-studente.component';
 import { RegisterDocenteComponent } from './components/segreteria/register-docente/register-docente.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
-<<<<<<< HEAD
-=======
+
 import { DatiAnagraficiStudenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-studente/dati-anagrafici-studente.component';
 import { DatiAnagraficiDocenteComponent } from './components/registro-utenti/inside-app/dati-anagrafici-docente/dati-anagrafici-docente.component';
 import { UpdateDocenteComponent } from './components/segreteria/update-docente/update-docente.component';
 import { UpdateStudenteComponent } from './components/segreteria/update-studente/update-studente.component';
->>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
 
 import { Interceptor } from './config/intercetptor';
 
@@ -78,11 +73,7 @@ import { Interceptor } from './config/intercetptor';
     RouterModule,
     HttpClientModule,
     NgbModule,
-<<<<<<< HEAD
     MatChipsModule,
-=======
-    MatChipsModule, 
->>>>>>> 1fd52bc94d34174ef67dd99cbf10bff0eec96130
     HalfCircleSpinnerModule,
     NgMultiSelectDropDownModule,
     CKEditorModule
