@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Response } from 'src/app/class/Response';
 import { Studente } from 'src/app/class/Studente';
 import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
-import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
-import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
+import { LoginService } from 'src/app/service/login.service';
+import { RegistroService } from 'src/app/service/registro.service';
 
 @Component({
   selector: 'app-dati-anagrafici-studente',
@@ -86,7 +86,7 @@ export class DatiAnagraficiStudenteComponent implements OnInit, AfterContentInit
 
   OnSave(): void {
     this.form.enable();
-    this.registroService.updateStudent(this.form);
+    this.registroService.updateStudent(this.form.value);
     this.form.disable();
     this.update = !this.update;
   }

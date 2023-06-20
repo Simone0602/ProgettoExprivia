@@ -37,6 +37,7 @@ import { UpdateDocenteComponent } from './components/segreteria/update-docente/u
 import { UpdateStudenteComponent } from './components/segreteria/update-studente/update-studente.component';
 
 import { Interceptor } from './config/intercetptor';
+import { ApiService } from "./service/api.service";
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { Interceptor } from './config/intercetptor';
     CKEditorModule
   ],
   providers: [
+    ApiService,
     { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true}
   ],
   bootstrap: [AppComponent]

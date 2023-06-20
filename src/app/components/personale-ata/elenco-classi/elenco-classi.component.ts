@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Classe } from 'src/app/class/Classe';
-import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
+import { PersonaleService } from 'src/app/service/personale.service';
 
 @Component({
   selector: 'app-elenco-classi',

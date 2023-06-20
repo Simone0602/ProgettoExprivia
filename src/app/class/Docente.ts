@@ -1,4 +1,4 @@
-export interface Docente{
+export class Docente{
     nome: string;
     cognome: string;
     mail: string;

@@ -8,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit{
 
   listaImmagini = [
-    'https://azzurro.it/wp-content/uploads/2020/07/progetti-scuola-telefono-azzurro.jpg',
+    'https://www.oggiscuola.com/web/wp-content/uploads/2021/05/nuovo.jpg',
     'https://thumbs.dreamstime.com/b/libro-aperto-libri-della-libro-con-copertina-rigida-sulla-tavola-di-legno-fondo-di-istruzione-di-nuovo-al-banco-copi-lo-spazio-per-76106466.jpg',
-    'https://img.freepik.com/free-photo/school-desk-with-textbooks-near-blackboard_23-2148207696.jpg',
-    'https://www.oggiscuola.com/web/wp-content/uploads/2021/05/nuovo.jpg'
+    'https://img.freepik.com/free-photo/school-desk-with-textbooks-near-blackboard_23-2148207696.jpg'
   ]
   numeroPagina = 0;
   immagine = this.listaImmagini[0];

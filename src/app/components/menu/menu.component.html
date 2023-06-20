@@ -25,11 +25,11 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActive(['registro-famiglie'])" style="cursor: pointer;"
-            (click)="navigazioneNavbar('studente')" *ngIf="role=='studente' || role==''">Registro famiglie</a>
+            (click)="navigazioneNavbar('studente')" *ngIf="role!='docente'">Registro famiglie</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActive(['registro-docente'])" style="cursor: pointer;"
-            (click)="navigazioneNavbar('docente')" *ngIf="role=='docente' || role==''">Registro docenti</a>
+            (click)="navigazioneNavbar('docente')" *ngIf="role!='studente'">Registro docenti</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="isActive(['orario'])" style="cursor: pointer;" routerLink="orario">Orario</a>
@@ -39,10 +39,10 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
         <!-- Blocco condizione -->
-        <div *ngIf="!authService.isAuthenicated(); then bloccoLogin else bloccoLogout"></div>
+        <div *ngIf="!authService.isAuthenticated(); then bloccoLogin else bloccoLogout"></div>
         <!-- Blocco login -->
         <ng-template #bloccoLogin>
-          <div #bloccoLogin class="btn-group" style="margin-left: 7px;">
+          <div class="btn-group" style="margin-left: 7px;">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
               aria-expanded="false">Login</button>
             <ul class="dropdown-menu" style="margin-left: -60px;">
@@ -56,7 +56,7 @@
         </ng-template>
         <!-- Blocco logout -->
         <ng-template #bloccoLogout>
-          <div #bloccoLogin class="btn-group" style="margin-left: 7px;">
+          <div class="btn-group" style="margin-left: 7px;">
             <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
           </div>
         </ng-template>

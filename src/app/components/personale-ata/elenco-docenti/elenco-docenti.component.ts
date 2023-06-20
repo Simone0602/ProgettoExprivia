@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Docente } from 'src/app/class/Docente';
-import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
+import { PersonaleService } from 'src/app/service/personale.service';
 
 @Component({
   selector: 'app-elenco-docenti',

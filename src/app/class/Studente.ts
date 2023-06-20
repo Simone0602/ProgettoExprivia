@@ -1,4 +1,4 @@
-export interface Studente{
+export class Studente{
     nome: string;
     cognome: string;
     mail: string;

@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings, ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 import { Docente } from 'src/app/class/Docente';
-import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
-import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { PersonaleService } from 'src/app/service/personale.service';
+import { SegreteriaService } from 'src/app/service/segreteria.service';
 
 @Component({
   selector: 'app-update-docente',
@@ -146,7 +146,7 @@ export class UpdateDocenteComponent implements OnInit{
   updateDocente(): void{
     this.form.get('materie').setValue(this.listMaterie);
     this.form.get('sezioni').setValue(this.listClassi);
-    this.segreteriaService.updateDocente(this.form);
+    this.segreteriaService.updateDocente(this.form.value);
   }
 
   cancel(): void {

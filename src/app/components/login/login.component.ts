@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit, AfterContentInit{
 
   formStudente: FormGroup;
   formDocente: FormGroup;
-  
-  constructor(private route: ActivatedRoute, 
+
+  constructor(private route: ActivatedRoute,
     public loginService: LoginService){}
 
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit, AfterContentInit{
     const studente = {
       userCode: this.formStudente.value.userCode,
       password: this.formStudente.value.password
-    }       
+    }
     await this.loginService.loginStudente(studente);
   }
 
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit, AfterContentInit{
     const docente = {
       mail: this.formDocente.value.mail,
       codiceFiscale: this.formDocente.value.codiceFiscale,
-      password: this.formDocente.value.password 
+      password: this.formDocente.value.password
     }
     await this.loginService.loginDocente(docente);
   }

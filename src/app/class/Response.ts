@@ -1,4 +1,4 @@
-export interface Response{
+export class Response{
     token: string;
     utenza: string;
 }

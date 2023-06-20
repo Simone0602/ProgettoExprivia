@@ -1,4 +1,4 @@
-export interface RegistroStudente{
+export class RegistroStudente{
     listaVoti: [
         {
             materia: string;

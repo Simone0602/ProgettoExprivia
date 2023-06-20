@@ -1,8 +1,8 @@
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
-import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { PersonaleService } from 'src/app/service/personale.service';
+import { SegreteriaService } from 'src/app/service/segreteria.service';
 
 @Component({
   selector: 'app-register-studente',
@@ -80,6 +80,6 @@ export class RegisterStudenteComponent implements OnInit, AfterContentInit{
   }
 
   save(): void{
-    this.segreteriaService.saveStudente(this.form);
+    this.segreteriaService.saveStudente(this.form.value);
   }
 }

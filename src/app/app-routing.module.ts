@@ -8,7 +8,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { PasswordDimenticataComponent } from './components/password-dimenticata/password-dimenticata.component';
 import { RegistroComponent } from './components/registro-utenti/registro/registro.component';
 import { RegistroFamigliaComponent } from './components/registro-utenti/registro-famiglia/registro-famiglia.component';
-import { AuthGuard } from './secure/guard/auth-guard/auth.guard';
+import { AuthGuard } from './guard/auth-guard/auth.guard';
 import { RegistroDocenteComponent } from './components/registro-utenti/registro-docente/registro-docente.component';
 import { ListaStudentiDocenteComponent } from './components/registro-utenti/inside-app/lista-studenti-docente/lista-studenti-docente/lista-studenti-docente.component';
 import { PageNotFoundComponent } from './components/error/page-not-found/page-not-found.component';
@@ -31,6 +31,7 @@ const routes: Routes = [
       { path: 'aggiungi-docente', component: RegisterDocenteComponent }
     ]
   },
+
   { path: '', component: MenuComponent,
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -38,7 +39,7 @@ const routes: Routes = [
       { path: 'elenco-docenti', component: ElencoDocentiComponent },
       { path: 'elenco-classi', component: ElencoClassiComponent },
       { path: ':user/registro', redirectTo: '/home', pathMatch: 'full' },
-      { path: ':user/registro', component: RegistroComponent, canActivate: [AuthGuard], 
+      { path: ':user/registro', component: RegistroComponent, canActivate: [AuthGuard],
         children: [
           { path: 'registro-famiglie', component: RegistroFamigliaComponent,
             children: [
@@ -46,7 +47,7 @@ const routes: Routes = [
               { path: 'dati-anagrafici', component: DatiAnagraficiStudenteComponent },
               { path: 'assenze', component: AssenzeComponent },
               { path: 'voti', component: VotiComponent }
-            ] 
+            ]
           },
           { path: 'registro-docente', component: RegistroDocenteComponent,
             children: [

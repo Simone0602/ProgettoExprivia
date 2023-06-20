@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor(private jwtDecode: JwtDecodeService) { }
 
-  public isAuthenicated(): boolean{
+  public isAuthenticated(): boolean{
     const token = JSON.parse(localStorage.getItem('token'));
     if(!token){
       return false;
@@ -18,19 +18,13 @@ export class AuthService {
     const dateNow = new Date().getTime();
     const dateExp = new Date(token_decode.exp).getTime() * 1000;
 
-    if(dateExp >= dateNow){
-      return true;
-    }
-    return false;
+    return dateExp >= dateNow;
   }
 
   public role(): boolean{
     const token = JSON.parse(localStorage.getItem('token'));
 
-    if(token.utenza == 'studente'){
-      return true;
-    }
-    return false;
+    return token.utenza == 'studente';
   }
 }
 

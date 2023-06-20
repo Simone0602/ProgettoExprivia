@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
-import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
+import { RegistroService } from 'src/app/service/registro.service';
 
 @Component({
   selector: 'app-lista-studenti-docente',

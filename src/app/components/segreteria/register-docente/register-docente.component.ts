@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { SegreteriaService } from 'src/app/service/segreteria.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 
@@ -119,6 +119,6 @@ export class RegisterDocenteComponent {
   save(): void{
     this.form.addControl('materie', new FormControl(this.listMaterie));
     this.form.addControl('sezioni', new FormControl(this.listClassi));
-    this.segreteriaService.saveDocente(this.form);
+    this.segreteriaService.saveDocente(this.form.value);
   }
 }

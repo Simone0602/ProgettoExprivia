@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Assenza } from 'src/app/class/Assenza';
 import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
-import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
+import { RegistroService } from 'src/app/service/registro.service';
 
 @Component({
   selector: 'app-assenze',

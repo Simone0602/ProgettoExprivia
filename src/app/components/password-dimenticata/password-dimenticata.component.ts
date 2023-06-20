@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from 'src/app/service/login-service/service-dati/login.service';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-password-dimenticata',
@@ -18,12 +18,12 @@ export class PasswordDimenticataComponent implements OnInit, AfterContentInit {
 
   mobilePhone: boolean = false;
 
-  constructor(private route: ActivatedRoute, 
-    private router: Router, 
+  constructor(private route: ActivatedRoute,
+    private router: Router,
     public loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.isStudente = this.route.snapshot.paramMap.get('user')==='studente' ? true : false;
+    this.isStudente = this.route.snapshot.paramMap.get('user')==='studente';
     this.token = this.route.snapshot.paramMap.get('token');
 
     this.form = new FormGroup({
@@ -56,11 +56,7 @@ export class PasswordDimenticataComponent implements OnInit, AfterContentInit {
 
   controlloUgualianzaPassword(): void {
     if (this.form.value.password === this.form.value.confPassword) {
-      if(this.form.value.password==='' || this.form.value.confPassword===''){
-        this.ugualianzaPassword = false;
-      }else{
-        this.ugualianzaPassword = true;
-      }
+      this.ugualianzaPassword = !(this.form.value.password === '' || this.form.value.confPassword === '');
     } else {
       this.ugualianzaPassword = false;
     }
@@ -85,7 +81,7 @@ export class PasswordDimenticataComponent implements OnInit, AfterContentInit {
   }
 
   sendEmailStudente(): void {
-    this.mobilePhone ? 
+    this.mobilePhone ?
       this.loginService.sendMessageStudente(this.getStudente())
       : this.loginService.sendEmailStudente(this.getStudente());
   }

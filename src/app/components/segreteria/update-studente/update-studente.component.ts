@@ -4,8 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ListItem } from 'ng-multiselect-dropdown/multiselect.model';
 import { Studente } from 'src/app/class/Studente';
-import { PersonaleService } from 'src/app/service/personale-ata-service/service-dati/personale.service';
-import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { PersonaleService } from 'src/app/service/personale.service';
+import { SegreteriaService } from 'src/app/service/segreteria.service';
 
 @Component({
   selector: 'app-update-studente',
@@ -88,7 +88,7 @@ export class UpdateStudenteComponent implements OnInit, AfterContentInit{
   }
 
   updateStudente(): void {
-    this.segreteriaService.updateStudente(this.form);
+    this.segreteriaService.updateStudente(this.form.value);
   }
 
   cancel(): void {

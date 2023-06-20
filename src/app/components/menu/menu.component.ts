@@ -1,7 +1,7 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router} from '@angular/router';
 import { Response } from 'src/app/class/Response';
-import { AuthService } from 'src/app/secure/auth-service/auth.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -17,23 +17,23 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = JSON.parse(localStorage.getItem('token'));
-    if(this.token==null){
-      this.role = '';
-    }else{
+    if(this.token!=null){
       this.role = this.token.utenza;
     }
   }
 
   navigazioneNavbar(value: string): void {
-    this.router.navigate([`${value}`, 'registro', `registro-${value==='studente' ? 'famiglie' : value}`])
-    .then((postNavigazione) => {
-      if (!postNavigazione && postNavigazione != null) {
-        let bool_1 = confirm('Devi registrati prima di accedere a questa sezione!');
-        if (bool_1) {
-          this.router.navigate([`login/${value}`])
+    const percorso = value==='studente' ? 'famiglie' : value;
+
+    this.router.navigate([`${value}`, 'registro', `registro-${percorso}`])
+      .then((postNavigazione) => {
+        if (!postNavigazione && postNavigazione != null) {
+          let bool_1 = confirm('Devi registrati prima di accedere a questa sezione!');
+          if (bool_1) {
+            this.router.navigate([`login/${value}`])
+          }
         }
-      }
-    })
+      })
   }
 
   isActive(routes: string[]): string {
@@ -46,8 +46,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout(): void{
-    localStorage.removeItem('token');
     this.role='';
+    localStorage.removeItem('token');
     this.router.navigate(['/home']);
   }
 }

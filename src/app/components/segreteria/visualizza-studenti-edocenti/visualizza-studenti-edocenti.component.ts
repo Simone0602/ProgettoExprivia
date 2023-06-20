@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { SegreteriaService } from 'src/app/service/segreteria-service/service-dati/segreteria.service';
+import { SegreteriaService } from 'src/app/service/segreteria.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Studente } from 'src/app/class/Studente';
 import { Docente } from 'src/app/class/Docente';

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { ContattaciService } from 'src/app/service/contattaci-service/service-dati/contattaci.service';
+import { ContattaciService } from 'src/app/service/contattaci.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -20,7 +20,7 @@ export class ContactUsComponent implements OnInit, AfterContentInit{
     this.form = new FormGroup({
       mail: new FormControl(null, [Validators.required, Validators.email]),
       descrizione: new FormControl(null, [Validators.required])
-    }); 
+    });
   }
 
   ngAfterContentInit(): void {

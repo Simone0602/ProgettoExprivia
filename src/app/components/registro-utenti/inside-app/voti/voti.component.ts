@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JwtDecodeService } from 'src/app/service/jwt/jwt-decode.service';
-import { RegistroService } from 'src/app/service/registro-service/service-dati/registro.service';
+import { RegistroService } from 'src/app/service/registro.service';
 
 @Component({
   selector: 'app-voti',
@@ -10,7 +10,7 @@ import { RegistroService } from 'src/app/service/registro-service/service-dati/r
 export class VotiComponent implements OnInit {
   private userCode: string;
 
-  constructor(private jwtService: JwtDecodeService, 
+  constructor(private jwtService: JwtDecodeService,
     public registroService: RegistroService){}
 
   ngOnInit(): void {
